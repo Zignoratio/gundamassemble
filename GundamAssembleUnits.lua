@@ -4,7 +4,7 @@ return {
       pilot="Mikazuki Augus",
       faction="Tekkadan",
       technical_name="ASW-G-08",
-      splash_art="Gundam Barbatos Lupus Rex (Final Stand).png",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/9558626807699245815/B7B8A434C165FB3B2B351A24268EDA5160EFC7D1/",
       hp="17",
       timeline="2",
       vp="10",
