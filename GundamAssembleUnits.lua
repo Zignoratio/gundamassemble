@@ -4,7 +4,7 @@ return {
       pilot="Mikazuki Augus",
       faction="Tekkadan",
       technical_name="ASW-G-08",
-      splash_art="https://steamusercontent-a.akamaihd.net/ugc/9558626807699245815/B7B8A434C165FB3B2B351A24268EDA5160EFC7D1/",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/10048404846876883685/4F30392F3C8374F64A7A5C3D84E3FBF4BD27E1D1/",
       hp="17",
       timeline="2",
       vp="10",
