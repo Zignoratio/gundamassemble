@@ -52,14 +52,14 @@ return {
       pilot="Char Aznable",
       faction="Zeon",
       technical_name="MS-06S",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/17135590190829922777/F82E38319C945C340E500CA3ABEB1F5A43820F84/",
       hp="8",
       timeline="1",
       vp="5",
       attacks={
          {
             name="Heat Hawk",
-            cost="2TL",
+            cost="2",
             range="1",
             strength="3",
             effects={
@@ -99,14 +99,14 @@ return {
       pilot="Char Aznable",
       faction="Zeon",
       technical_name="MS-06S",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/15831898588054514547/72BC5F96D417AE40DF426F666E61A3DF15E12E38/",
       hp="12",
       timeline="2",
       vp="7",
       attacks={
          {
             name="Heat Hawk",
-            cost="2TL",
+            cost="2",
             range="1",
             strength="4",
             effects={
@@ -128,7 +128,7 @@ return {
          {
             name="Checkmate",
             keywords="[Command][Energy]",
-            description="This unit gains +2[Accuracy] and \\"
+            description="This unit gains +2[Accuracy] and \\\\"
          },
          {
             name="Three Times Faster",
@@ -147,14 +147,14 @@ return {
       pilot="Kai Shiden",
       faction="Earth Federation",
       technical_name="RX-77-2",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/13996478906113246000/46BDE26ADF9EDD4F9010389E93A9EE57E8CE07DB/",
       hp="10",
       timeline="2",
       vp="4",
       attacks={
          {
             name="Beam Rifle",
-            cost="2TL",
+            cost="2",
             range="3",
             strength="2",
             effects={
@@ -189,14 +189,14 @@ return {
       pilot="Kai Shiden",
       faction="Earth Federation",
       technical_name="RX-77-2",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/17268406598866281310/37628275B00B3B9F3CE266C272FCCADDEFEBDDBB/",
       hp="14",
       timeline="2",
       vp="8",
       attacks={
          {
             name="Shoulder Cannons",
-            cost="2TL",
+            cost="2",
             range="3",
             strength="3",
             effects={
@@ -232,7 +232,7 @@ return {
       pilot="Amuro Ray",
       faction="Earth Federation",
       technical_name="RX-78-2",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/11258258837309962720/C20474023D6CDE624F3BFF66C79030F54498FFFD/",
       hp="11",
       timeline="2",
       vp="5",
@@ -249,7 +249,7 @@ return {
          },
          {
             name="Beam Rifle",
-            cost="4TL",
+            cost="4",
             range="4",
             strength="05",
             effects={
@@ -275,14 +275,14 @@ return {
       pilot="Amuro Ray",
       faction="Earth Federation",
       technical_name="RX-78-2",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/9848665953839576147/0B19137F1A2004FDE41646A7BD5168AEBD6C869B/",
       hp="15",
       timeline="2",
       vp="8",
       attacks={
          {
             name="Vulcan cannons",
-            cost="2TL",
+            cost="2",
             range="2",
             strength="3",
             effects={
@@ -318,14 +318,14 @@ return {
       pilot="Amuro Ray",
       faction="Earth Federation",
       technical_name="RX-78-2",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/17021566392560334786/C8A3F3F1A30274C89A6C85168A4786C3C48093F9/",
       hp="12",
       timeline="4",
       vp="8",
       attacks={
          {
             name="Beam Rifle",
-            cost="2TL",
+            cost="2",
             range="3",
             strength="4",
             effects={
@@ -361,7 +361,7 @@ return {
       pilot="Zechs Merquise",
       faction="OZ, White Fang",
       technical_name="OZ-13MS",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/15072520958556950136/613DF99A764631F7D3ED28BE808C834BBDA3713A/",
       hp="15",
       timeline="3",
       vp="9",
@@ -378,7 +378,7 @@ return {
          },
          {
             name="Beam Sword",
-            cost="3TL",
+            cost="3",
             range="3",
             strength="7",
             effects={
@@ -410,7 +410,7 @@ return {
       pilot="Vidar",
       faction="Gjallerhorn",
       technical_name="ASW-G-XX",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/11601358836318515547/52DD4CCF3A42932A9CB9C086A108992920A8C702/",
       hp="10",
       timeline="1",
       vp="7",
@@ -426,7 +426,7 @@ return {
          },
          {
             name="Burst Saber",
-            cost="4TL",
+            cost="4",
             range="1",
             strength="8",
             effects={
@@ -452,14 +452,14 @@ return {
       pilot="Hayato Kobayashi",
       faction="Earth Federation",
       technical_name="RX-75",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16850854877252954187/C4EF8E0F0C5ABC98239B8558D676F39622A85F89/",
       hp="9",
       timeline="3",
       vp="3",
       attacks={
          {
             name="4-Tube Missle Launcher",
-            cost="2TL",
+            cost="2",
             range="3",
             strength="2",
             effects={
@@ -496,14 +496,14 @@ return {
       pilot="Heero Yuy",
       faction="Operation Meteor",
       technical_name="XXXG-00W0",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16224975121092867559/80D0FEE6D0E97924FE13B70C7AA4AEA26C498F77/",
       hp="12",
       timeline="3",
       vp="9",
       attacks={
          {
             name="Beam Saber",
-            cost="2TL",
+            cost="2",
             range="1",
             strength="4",
             effects={
@@ -544,14 +544,14 @@ return {
       pilot="Mass Produced",
       faction="Zeon",
       technical_name="MS-06",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/13703338663483001694/438F9EF02F567330181A20E9BC697B237B77E4A2/",
       hp="11",
       timeline="2",
       vp="4",
       attacks={
          {
             name="Shoulder Bash",
-            cost="2TL",
+            cost="2",
             range="1",
             strength="3",
             effects={
@@ -587,14 +587,14 @@ return {
       pilot="Mass Produced",
       faction="Zeon",
       technical_name="MS-06",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16019235013036570947/F20209FA3774AF1DED09E4C79C4F9D0AA33BDAEE/",
       hp="9",
       timeline="2",
       vp="4",
       attacks={
          {
             name="Cracker Grenade",
-            cost="2TL",
+            cost="2",
             range="3",
             strength="2",
             effects={
