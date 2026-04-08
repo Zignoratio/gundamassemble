@@ -128,7 +128,7 @@ return {
          {
             name="Checkmate",
             keywords="[Command][Energy]",
-            description="This unit gains +2[Accuracy] and \\\\"
+            description="This unit gains +2[Accuracy] and [After Attack Roll] Destroy 1 [Upgrade] on the target this activation "
          },
          {
             name="Three Times Faster",
