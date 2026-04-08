@@ -68,7 +68,7 @@ return {
          },
          {
             name="Machine Gun",
-            cost="3TL",
+            cost="3",
             range="2",
             strength="5",
             effects={
@@ -115,7 +115,7 @@ return {
          },
          {
             name="Bazooka",
-            cost="4TL",
+            cost="4",
             range="4",
             strength="7",
             effects={
@@ -163,7 +163,7 @@ return {
          },
          {
             name="Shoulder Cannons",
-            cost="3TL",
+            cost="3",
             range="3",
             strength="4",
             effects={
@@ -205,7 +205,7 @@ return {
          },
          {
             name="Beam Rifle",
-            cost="3TL",
+            cost="3",
             range="3",
             strength="4",
             effects={
@@ -239,7 +239,7 @@ return {
       attacks={
          {
             name="Beam Saber",
-            cost="2TL",
+            cost="2",
             range="1",
             strength="2",
             effects={
@@ -291,7 +291,7 @@ return {
          },
          {
             name="Beam Saber",
-            cost="3TL",
+            cost="3",
             range="1",
             strength="6",
             effects={
@@ -334,7 +334,7 @@ return {
          },
          {
             name="Hyper Bazooka",
-            cost="4TL",
+            cost="4",
             range="4",
             strength="7",
             effects={
@@ -368,7 +368,7 @@ return {
       attacks={
          {
             name="Heat Rod",
-            cost="2TL",
+            cost="2",
             range="2",
             strength="3",
             effects={
@@ -417,7 +417,7 @@ return {
       attacks={
          {
             name="Handguns",
-            cost="3TL",
+            cost="3",
             range="2",
             strength="3",
             effects={
@@ -469,7 +469,7 @@ return {
          },
          {
             name="Low-Recoil Cannons",
-            cost="4TL",
+            cost="4",
             range="4",
             strength="4",
             effects={
@@ -512,7 +512,7 @@ return {
          },
          {
             name="Twin Buster Rifle",
-            cost="7TL",
+            cost="7",
             range="3",
             strength="6",
             effects={
@@ -560,7 +560,7 @@ return {
          },
          {
             name="Heat Hawk",
-            cost="4TL",
+            cost="4",
             range="1",
             strength="5",
             effects={
@@ -604,7 +604,7 @@ return {
          },
          {
             name="Bazooka",
-            cost="3TL",
+            cost="3",
             range="3",
             strength="4",
             effects={
