@@ -110,7 +110,7 @@ return {
             range="1",
             strength="4",
             effects={
-               "[Critical] [After Attack  Roll] Fracture Enemy Target",
+               "[Critical] [After Attack Roll] Fracture Enemy Target",
             }
          },
          {
@@ -128,7 +128,7 @@ return {
          {
             name="Checkmate",
             keywords="[Command][Energy]",
-            description="This unit gains +2[Accuracy] and [After Attack Roll] Destroy 1 [Upgrade] on the target this activation "
+            description="This unit gains +2 [Accuracy] and [After Attack Roll] Destroy 1 [Upgrade] on the target this activation"
          },
          {
             name="Three Times Faster",
