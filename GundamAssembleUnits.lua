@@ -99,7 +99,7 @@ return {
       pilot="Char Aznable",
       faction="Zeon",
       technical_name="MS-06S",
-      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16517057500981018599/5A7D86D41428B764B4EE5A2DEE274382489649BF/",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16517057500981018599/5A7D86D41428B764B4EE5A2DEE274382489649BF/https://steamusercontent-a.akamaihd.net/ugc/16517057500981018599/5A7D86D41428B764B4EE5A2DEE274382489649BF/",
       hp="12",
       timeline="2",
       vp="7",
@@ -110,7 +110,7 @@ return {
             range="1",
             strength="4",
             effects={
-               "[Critical] [After Attack Roll] Fracture Enemy Target",
+               "[Critical] [After Attack  Roll] Fracture Enemy Target",
             }
          },
          {
@@ -128,7 +128,7 @@ return {
          {
             name="Checkmate",
             keywords="[Command][Energy]",
-            description="This unit gains +2 [Accuracy] and [After Attack Roll] Destroy 1 [Upgrade] on the target this activation"
+            description="This unit gains +2[Accuracy] and \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
          },
          {
             name="Three Times Faster",
@@ -622,6 +622,54 @@ return {
             name="Rescue the Mechanics",
             keywords="[Ongoing]",
             description="After this unit Rescues a Garrison: Another allied unit gains 2 hit points."
+         },
+      }
+   },
+   {
+      name="Wing Gundam Zero (EW) [Wing of Destruction]",
+      pilot="Heero Yuy",
+      faction="G Team",
+      technical_name="XXXG-00W0",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/17138470882116572629/D46970AC66C5C31475889D304937CA27B61EBD6C/",
+      hp="12",
+      timeline="3",
+      vp="9",
+      attacks={
+         {
+            name="Beam Saber",
+            cost="2",
+            range="1",
+            strength="4",
+            effects={
+               "[Critial] [After Combat Damage] This unit Moves 2, ignoring Engagement.",
+            }
+         },
+         {
+            name="Twin Buster Rifle",
+            cost="4",
+            range="SP",
+            strength="6",
+            sp_shape="Cone",
+            effects={
+               "[Critical] +1 [Damge] for each [Critical] rolled (max +4).",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Full Power",
+            keywords="[Command][Energy]1",
+            description="This unit gains +3 [Strength] this activation."
+         },
+         {
+            name="Zero System",
+            keywords="[Ongoing]",
+            description="This unit's attack counts 7's and 8's as [Critical]"
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties."
          },
       }
    }
