@@ -99,7 +99,7 @@ return {
       pilot="Char Aznable",
       faction="Zeon",
       technical_name="MS-06S",
-      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16517057500981018599/5A7D86D41428B764B4EE5A2DEE274382489649BF/https://steamusercontent-a.akamaihd.net/ugc/16517057500981018599/5A7D86D41428B764B4EE5A2DEE274382489649BF/",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16517057500981018599/5A7D86D41428B764B4EE5A2DEE274382489649BF/",
       hp="12",
       timeline="2",
       vp="7",
@@ -128,7 +128,7 @@ return {
          {
             name="Checkmate",
             keywords="[Command][Energy]",
-            description="This unit gains +2[Accuracy] and \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
+            description="This unit gains +2[Accuracy] and [After Attack Roll] Destroy 1 [Upgrade] on the target this activation"
          },
          {
             name="Three Times Faster",
