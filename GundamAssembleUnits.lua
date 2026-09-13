@@ -630,7 +630,7 @@ return {
       pilot="Heero Yuy",
       faction="G Team",
       technical_name="XXXG-00W0",
-      splash_art="https://steamusercontent-a.akamaihd.net/ugc/17138470882116572629/D46970AC66C5C31475889D304937CA27B61EBD6C/",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/17908449623980494584/365D21189F6F16185D06628CCA8D2B82539C25EB/",
       hp="12",
       timeline="3",
       vp="9",
