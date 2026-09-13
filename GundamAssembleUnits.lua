@@ -672,5 +672,43 @@ return {
             description="This unit ignores terrain movement penalties."
          },
       }
+   },
+   {
+      name="Buster Gundam [Longshot]",
+      pilot="Dearka Elsman",
+      faction="Z.A.F.T.",
+      technical_name="GAT-X103",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16586820249349490753/10533B2431FE94EDC5723F2C2FF5C3418E6AB4F7/",
+      hp="12",
+      timeline="7",
+      vp="3",
+      attacks={
+         {
+            name="94mm High-Energy Beam Rifle",
+            cost="2",
+            range="3",
+            strength="3",
+            effects={
+               "[Critical] [Disarm] the target.",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Recombine",
+            keywords="[Command] [Energy]1",
+            description="This unit may transform its weapon card and its Anti-Armor Shotgun and Hyper Impulse Long-Range Sniper Rifle gain [Strength]+2 this activation"
+         },
+         {
+            name="Long-Range Sensors",
+            keywords="[Ongoing]",
+            description="This unit's attacks gain [Accuracy]+1 against enemies on or adjacent to an Objective."
+         },
+         {
+            name="Locked and Loaded",
+            keywords="[Setup]",
+            description="This unit starts the game with either its Anti-Armor Shotgun or its Hyper Impulse Long-Range Sniper Rifle in play."
+         },
+      }
    }
 }
