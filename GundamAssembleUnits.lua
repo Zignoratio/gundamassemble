@@ -651,7 +651,7 @@ return {
             strength="6",
             sp_shape="Cone",
             effects={
-               "[Critical] +1 [Damge] for each [Critical] rolled (max +4).",
+               "[Critical] +1 [Damage] for each [Critical] rolled (max +4).",
             }
          },
       },
