@@ -251,7 +251,7 @@ return {
             name="Beam Rifle",
             cost="4",
             range="4",
-            strength="05",
+            strength="5",
             effects={
                "[Critical] Crit +2 [Damage]",
             }
