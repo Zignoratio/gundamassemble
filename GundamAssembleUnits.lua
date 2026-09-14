@@ -641,7 +641,7 @@ return {
             range="1",
             strength="4",
             effects={
-               "[Critial] [After Combat Damage] This unit Moves 2, ignoring Engagement.",
+               "[Critical] [After Combat Damage] This unit Moves 2, ignoring Engagement.",
             }
          },
          {
