@@ -512,7 +512,7 @@ return {
          },
          {
             name="Twin Buster Rifle",
-            cost="7",
+            cost="4",
             range="3",
             strength="6",
             effects={
