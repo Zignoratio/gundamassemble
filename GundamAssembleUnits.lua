@@ -492,54 +492,6 @@ return {
       }
    },
    {
-      name="Wing Gundam Zero [Angel of Destruction]",
-      pilot="Heero Yuy",
-      faction="Operation Meteor",
-      technical_name="XXXG-00W0",
-      splash_art="https://steamusercontent-a.akamaihd.net/ugc/11564274915330783198/70D3995094158ED0C3A2169BC604F03403EC49B0/",
-      hp="12",
-      timeline="3",
-      vp="9",
-      attacks={
-         {
-            name="Beam Saber",
-            cost="2",
-            range="1",
-            strength="4",
-            effects={
-               "This unit moves 2, ignoring Engagement",
-            }
-         },
-         {
-            name="Twin Buster Rifle",
-            cost="4",
-            range="3",
-            strength="6",
-            effects={
-               "Cone shaped attack",
-               "[Critical] +1 damage for each crit rolled (max +4)",
-            }
-         },
-      },
-      abilities={
-         {
-            name="Full Power",
-            keywords="[Command][Energy]",
-            description="This unit gains +3 strength this activation"
-         },
-         {
-            name="Zero System",
-            keywords="[Ongoing]",
-            description="This unit's attacks count 7's and 8's as [Crits]"
-         },
-         {
-            name="Hover",
-            keywords="[Ongoing]",
-            description="This unit ignores terrain movement penalties"
-         },
-      }
-   },
-   {
       name="Zaku II [Enforcer]",
       pilot="Mass Produced",
       faction="Zeon",
@@ -626,7 +578,7 @@ return {
       }
    },
    {
-      name="Wing Gundam Zero (EW) [Wing of Destruction]",
+      name="Wing Gundam Zero [Wing of Destruction]",
       pilot="Heero Yuy",
       faction="G Team",
       technical_name="XXXG-00W0",
