@@ -13,7 +13,7 @@
       "tag2": "",
       "effect": "Gundam gains a [Strength] Upgrade. Its attacks cost [TL -1] this turn. If it defeats an enemy unit this turn, it gains an additional [Strength] Upgrade.",
       "scenario": "",
-      "boxStyle": "auto",
+      "boxStyle": "color",
       "footer": "Fan-made card · Not for sale",
       "attack": {
         "name": "",
@@ -25,11 +25,11 @@
           ""
         ]
       },
-      "artW": 724,
-      "artH": 1000,
-      "artX": 19,
-      "artY": 66,
-      "artZoom": 127,
+      "artW": 960,
+      "artH": 1336,
+      "artX": 8,
+      "artY": 40,
+      "artZoom": 100,
       "uid": 1771805650409,
       "faction": "Gundam",
       "artFile": "last_shot_counts.webp"
@@ -56,14 +56,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
+      "artW": 850,
+      "artH": 612,
       "artX": 0,
       "artY": 0,
       "artZoom": 100,
       "uid": 1771805650410,
       "faction": "Earth Federation",
-      "artFile": null
+      "artFile": "veteran_s_momentum.webp"
     },
     {
       "_key": "a1b01b91",
@@ -87,14 +87,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1100,
+      "artH": 1553,
+      "artX": 15.3333740234375,
+      "artY": 25.333343505859375,
       "artZoom": 100,
       "uid": 1771805650411,
       "faction": "Earth Federation",
-      "artFile": null
+      "artFile": "earth_federation_shield.webp"
     },
     {
       "_key": "5c56ea2d",
@@ -106,7 +106,7 @@
       "tag2": "",
       "effect": "Guncannon gains an [Energy] Upgrade. It gains +1 [Strength] this turn for each Garrison you've rescued.",
       "scenario": "",
-      "boxStyle": "auto",
+      "boxStyle": "color",
       "footer": "Fan-made card · Not for sale",
       "attack": {
         "name": "",
@@ -118,14 +118,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 850,
+      "artH": 1204,
+      "artX": 38,
+      "artY": 36,
       "artZoom": 100,
       "uid": 1771805650412,
       "faction": "Guncannon",
-      "artFile": null
+      "artFile": "forward_artillery_position.webp"
     },
     {
       "_key": "010a7522",
@@ -149,14 +149,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 850,
+      "artH": 540,
+      "artX": 4.666748046875,
+      "artY": 80,
       "artZoom": 100,
       "uid": 1771805650413,
       "faction": "Earth Federation",
-      "artFile": null
+      "artFile": "return_fire.webp"
     },
     {
       "_key": "90ccc53e",
@@ -180,14 +180,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
+      "artW": 1000,
+      "artH": 1376,
+      "artX": -254,
+      "artY": 166.6666717529297,
+      "artZoom": 110,
       "uid": 1771805650414,
       "faction": "Earth Federation",
-      "artFile": null
+      "artFile": "shield_the_recovery.webp"
     },
     {
       "_key": "22d7b9f3",
@@ -199,7 +199,7 @@
       "tag2": "",
       "effect": "Guntank gains a [Shield] Upgrade. It captures an objective it is on or adjacent to.",
       "scenario": "",
-      "boxStyle": "auto",
+      "boxStyle": "color",
       "footer": "Fan-made card · Not for sale",
       "attack": {
         "name": "",
@@ -211,14 +211,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
+      "artW": 850,
+      "artH": 1234,
+      "artX": 448.66650390625,
+      "artY": 59.333343505859375,
+      "artZoom": 106,
       "uid": 1771805650415,
       "faction": "Guntank",
-      "artFile": null
+      "artFile": "entrenched_position.webp"
     },
     {
       "_key": "307d0b6a",
@@ -242,14 +242,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 617,
+      "artH": 918,
+      "artX": 12.6666259765625,
+      "artY": 178,
       "artZoom": 100,
       "uid": 1771805650416,
       "faction": "Earth Federation",
-      "artFile": null
+      "artFile": "built_to_last.webp"
     },
     {
       "_key": "123b8d8a",
@@ -273,14 +273,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1013,
+      "artX": 109.333251953125,
+      "artY": 83.33331298828125,
       "artZoom": 100,
       "uid": 1771805650417,
       "faction": "Earth Federation",
-      "artFile": null
+      "artFile": "lock_down_the_perimeter.webp"
     },
     {
       "_key": "29d8df66",
@@ -292,7 +292,7 @@
       "tag2": "",
       "effect": "Char's Zaku II makes an additional Dash at [TL 0]. Then it makes an additional Heat Hawk attack at [TL 0].",
       "scenario": "",
-      "boxStyle": "auto",
+      "boxStyle": "color",
       "footer": "Fan-made card · Not for sale",
       "attack": {
         "name": "",
@@ -304,14 +304,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 750,
+      "artH": 1000,
+      "artX": -51.333251953125,
+      "artY": 38.66668701171875,
       "artZoom": 100,
       "uid": 1771805650418,
       "faction": "Char's Zaku II (Red Comet)",
-      "artFile": null
+      "artFile": "crimson_execution.webp"
     },
     {
       "_key": "feca8cbc",
@@ -335,14 +335,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
+      "artW": 1555,
+      "artH": 1800,
+      "artX": 284.6666259765625,
+      "artY": -127.33335876464844,
+      "artZoom": 122,
       "uid": 1771805650419,
       "faction": "Zeon",
-      "artFile": null
+      "artFile": "exploited_chaos.webp"
     },
     {
       "_key": "21799203",
@@ -366,14 +366,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
+      "artW": 1221,
+      "artH": 1066,
+      "artX": 14.6666259765625,
+      "artY": -24.666656494140625,
+      "artZoom": 141,
       "uid": 1771805650420,
       "faction": "Zeon",
-      "artFile": null
+      "artFile": "sudden_pressure.webp"
     },
     {
       "_key": "8365cfc8",
@@ -385,7 +385,7 @@
       "tag2": "",
       "effect": "Zaku II (Linebreaker) rescues an allied Garrison within [Range 3] at [TL 0]. Then it gains an [Energy] Upgrade.",
       "scenario": "",
-      "boxStyle": "auto",
+      "boxStyle": "color",
       "footer": "Fan-made card · Not for sale",
       "attack": {
         "name": "",
@@ -397,14 +397,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1058,
+      "artH": 1486,
+      "artX": 8,
+      "artY": 126.66668701171875,
       "artZoom": 100,
       "uid": 1771805650421,
       "faction": "Zaku II (Line Breaker)",
-      "artFile": null
+      "artFile": "rescued_extraction.webp"
     },
     {
       "_key": "62ec9d4f",
@@ -428,14 +428,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1232,
+      "artX": -8,
+      "artY": -88,
       "artZoom": 100,
       "uid": 1771805650422,
       "faction": "Zeon",
-      "artFile": null
+      "artFile": "breaking_the_line.webp"
     },
     {
       "_key": "42e907f1",
@@ -478,7 +478,7 @@
       "tag2": "",
       "effect": "After an enemy unit ends its movement adjacent to Zaku II Enforcer: it deals 3 [Damage] to that enemy unit.",
       "scenario": "",
-      "boxStyle": "auto",
+      "boxStyle": "color",
       "footer": "Fan-made card · Not for sale",
       "attack": {
         "name": "",
@@ -490,14 +490,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 850,
+      "artH": 951,
+      "artX": 36,
+      "artY": 26.666656494140625,
       "artZoom": 100,
       "uid": 1771805650424,
       "faction": "Zaku II (Enforcer)",
-      "artFile": null
+      "artFile": "iron_grip.webp"
     },
     {
       "_key": "8de70edd",
@@ -521,14 +521,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
+      "artW": 750,
+      "artH": 486,
+      "artX": 166,
+      "artY": -2.66668701171875,
+      "artZoom": 107,
       "uid": 1771805650425,
       "faction": "Zeon",
-      "artFile": null
+      "artFile": "drive_them_back.webp"
     },
     {
       "_key": "0363a4a3",
@@ -646,14 +646,14 @@
           "[Critical] [Damage +2]."
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 736,
+      "artH": 1318,
+      "artX": 8.6666259765625,
+      "artY": 70.66665649414062,
       "artZoom": 100,
       "uid": 1771805650430,
       "faction": "Gundam (Hero of Side 7)",
-      "artFile": null
+      "artFile": "epic_shot.webp"
     },
     {
       "_key": "7e9654a8",
@@ -789,7 +789,7 @@
       "tag2": "",
       "effect": "When Gundam Barbatos Lupus Rex would be defeated: Set its HP to 1 instead. It Moves 2 and makes a Rex Claws attack at [TL 0].",
       "scenario": "",
-      "boxStyle": "auto",
+      "boxStyle": "color",
       "footer": "Fan-made card · Not for sale",
       "attack": {
         "name": "",
@@ -944,7 +944,7 @@
       "tag2": "",
       "effect": "[After Combat Damage] If Wing Gundam Zero attacked, deal 2 [Damage] to it and to each target.",
       "scenario": "",
-      "boxStyle": "auto",
+      "boxStyle": "color",
       "footer": "Fan-made card · Not for sale",
       "attack": {
         "name": "",
@@ -1018,14 +1018,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 540,
+      "artH": 770,
+      "artX": 14.6666259765625,
+      "artY": 2,
       "artZoom": 100,
       "uid": 1771805650442,
       "faction": "Earth Federation",
-      "artFile": null
+      "artFile": "three_man_team.webp"
     },
     {
       "_key": "81e4593a",
