@@ -490,11 +490,18 @@ textarea { resize: vertical; min-height: 50px; font-size: 13px; }
 .tcard-atk-sp span { font-size: 9px; color: #555; font-family: var(--font-mono); }
 
 /* keyword pills */
+/* The badge box is a ::before layer so it can be nudged during export without moving the text
+   (html2canvas draws inline-block backgrounds slightly high relative to their text). */
 .kw {
-  display: inline-block; padding: 0 4px; margin: 0 1px; border-radius: 2px;
+  position: relative; display: inline-block; padding: 0 4px; margin: 0 1px;
   color: #fff; font-weight: 700; font-size: 0.92em; line-height: 1.3; white-space: nowrap;
-  border: 1px solid rgba(255,255,255,0.4);
 }
+.kw::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; box-sizing: border-box;
+  background: var(--kw); border: 1px solid rgba(255,255,255,0.4); border-radius: 2px;
+}
+.kw > span { position: relative; }
+.tcard.exporting .kw::before { top: 1.6px; bottom: -1.6px; }
 
 /* bottom strip */
 .tcard-bottom {
@@ -544,6 +551,7 @@ textarea { resize: vertical; min-height: 50px; font-size: 13px; }
 .tc-hint { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 1px; text-align: center; }
 input[type=range].tc-slider { width: 100%; accent-color: var(--accent2); }
 .tc-export-bar { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--border); }
+.tc-export-bar.top { margin: 0 0 22px; padding: 0 0 18px; border-top: none; border-bottom: 1px solid var(--border); }
 .tc-export-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .tc-export-bar .tc-hint { text-align: left; line-height: 1.6; }
 .tc-format { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
@@ -965,7 +973,7 @@ function renderPills(text) {
   if (!text) return null;
   return String(text).split(/(\[[^\]]+\])/g).map((part, i) => {
     if (part.startsWith("[") && part.endsWith("]")) {
-      return <span key={i} className="kw" style={{ background: keywordColor(part.slice(1, -1)) }}>{part.slice(1, -1)}</span>;
+      return <span key={i} className="kw" style={{ "--kw": keywordColor(part.slice(1, -1)) }}><span>{part.slice(1, -1)}</span></span>;
     }
     return part;
   });
@@ -1158,7 +1166,10 @@ const tcFolderArtLoader = (dir) => async (file) => {
 const TC_FORMATS = { webp: { mime: "image/webp", ext: "webp", q: 0.92 }, png: { mime: "image/png", ext: "png", q: undefined }, jpg: { mime: "image/jpeg", ext: "jpg", q: 0.9 } };
 const canvasToBlob = (canvas, fmt) => new Promise(res => canvas.toBlob(res, TC_FORMATS[fmt].mime, TC_FORMATS[fmt].q));
 async function tcRenderCard(el, fmt = "webp") {
-  const canvas = await html2canvas(el, { scale: TC_EXPORT_SCALE, useCORS: true, allowTaint: true, backgroundColor: null, logging: false, width: TC_W, height: TC_H });
+  const canvas = await html2canvas(el, {
+    scale: TC_EXPORT_SCALE, useCORS: true, allowTaint: true, backgroundColor: null, logging: false, width: TC_W, height: TC_H,
+    onclone: (doc) => doc.querySelectorAll(".tcard").forEach(n => n.classList.add("exporting")),
+  });
   return canvasToBlob(canvas, fmt);
 }
 // Re-encode a card's stored art (data URI) into the chosen format.
@@ -1292,6 +1303,27 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
     <React.Fragment>
       <div className="main">
         {cards.length > 0 && (
+          <div className="tc-export-bar top">
+            <div className="tc-export-row">
+              <label className="tc-format">FORMAT
+                <select value={format} onChange={(e) => setFormat(e.target.value)}>
+                  <option value="webp">WebP</option><option value="png">PNG</option><option value="jpg">JPG</option>
+                </select>
+              </label>
+              <button className="btn btn-sm btn-primary" onClick={() => exportLibrary("all")}>EXPORT EVERYTHING</button>
+              <button className="btn btn-sm btn-accent2" onClick={() => exportLibrary("art")}>EXPORT CARD ART ONLY</button>
+              <button className="btn btn-sm" onClick={() => exportLibrary("images")}>EXPORT CARD IMAGES ONLY</button>
+              {tcFolderSupported() && <button className="btn btn-sm" onClick={() => exportLibrary("all", true)}>CHOOSE FOLDER…</button>}
+            </div>
+            <div className="tc-hint">
+              {tcFolderSupported()
+                ? (folder ? `OUTPUT FOLDER: ${folder.name}` : "No output folder yet — the first export asks for one")
+                : "This browser can't write to folders, so exports arrive as a zip"}
+              {` · EVERYTHING = ${TC_JSON_NAME} + ${TC_ART_DIR}/ + ${TC_RENDER_DIR}/ · CARD ART = ${TC_ART_DIR}/ (upload this to GitHub with the JSON) · CARD IMAGES = ${TC_RENDER_DIR}/ (finished cards)`}
+            </div>
+          </div>
+        )}
+        {cards.length > 0 && (
           <div className="search-bar">
             <input placeholder="Search cards by name, ID, tag, or type..." value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>
@@ -1312,27 +1344,6 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
                 </div>
               </div>
             ))}
-          </div>
-        )}
-        {cards.length > 0 && (
-          <div className="tc-export-bar">
-            <div className="tc-export-row">
-              <label className="tc-format">FORMAT
-                <select value={format} onChange={(e) => setFormat(e.target.value)}>
-                  <option value="webp">WebP</option><option value="png">PNG</option><option value="jpg">JPG</option>
-                </select>
-              </label>
-              <button className="btn btn-sm btn-primary" onClick={() => exportLibrary("all")}>EXPORT EVERYTHING</button>
-              <button className="btn btn-sm btn-accent2" onClick={() => exportLibrary("art")}>EXPORT CARD ART ONLY</button>
-              <button className="btn btn-sm" onClick={() => exportLibrary("images")}>EXPORT CARD IMAGES ONLY</button>
-              {tcFolderSupported() && <button className="btn btn-sm" onClick={() => exportLibrary("all", true)}>CHOOSE FOLDER…</button>}
-            </div>
-            <div className="tc-hint">
-              {tcFolderSupported()
-                ? (folder ? `OUTPUT FOLDER: ${folder.name}` : "No output folder yet — the first export asks for one")
-                : "This browser can't write to folders, so exports arrive as a zip"}
-              {` · EVERYTHING = ${TC_JSON_NAME} + ${TC_ART_DIR}/ + ${TC_RENDER_DIR}/ · CARD ART = ${TC_ART_DIR}/ (upload this to GitHub with the JSON) · CARD IMAGES = ${TC_RENDER_DIR}/ (finished cards)`}
-            </div>
           </div>
         )}
       </div>
@@ -1732,6 +1743,7 @@ function App() {
               <input type="file" ref={tcFileRef} accept=".json" style={{ display: "none" }} onChange={tcLoadJSON} />
               <button className="btn btn-sm" onClick={() => tcFileRef.current?.click()}>LOAD JSON</button>
               <button className="btn btn-sm" onClick={() => setShowCardJson(true)} disabled={tcards.length === 0}>SHOW JSON</button>
+              <button className="btn btn-sm" onClick={tcDownloadJSON} disabled={tcards.length === 0}>DOWNLOAD JSON</button>
               <button className="btn btn-sm" disabled={loadingCards} onClick={() => { if (tcards.length === 0 || window.confirm("Replace the current card library with the GitHub version? Any local edits not yet exported will be lost.")) loadCardsFromGithub(); }}>{loadingCards ? "LOADING…" : "RELOAD GITHUB"}</button>
               <button className="btn btn-primary btn-sm" onClick={tcNew}>+ NEW CARD</button>
             </React.Fragment>
