@@ -459,14 +459,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 890,
+      "artH": 666,
+      "artX": 6.666748046875,
+      "artY": 34,
       "artZoom": 100,
       "uid": 1771805650423,
       "faction": "Zeon",
-      "artFile": null
+      "artFile": "logistics_relay.webp"
     },
     {
       "_key": "37f27963",
@@ -552,14 +552,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 736,
+      "artH": 1308,
+      "artX": 4,
+      "artY": 83.33334350585938,
       "artZoom": 100,
       "uid": 1771805650427,
       "faction": "Zeon",
-      "artFile": null
+      "artFile": "shattered_formation.webp"
     },
     {
       "_key": "077b46eb",
@@ -583,14 +583,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1283,
+      "artH": 1800,
+      "artX": 32,
+      "artY": 28,
       "artZoom": 100,
       "uid": 1771805650428,
       "faction": "",
-      "artFile": null
+      "artFile": "armour_shatter.webp"
     },
     {
       "_key": "b197ae00",
@@ -614,14 +614,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 960,
+      "artH": 720,
+      "artX": 16,
+      "artY": 32,
       "artZoom": 100,
       "uid": 1771805650429,
       "faction": "",
-      "artFile": null
+      "artFile": "breaking_blow.webp"
     },
     {
       "_key": "307a939a",
@@ -677,14 +677,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1080,
+      "artH": 766,
+      "artX": 63.333251953125,
+      "artY": 50.666656494140625,
       "artZoom": 100,
       "uid": 1771805650431,
       "faction": "",
-      "artFile": null
+      "artFile": "field_engineers.webp"
     },
     {
       "_key": "84e7439a",
@@ -708,14 +708,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 849,
+      "artH": 1200,
+      "artX": 117.333251953125,
+      "artY": 15.333343505859375,
       "artZoom": 100,
       "uid": 1771805650432,
       "faction": "",
-      "artFile": null
+      "artFile": "ghost_step.webp"
     },
     {
       "_key": "9b88182d",
@@ -739,14 +739,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 369,
+      "artH": 542,
+      "artX": -16,
+      "artY": 15.333343505859375,
       "artZoom": 100,
       "uid": 1771805650433,
       "faction": "Gundam (Committed to the End)",
-      "artFile": null
+      "artFile": "hyperspeed.webp"
     },
     {
       "_key": "fa79ab2b",
@@ -770,14 +770,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1200,
+      "artH": 1764,
+      "artX": -2.666748046875,
+      "artY": 134.66668701171875,
       "artZoom": 100,
       "uid": 1771805650434,
       "faction": "",
-      "artFile": null
+      "artFile": "i_field_generator.webp"
     },
     {
       "_key": "4b224f74",
@@ -801,14 +801,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 574,
+      "artH": 869,
+      "artX": 4.6666259765625,
+      "artY": 52,
       "artZoom": 100,
       "uid": 1771805650435,
       "faction": "Gundam Barbatos Lupus Rex (Final Stand)",
-      "artFile": null
+      "artFile": "iron_blooded_tenacity.webp"
     },
     {
       "_key": "a55c581e",
@@ -832,14 +832,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1046,
+      "artH": 1200,
+      "artX": -10,
+      "artY": 111.33334350585938,
       "artZoom": 100,
       "uid": 1771805650436,
       "faction": "",
-      "artFile": null
+      "artFile": "limiter_removal.webp"
     },
     {
       "_key": "0ee8bc6b",
@@ -863,14 +863,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 614,
+      "artH": 768,
+      "artX": 38,
+      "artY": 25.333343505859375,
       "artZoom": 100,
       "uid": 1771805650437,
       "faction": "",
-      "artFile": null
+      "artFile": "neutralize.webp"
     },
     {
       "_key": "7677c63c",
@@ -894,14 +894,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1013,
+      "artX": -19.333251953125,
+      "artY": 25.33331298828125,
       "artZoom": 100,
       "uid": 1771805650438,
       "faction": "",
-      "artFile": null
+      "artFile": "quick_block.webp"
     },
     {
       "_key": "4446531c",
@@ -925,14 +925,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 595,
+      "artH": 842,
+      "artX": 1.3333740234375,
+      "artY": 27.333343505859375,
       "artZoom": 100,
       "uid": 1771805650439,
       "faction": "",
-      "artFile": null
+      "artFile": "renewed_power.webp"
     },
     {
       "_key": "ac0d091b",
@@ -956,14 +956,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 850,
+      "artH": 1133,
+      "artX": -0.6666259765625,
+      "artY": 40.66667175292969,
       "artZoom": 100,
       "uid": 1771805650440,
       "faction": "Wing Gundam Zero (Angel of Destruction)",
-      "artFile": null
+      "artFile": "sacrificial_overload.webp"
     },
     {
       "_key": "1658c94e",
@@ -987,14 +987,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 595,
+      "artH": 842,
+      "artX": 16,
+      "artY": 48,
       "artZoom": 100,
       "uid": 1771805650441,
       "faction": "",
-      "artFile": null
+      "artFile": "strikethrough.webp"
     },
     {
       "_key": "be3919f3",
@@ -1049,14 +1049,14 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1179,
+      "artH": 1800,
+      "artX": 92.0001220703125,
+      "artY": -21.333343505859375,
       "artZoom": 100,
       "uid": 1771805650443,
       "faction": "",
-      "artFile": null
+      "artFile": "thrust_boosters.webp"
     },
     {
       "_key": "cd2630aa",
@@ -1081,14 +1081,14 @@
           "[Critical] [Damage +1]."
         ]
       },
-      "artW": 0,
-      "artH": 0,
+      "artW": 850,
+      "artH": 528,
       "artX": 0,
-      "artY": 0,
+      "artY": 52.666656494140625,
       "artZoom": 100,
       "uid": 1771805650444,
       "faction": "Gundam Epyon (Crimson Cataclysm)",
-      "artFile": null
+      "artFile": "war_edge.webp"
     }
   ]
 }
