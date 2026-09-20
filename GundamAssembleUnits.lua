@@ -209,7 +209,7 @@ return {
             range="3",
             strength="4",
             effects={
-               "[After Attack roll] Push 2 the target",
+               "[After Attack roll] Push the target 2 hexes.",
                "[Critical] Gain 1 [Energy]",
             }
          },
@@ -217,7 +217,7 @@ return {
       abilities={
          {
             name="Frenzied Charge",
-            keywords="[Resonse][Energy]",
+            keywords="[Response] [Energy]",
             description="[After Combat Damage] If this unit attacked, Slow the target"
          },
          {
@@ -347,7 +347,7 @@ return {
          {
             name="Newtype Reflexes",
             keywords="[Response][Energy]",
-            description="[After Attack Roll] If this unit is attacking, it sets 2 of those dice to [Crit]"
+            description="[After Attack Roll] If this unit is attacking, it sets 2 of those dice to [Critical]"
          },
          {
             name="Federation Icon",
@@ -357,7 +357,7 @@ return {
       }
    },
    {
-      name="Gundam Epyon [Crimson Cataclysm]",
+      name="Gundam Epyon (EW) [Crimson Cataclysm]",
       pilot="Zechs Merquise",
       faction="OZ, White Fang",
       technical_name="OZ-13MS",
@@ -379,11 +379,11 @@ return {
          {
             name="Beam Sword",
             cost="3",
-            range="3",
+            range="1",
             strength="7",
             effects={
                "Cone Shaped Attack",
-               "[Critical] +2 damage",
+               "[Critical] +1 damage",
             }
          },
       },
@@ -411,7 +411,7 @@ return {
       faction="Gjallerhorn",
       technical_name="ASW-G-XX",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17439008425773739546/5A15700207CC5A7997C76C914047D560FE2C1DAC/",
-      hp="10",
+      hp="13",
       timeline="1",
       vp="7",
       attacks={
@@ -482,12 +482,12 @@ return {
          {
             name="Saturated Fire",
             keywords="[Command][Energy]",
-            description="Roll 5 dice. For each Crit, deal 1 damage to each enemy unit within Range 4"
+            description="Roll 5 dice. For each [Critical], deal 1 damage to each enemy unit within Range 4"
          },
          {
             name="Suppressing Presence",
             keywords="[Ongoing]",
-            description="While this unit has 2 or more upgrades, its attacks gain +1 Accuracy"
+            description="While this unit has 2 or more upgrades, its attacks gain +1 [Accuracy]"
          },
       }
    },
@@ -578,7 +578,7 @@ return {
       }
    },
    {
-      name="Wing Gundam Zero [Wing of Destruction]",
+      name="Wing Gundam Zero (EW) [Wing of Destruction]",
       pilot="Heero Yuy",
       faction="G Team",
       technical_name="XXXG-00W0",
@@ -660,6 +660,163 @@ return {
             name="Locked and Loaded",
             keywords="[Setup]",
             description="This unit starts the game with either its Anti-Armor Shotgun or its Hyper Impulse Long-Range Sniper Rifle in play."
+         },
+      }
+   },
+   {
+      name="White Base [Trojan Horse]",
+      pilot="Bright Noa",
+      faction="Earth Federation",
+      technical_name="SCV-70 (LMSD-71)",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/11466243444129241733/231926C03EB7FD0D844616CE8002FAC99B44332B/",
+      hp="30",
+      timeline="5",
+      vp="15",
+      attacks={
+         {
+            name="2-Barrel Main Guns",
+            cost="5",
+            range="5",
+            strength="10",
+            effects={
+               "[Critical] +1 [Damage] for each [Critical] rolled (Max. +4)",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Battlefield Assistance",
+            keywords="[Energy] [Command]",
+            description="Another allied unit within 4 hexes repairs 2 [Damage]"
+         },
+         {
+            name="Carrier",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties and enemies while moving and can't be moved by other effects. It can't be engaged with enemy units."
+         },
+      }
+   },
+   {
+      name="Oggo [Last Reserves]",
+      pilot="Mass Produced",
+      faction="Zeon",
+      technical_name="MP-02A",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/15686569731421021158/FE55817560E69771284DDBF1FC2046F63BE09515/",
+      hp="8",
+      timeline="2",
+      vp="5",
+      attacks={
+         {
+            name="120mm Machine Gun",
+            cost="2",
+            range="3",
+            strength="3",
+            effects={
+               "[Critical] [Disarm] the target.",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Saturated Fire",
+            keywords="[Command] [Energy]",
+            description="120mm Machine Gun targets an additional enemy within [Range] 3 this activation."
+         },
+         {
+            name="Artillery Support",
+            keywords="[Response]",
+            description="[After Combat Damage] Deal 1 [Damage] to each enemy within [Range] 3 that was attacked by another ally."
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties."
+         },
+      }
+   },
+   {
+      name="Guntank [Long-Range Support]",
+      pilot="Hayato Kobayashi",
+      faction="Earth Federation",
+      technical_name="RX-75",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/10440369582541771870/8ACA34870CD0B7755C5079F53B7D4DA17C128CBC/",
+      hp="11",
+      timeline="3",
+      vp="7",
+      attacks={
+         {
+            name="Quadruple Bop Missile",
+            cost="2",
+            range="SP",
+            strength="3",
+            sp_shape="Flower",
+            effects={
+               "[Critical] +1 [Damage]",
+            }
+         },
+         {
+            name="120mm Low-Recoil Cannons",
+            cost="4",
+            range="4",
+            strength="7",
+            effects={
+               "[Critical] [Disarm] the target.",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Long Range Assault",
+            keywords="[Command] [Energy]",
+            description="Low-Recoil Cannons gain [Range]+3 and ignore Line of Sight this activation."
+         },
+         {
+            name="Entrenched",
+            keywords="[Ongoing]",
+            description="While this unit is on or adjacent to an Objective, it gains [Strength] +2 and can't be moved by enemies."
+         },
+         {
+            name="Fueled",
+            keywords="[Response]",
+            description="After this unit deploys it gains [Energy] +1."
+         },
+      }
+   },
+   {
+      name="Ball [Tactical Pod]",
+      pilot="Mass Produced - Reinforcement",
+      faction="Earth Federation",
+      technical_name="RB-79",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/12958784132842326550/7F1C5A73FD37244D1DE01518B520840E925237C6/",
+      hp="5",
+      timeline="1",
+      vp="5",
+      attacks={
+         {
+            name="180mm Cannon",
+            cost="2",
+            range="3",
+            strength="3",
+            effects={
+               "[Critical] Gain +1 [Energy]",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Emergency Repairs",
+            keywords="[Command] [Energy]",
+            description="Another allied unit within [Range] 3 Repairs 1 [Damage] for each Garrison you've Rescued."
+         },
+         {
+            name="Maneuvering Jets",
+            keywords="[Response]",
+            description="After this unit Rescues a Garrison: Move 2"
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties."
          },
       }
    }
