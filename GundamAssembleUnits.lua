@@ -33,7 +33,7 @@ return {
          {
             name="Annihilate",
             keywords="[Command][Energy]",
-            description="If this unit made a Rex Claws attack this activation, it makes an additional Rex Claws attack at [TL0]"
+            description="If this unit made a Tail Blade attack this activation, it makes an additional Rex Claws attack at [Timeline] 0"
          },
          {
             name="Alaya-Vijnana Exertion",
