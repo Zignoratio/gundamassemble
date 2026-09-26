@@ -271,7 +271,7 @@ return {
       }
    },
    {
-      name="Gundam [Hero of Side 7]",
+      name="Gundam [Legendary Hero]",
       pilot="Amuro Ray",
       faction="Earth Federation",
       technical_name="RX-78-2",
