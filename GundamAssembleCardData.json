@@ -1177,6 +1177,64 @@
       "artY": -65,
       "artZoom": 100,
       "artFile": "armor_upgrade.webp"
+    },
+    {
+      "_key": "5a766084",
+      "type": "response",
+      "name": "Turn of Fortune",
+      "cardId": "DX02-T13",
+      "rarity": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "[After Attack Roll] Set 1 of those dice to a [Critical]",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 1800,
+      "artH": 1338,
+      "artX": 14,
+      "artY": 4,
+      "artZoom": 100,
+      "artFile": "turn_of_fortune.webp"
+    },
+    {
+      "_key": "dcc349a1",
+      "type": "response",
+      "name": "Locked On",
+      "cardId": "DX02-T12",
+      "rarity": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "[Before Attack Roll] The attacker gains 2 [Accuracy] this attack.",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 764,
+      "artH": 428,
+      "artX": 39,
+      "artY": 22,
+      "artZoom": 100,
+      "artFile": "locked_on.webp"
     }
   ]
 }
