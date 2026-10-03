@@ -632,8 +632,8 @@ return {
       technical_name="GAT-X103",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/16586820249349490753/10533B2431FE94EDC5723F2C2FF5C3418E6AB4F7/",
       hp="12",
-      timeline="7",
-      vp="3",
+      timeline="3",
+      vp="7",
       attacks={
          {
             name="94mm High-Energy Beam Rifle",
