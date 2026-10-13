@@ -819,5 +819,34 @@ return {
             description="This unit ignores terrain movement penalties."
          },
       }
+   },
+   {
+      name="Musai (Light Cruiser)",
+      pilot="",
+      faction="Zeon",
+      technical_name="Musai-class",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/17869565725440878616/E7B7495DFC64DBD531F94D7EDE9E340431185974/",
+      hp="20",
+      timeline="5",
+      vp="12",
+      attacks={
+         {
+            name="Twin Mega Particle Guns",
+            cost="5",
+            range="5",
+            strength="13",
+            effects={
+               "[Strength +3] when targetting Carriers",
+               "[Critical] [Damage +1] for each [Critical] rolled (max +4)",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Call to Arms",
+            keywords="[Command][Energy]",
+            description="Another allied unit within 4 hexes deals [Damage 2] to an enemy unit withing [Range 2] of it"
+         },
+      }
    }
 }
