@@ -438,7 +438,7 @@ return {
          {
             name="Hunter's Edge",
             keywords="[Command][Energy]",
-            description="Push 2 adjacent enemy units and deal 1 [Damage] to it"
+            description="Push 2 an adjacent enemy and deal 1 [Damage] to it"
          },
          {
             name="Alaya-Vijnana Type E System",
