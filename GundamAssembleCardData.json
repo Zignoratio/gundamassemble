@@ -600,7 +600,7 @@
       "rarity": "",
       "tag1": "",
       "tag2": "",
-      "effect": "[Before Attack Roll] The attacker gains +2 [Strength] for this attack. Destroy 1 Upgrade on each target.",
+      "effect": "[Before Attack Roll] The attacker gains [Strength +2] for this attack. Destroy 1 Upgrade on each target.",
       "scenario": "",
       "boxStyle": "auto",
       "footer": "Fan-made card · Not for sale",
@@ -1098,7 +1098,7 @@
       "rarity": "",
       "tag1": "",
       "tag2": "",
-      "effect": "If you've Rescued 3 or more Garrisons, your active unit gains 2 [Energy].",
+      "effect": "If you've Rescued 3 or more Garrisons, your active unit gains [Energy +2].",
       "scenario": "",
       "boxStyle": "auto",
       "footer": "Fan-made card · Not for sale",
@@ -1235,6 +1235,64 @@
       "artY": 22,
       "artZoom": 100,
       "artFile": "locked_on.webp"
+    },
+    {
+      "_key": "7e6f24f7",
+      "type": "command",
+      "name": "Psycho-Frame Overload",
+      "cardId": "",
+      "rarity": "",
+      "tag1": "Laplace's Guardian",
+      "tag2": "",
+      "effect": "Unicorn Gundam deals [Damage] equal to that number of Upgrades on it to an enemy within [Range 2]",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 1013,
+      "artH": 1800,
+      "artX": 82.1666259765625,
+      "artY": 208.31668090820312,
+      "artZoom": 100,
+      "artFile": "psycho_frame_overload.webp"
+    },
+    {
+      "_key": "4a24c8a0",
+      "type": "command",
+      "name": "Dominion of Zeong",
+      "cardId": "",
+      "rarity": "",
+      "tag1": "Zeon's Final Weapon",
+      "tag2": "",
+      "effect": "Zeong deals [Damage 1] to each enemy within [Range 3]",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 1800,
+      "artH": 1013,
+      "artX": -34.79998779296875,
+      "artY": 78.30001831054688,
+      "artZoom": 100,
+      "artFile": "dominion_of_zeong.webp"
     }
   ]
 }
