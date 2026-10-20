@@ -848,5 +848,92 @@ return {
             description="Another allied unit within 4 hexes deals [Damage 2] to an enemy unit withing [Range 2] of it"
          },
       }
+   },
+   {
+      name="Unicorn Gundam (Destroy Mode) [Laplace's Guardian]",
+      pilot="Banagher Links",
+      faction="Civilian, Earth Federation, Londo Bell",
+      technical_name="RX-0",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/11585503904370165087/CDC920BC3A4B7E3D9FD5BA4CECF4101824D943C1/",
+      hp="14",
+      timeline="3",
+      vp="14",
+      attacks={
+         {
+            name="Beam Saber",
+            cost="2",
+            range="1",
+            strength="4",
+            effects={
+               "[After Combat Damage] Gain 1 [Strength] Upgrade",
+            }
+         },
+         {
+            name="Beam Magnum",
+            cost="4",
+            range="4",
+            strength="8",
+            effects={
+               "[Damage +1] for each Upgrade on this unit (max +4)",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Psycho-Frame Synchrony",
+            keywords="[Response] [Energy]",
+            description="[Before Attack Roll] Another attacker within [Range 3] gets [Strength +1] this attack for each [Strength] Upgrade on this unit"
+         },
+         {
+            name="Newtype Destroyer",
+            keywords="[Ongoing]",
+            description="Enemies can't use [Response] abilities while this unit is attacking or being attacked"
+         },
+      }
+   },
+   {
+      name="Zeong [Zeon's Final Weapon]",
+      pilot="Char Aznable",
+      faction="Zeon",
+      technical_name="MSN-02",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/14599459605719343032/6A1DC41D938031DC01DCFC59FABC63D8769703A0/",
+      hp="",
+      timeline="1",
+      vp="9",
+      attacks={
+         {
+            name="Rocket Punch?",
+            cost="2",
+            range="",
+            strength="",
+            effects={
+            }
+         },
+         {
+            name="Arm Mega Particle Cannon",
+            cost="4",
+            range="",
+            strength="",
+            effects={
+            }
+         },
+      },
+      abilities={
+         {
+            name="Emergency Escape",
+            keywords="[Response]",
+            description="When Zeong uses \"Emergency Escape,\" remove its miniature from the board and replace it with the Zeong Head miniature instead. Zeong is not considered to have been defeated, does not take a Timeline penalty, and does not award victory points. All Upgrades, Energy, and status effects remain in place. The next time you would command Zeong, you’ll command the Zeong Head instead. (In TTS, press 2 when hovering on the mini)"
+         },
+         {
+            name="Judgement of Zeon",
+            keywords="[Ongoing]",
+            description="Increase the non-combat [Damage] dealt to enemies by this unit and other allied Zeon units within 4 hexes of it by 1"
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties."
+         },
+      }
    }
 }
