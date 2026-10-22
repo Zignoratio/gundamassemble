@@ -922,7 +922,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \"Emergency Escape,\" remove its miniature from the board and replace it with the Zeong Head miniature instead. Zeong is not considered to have been defeated, does not take a Timeline penalty, and does not award victory points. All Upgrades, Energy, and status effects remain in place. The next time you would command Zeong, you’ll command the Zeong Head instead. (In TTS, press 2 when hovering on the mini)"
+            description="When Zeong uses \\"
          },
          {
             name="Judgement of Zeon",
@@ -933,6 +933,44 @@ return {
             name="Hover",
             keywords="[Ongoing]",
             description="This unit ignores terrain movement penalties."
+         },
+      }
+   },
+   {
+      name="Torohachi [Petite Mobile Suit]",
+      pilot="",
+      faction="Civilian Earth Federation Mass Produced",
+      technical_name="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/11950086338309350550/87E815F8CCF10FF8E705D08D0391AF0CA1DB4D95/",
+      hp="8",
+      timeline="1",
+      vp="5",
+      attacks={
+         {
+            name="Armored Frame",
+            cost="2",
+            range="1",
+            strength="3",
+            effects={
+               "[Critical] [Damage +1] for each [Shield] Upgrade on this unit (max +4)",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Rescue Maneuver",
+            keywords="[Command][Energy]",
+            description="Rescue an allied Garrison within [Range 3]"
+         },
+         {
+            name="Supply",
+            keywords="[Response]",
+            description="After this unit Rescues a Garrison: Gain 1 [Shield] Upgrade"
+         },
+         {
+            name="Material Transfer",
+            keywords="[Command]",
+            description="Redistribute Upgrades among this unit and another allied unit within [Range 3]"
          },
       }
    }
