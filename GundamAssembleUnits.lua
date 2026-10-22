@@ -922,7 +922,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \\"
+            description="When Zeong uses \"Emergency Escape,\" remove its miniature from the board and replace it with the Zeong Head miniature instead. Zeong is not considered to have been defeated, does not take a Timeline penalty, and does not award victory points. All Upgrades, Energy, and status effects remain in place. The next time you would command Zeong, you’ll command the Zeong Head instead. (FAQ 42) "
          },
          {
             name="Judgement of Zeon",
