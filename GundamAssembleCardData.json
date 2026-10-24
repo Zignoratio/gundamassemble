@@ -288,7 +288,7 @@
       "name": "Crimson Execution",
       "cardId": "ST01-T10",
       "rarity": "",
-      "tag1": "Char's Zaku II",
+      "tag1": "Fast Encounter",
       "tag2": "",
       "effect": "Char's Zaku II makes an additional Dash at [TL 0]. Then it makes an additional Heat Hawk attack at [TL 0].",
       "scenario": "",
@@ -474,7 +474,7 @@
       "name": "Iron Grip",
       "cardId": "",
       "rarity": "",
-      "tag1": "Zaku II (Enforcer)",
+      "tag1": "Enforcer",
       "tag2": "",
       "effect": "After an enemy unit ends its movement adjacent to Zaku II Enforcer: it deals 3 [Damage] to that enemy unit.",
       "scenario": "",
@@ -1240,7 +1240,7 @@
       "_key": "7e6f24f7",
       "type": "command",
       "name": "Psycho-Frame Overload",
-      "cardId": "",
+      "cardId": "EX01",
       "rarity": "",
       "tag1": "Laplace's Guardian",
       "tag2": "",
@@ -1269,7 +1269,7 @@
       "_key": "4a24c8a0",
       "type": "command",
       "name": "Dominion of Zeong",
-      "cardId": "",
+      "cardId": "DX01",
       "rarity": "",
       "tag1": "Zeon's Final Weapon",
       "tag2": "",
@@ -1293,6 +1293,645 @@
       "artY": 78.30001831054688,
       "artZoom": 100,
       "artFile": "dominion_of_zeong.webp"
+    },
+    {
+      "_key": "1097799e",
+      "type": "command",
+      "name": "Swift Appropriation",
+      "cardId": "EX01",
+      "rarity": "",
+      "tag1": "Rapid Response",
+      "tag2": "",
+      "effect": "Delta Plus takes an [Energy] and 1 Upgrade from a unit within [Range 3]",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 600,
+      "artH": 849,
+      "artX": 16.433349609375,
+      "artY": 85.54998779296875,
+      "artZoom": 100,
+      "artFile": "swift_appropriation.webp"
+    },
+    {
+      "_key": "236870f2",
+      "type": "command",
+      "name": "Critical Rescue",
+      "cardId": "EX01",
+      "rarity": "",
+      "tag1": "Petite Mobile Suit",
+      "tag2": "",
+      "effect": "Torohachi Moves 5. After it ends its movement, it Rescues each Allied Garrison it moved adjacent to",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 1800,
+      "artH": 1800,
+      "artX": 3.8665771484375,
+      "artY": 57.033355712890625,
+      "artZoom": 108,
+      "artFile": "critical_rescue.webp"
+    },
+    {
+      "_key": "bf1849c0",
+      "type": "command",
+      "name": "Cowardly Reflex",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Bastion of Fire",
+      "tag2": "",
+      "effect": "After an enemy ends its movement within [Range 3] of Guncannon: Guncannon moves 3",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "22071013",
+      "type": "response",
+      "name": "Bold Stand",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Federation Backbone",
+      "tag2": "",
+      "effect": "[Before Attack Roll] GM can use Challenge on units within [Range 4] this attack. GM is dealt [Damage -2] this attack",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "42933a14",
+      "type": "command",
+      "name": "Bit Assault",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Protective Heroine",
+      "tag2": "",
+      "effect": "Gundam repositions all ally and enemy Remote Weapon Systems onto any empty hexes on the battlefield. Each RWS deals [Damage 1] to an enemy unit adjacent to it.",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "273853ba",
+      "type": "command",
+      "name": "Ball Reinforcements",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "Add an Ball Reinforcement to your Reserve and place its Timeline token at the end of the next round. After it is defeated, remove both the unit and its Timeline token from the game.",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "ee034c44",
+      "type": "response",
+      "name": "Last Shooting",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Commited to the End",
+      "tag2": "",
+      "effect": "Beam Rifle\nTimeline 0, Range 4, Strength 5\n\nIf Gundam was destroyed by an enemy attack, before returning this unit to Reserve, use this attack\n[Critical][Damage+5]",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "a30a334d",
+      "type": "command",
+      "name": "N Field Assault",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Earth Federation",
+      "tag2": "",
+      "effect": "Your active unit gains 1 [Upgrade] of your choice. If you control the Vantage Point, it gains 1 [Upgrade] of each type instead",
+      "scenario": "Operation Star One",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "128c3b54",
+      "type": "response",
+      "name": "N Field Defense",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Zeon",
+      "tag2": "",
+      "effect": "When an allied unit redeploys: It redeploys on or adjacent to the Vantage Point",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "aaddef62",
+      "type": "command",
+      "name": "On-Site Integration",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Londo Bell",
+      "tag2": "",
+      "effect": "Your active unit gains 1 Upgrade of your choice",
+      "scenario": "Operation Star One",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "e16d104c",
+      "type": "command",
+      "name": "Salvage Systems",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Londo Bell",
+      "tag2": "",
+      "effect": "Your active unit Repairs [Damage 3]. Then, if it has full HP, gain [Energy 1]",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "0973671f",
+      "type": "command",
+      "name": "Shoulder Bash",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "Your active unit Pushes 2 an adjacent enemy.",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "1349a9f3",
+      "type": "command",
+      "name": "Special OPs",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Londo Bell",
+      "tag2": "",
+      "effect": "Up to three of your Londo Bell units on the battlefield gain 1 different Upgrade of your choice",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "98cba6fe",
+      "type": "response",
+      "name": "Target Reacquisition",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Londo Bell",
+      "tag2": "",
+      "effect": "[After Attack Roll] Reroll any number of misses. If you reroll 3 or more of your misses, draw 1 card",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "7fc71516",
+      "type": "attack",
+      "name": "Three-Pronged Assault",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Charging Bulwark",
+      "tag2": "",
+      "effect": "",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "2",
+        "range": "3",
+        "strength": "5",
+        "sp_shape": "",
+        "effects": [
+          "[After Combat Damage] Each other allied unit within [Range 3] of this unit Moves 2 towards the target, then may make an attack against the target. ",
+          "[Critical] [Damage +2]"
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "675e848e",
+      "type": "response",
+      "name": "Veteran Swing",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Early Prototype",
+      "tag2": "",
+      "effect": "[After Attack Roll] If Zaku I is attacking, set 1 die to a [Critical]. Increase collision [Damage] dealt by it this activation by 1",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "68d2e326",
+      "type": "response",
+      "name": "Zaku Ambush Tactics",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "After an enemy ends its movement within [Range 3] of an allied Zeon unit: That allied unit makes an attack against that enemy.",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "b8a5d72a",
+      "type": "command",
+      "name": "Dig In",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Long-Range Support",
+      "tag2": "",
+      "effect": "Guntank captures an objective it is on or adjacent to. Then, it makes an additional Quadruple Bop Missile attack at [Timeline 1]",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "b3aab8af",
+      "type": "command",
+      "name": "Focus",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "Your active unit gains [Energy 1]",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "6bcb4525",
+      "type": "command",
+      "name": "Full System Burn",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Londo Bell",
+      "tag2": "",
+      "effect": "Your active Londo Bell gains [Speed +3] and Hover this activation",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "80090dbb",
+      "type": "response",
+      "name": "Grunt's Guard",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "[After Attack Roll] A defender is dealt [Damage -4] this attack if it is worth less VP than the attacker",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
+    },
+    {
+      "_key": "7f8d41e4",
+      "type": "response",
+      "name": "Shield the Recovery",
+      "cardId": "New",
+      "rarity": "",
+      "tag1": "Earth Federation",
+      "tag2": "",
+      "effect": "After an allied unit rescues a Garrison, it gains a shield upgrade",
+      "scenario": "",
+      "boxStyle": "dark",
+      "footer": "Fan-made card · Not for sale",
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 0,
+      "artH": 0,
+      "artX": 0,
+      "artY": 0,
+      "artZoom": 100,
+      "artFile": null
     }
   ]
 }
