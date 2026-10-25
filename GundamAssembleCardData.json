@@ -25,10 +25,10 @@
           ""
         ]
       },
-      "artW": 960,
-      "artH": 1336,
-      "artX": 8,
-      "artY": 40,
+      "artW": 1800,
+      "artH": 1013,
+      "artX": 6.28326416015625,
+      "artY": -66.70002746582031,
       "artZoom": 100,
       "uid": 1771805650409,
       "faction": "Gundam",
@@ -1374,13 +1374,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1200,
+      "artH": 1754,
+      "artX": 42.050048828125,
+      "artY": 51.23333740234375,
       "artZoom": 100,
       "isNew": true,
-      "artFile": null
+      "artFile": "cowardly_reflex.webp"
     },
     {
       "_key": "22071013",
@@ -1404,13 +1404,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
+      "artW": 850,
+      "artH": 1212,
+      "artX": 153.7000732421875,
+      "artY": 149.83331298828125,
+      "artZoom": 123,
       "isNew": true,
-      "artFile": null
+      "artFile": "bold_stand.webp"
     },
     {
       "_key": "42933a14",
@@ -1434,13 +1434,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1013,
+      "artX": 18.36663818359375,
+      "artY": 11.600006103515625,
       "artZoom": 100,
       "isNew": true,
-      "artFile": null
+      "artFile": "bit_assault.webp"
     },
     {
       "_key": "273853ba",
@@ -1464,13 +1464,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1013,
+      "artX": 37.21661376953125,
+      "artY": -13.5333251953125,
       "artZoom": 100,
       "isNew": true,
-      "artFile": null
+      "artFile": "ball_reinforcements.webp"
     },
     {
       "_key": "ee034c44",
@@ -1494,13 +1494,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 960,
+      "artH": 1336,
+      "artX": 47.85009765625,
+      "artY": 56.066680908203125,
       "artZoom": 100,
       "isNew": true,
-      "artFile": null
+      "artFile": "last_shooting.webp"
     },
     {
       "_key": "a30a334d",
@@ -1765,13 +1765,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1199,
+      "artH": 781,
+      "artX": 27.066650390625,
+      "artY": 49.7833251953125,
       "artZoom": 100,
       "isNew": true,
-      "artFile": null
+      "artFile": "veteran_swing.webp"
     },
     {
       "_key": "68d2e326",
@@ -1795,13 +1795,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1200,
+      "artH": 779,
+      "artX": 12.56671142578125,
+      "artY": 43.98333740234375,
       "artZoom": 100,
       "isNew": true,
-      "artFile": null
+      "artFile": "zaku_ambush_tactics.webp"
     },
     {
       "_key": "b8a5d72a",
@@ -1825,13 +1825,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1000,
+      "artH": 704,
+      "artX": 14.98333740234375,
+      "artY": 57.516693115234375,
       "artZoom": 100,
       "isNew": true,
-      "artFile": null
+      "artFile": "dig_in.webp"
     },
     {
       "_key": "b3aab8af",
@@ -1855,13 +1855,13 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 600,
+      "artH": 450,
+      "artX": 16.433349609375,
+      "artY": 45.433349609375,
       "artZoom": 100,
       "isNew": true,
-      "artFile": null
+      "artFile": "focus.webp"
     },
     {
       "_key": "6bcb4525",
