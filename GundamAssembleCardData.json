@@ -1903,35 +1903,6 @@
       "artY": 0,
       "artZoom": 100,
       "artFile": null
-    },
-    {
-      "_key": "7f8d41e4",
-      "type": "response",
-      "name": "Shield the Recovery",
-      "cardId": "New",
-      "rarity": "",
-      "tag1": "Earth Federation",
-      "tag2": "",
-      "effect": "After an allied unit rescues a Garrison, it gains a shield upgrade",
-      "scenario": "",
-      "boxStyle": "dark",
-      "footer": "Fan-made card · Not for sale",
-      "attack": {
-        "name": "",
-        "cost": "",
-        "range": "",
-        "strength": "",
-        "sp_shape": "",
-        "effects": [
-          ""
-        ]
-      },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
-      "artFile": null
     }
   ]
 }
