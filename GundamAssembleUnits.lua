@@ -5,9 +5,10 @@ return {
       faction="Tekkadan",
       technical_name="ASW-G-08",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13822117213886268703/D4346677614E79798E3A6A975282AA0EFAA0AB0D/",
+      expansion="ST01",
       hp="17",
-      timeline="2",
       vp="10",
+      timeline="2",
       attacks={
          {
             name="Rex Claws",
@@ -53,9 +54,10 @@ return {
       faction="Zeon",
       technical_name="MS-06S",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/9864872256090060726/6DDAB8A559167C840715176EAFEAAEFBA5203DA7/",
+      expansion="Demo",
       hp="8",
-      timeline="1",
       vp="5",
+      timeline="1",
       attacks={
          {
             name="Heat Hawk",
@@ -100,9 +102,10 @@ return {
       faction="Zeon",
       technical_name="MS-06S",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/16517057500981018599/5A7D86D41428B764B4EE5A2DEE274382489649BF/",
+      expansion="ST01",
       hp="12",
-      timeline="2",
       vp="7",
+      timeline="2",
       attacks={
          {
             name="Heat Hawk",
@@ -143,14 +146,15 @@ return {
       }
    },
    {
-      name="Guncannon",
+      name="Guncannon [Demo]",
       pilot="Kai Shiden",
       faction="Earth Federation",
       technical_name="RX-77-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15258626936620923240/46C6EBEA3ADA9FB58F38B24582A9186DBFADD733/",
+      expansion="Demo",
       hp="10",
-      timeline="2",
       vp="4",
+      timeline="2",
       attacks={
          {
             name="Beam Rifle",
@@ -190,9 +194,10 @@ return {
       faction="Earth Federation",
       technical_name="RX-77-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13861841706079639305/AE938D42F97E48A0C492C83D31142484B29C6FDF/",
+      expansion="DX01",
       hp="14",
-      timeline="2",
       vp="8",
+      timeline="2",
       attacks={
          {
             name="Shoulder Cannons",
@@ -228,14 +233,15 @@ return {
       }
    },
    {
-      name="Gundam",
+      name="Gundam [Demo]",
       pilot="Amuro Ray",
       faction="Earth Federation",
       technical_name="RX-78-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13158798099482223170/BDCEFE0109D4487AFF11CD80455BCF758F5317D7/",
+      expansion="Demo",
       hp="11",
-      timeline="2",
       vp="5",
+      timeline="2",
       attacks={
          {
             name="Beam Saber",
@@ -276,9 +282,10 @@ return {
       faction="Earth Federation",
       technical_name="RX-78-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10920708000488766343/EA46BA50ACDA807B6C9C1D06E810137E46BE1B4F/",
+      expansion="ST01",
       hp="15",
-      timeline="2",
       vp="8",
+      timeline="2",
       attacks={
          {
             name="Vulcan cannons",
@@ -314,45 +321,50 @@ return {
       }
    },
    {
-      name="Gundam [White Devil]",
+      name="Gundam [Elite Mobile Suit]",
       pilot="Amuro Ray",
       faction="Earth Federation",
       technical_name="RX-78-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14790108839331300881/F20437B13966D5A51E410902BE30956516B0D322/",
-      hp="12",
-      timeline="4",
-      vp="8",
+      expansion="Paint Pack 01",
+      hp="17",
+      vp="10",
+      timeline="1",
       attacks={
          {
-            name="Beam Rifle",
+            name="Beam Saber",
             cost="2",
-            range="3",
-            strength="4",
+            range="1",
+            strength="3",
             effects={
-               "[Critical] [After Combat Damage] Fracture the target",
+               "[Critical] [After Combat Damage] [Fracture] the target",
             }
          },
          {
-            name="Hyper Bazooka",
-            cost="4",
-            range="4",
-            strength="7",
+            name="Beam Saber",
+            cost="3",
+            range="3",
+            strength="5",
             effects={
-               "+3 [Strength] while targeting enemies worth 9 or more VP",
-               "[Critical] +1 [Damage] for each [Crit] rolled (max +4)",
+               "[Critical] [Disarm] the target",
             }
          },
       },
       abilities={
          {
-            name="Newtype Reflexes",
-            keywords="[Response][Energy]",
-            description="[After Attack Roll] If this unit is attacking, it sets 2 of those dice to [Critical]"
+            name="Toss Away",
+            keywords="[Response] [Energy]",
+            description="[After Attack Roll] If this unit is attacking, it Pushes 2 the target"
          },
          {
-            name="Federation Icon",
-            keywords="[Command]",
-            description="Another allied Earth Federation unit within 4 hexes Moves 2"
+            name="Inspiring Presence",
+            keywords="[Response]",
+            description="[After Attack Roll] If another allied unit within [Range 2] is attacking, reroll up to 3 misses"
+         },
+         {
+            name="Challenge",
+            keywords="[Response]",
+            description="[Before Attack Roll] If this unit is not defending, swap it with a defending ally within [Range 2]. This unit becomes the defender "
          },
       }
    },
@@ -362,9 +374,10 @@ return {
       faction="OZ, White Fang",
       technical_name="OZ-13MS",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10968000391390818338/8D6234F0A5EEB405F14333DBE24F245A9D36C83B/",
+      expansion="ST01",
       hp="15",
-      timeline="3",
       vp="9",
+      timeline="3",
       attacks={
          {
             name="Heat Rod",
@@ -411,9 +424,10 @@ return {
       faction="Gjallerhorn",
       technical_name="ASW-G-XX",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17439008425773739546/5A15700207CC5A7997C76C914047D560FE2C1DAC/",
+      expansion="ST01",
       hp="13",
-      timeline="1",
       vp="7",
+      timeline="1",
       attacks={
          {
             name="Handguns",
@@ -421,7 +435,7 @@ return {
             range="2",
             strength="3",
             effects={
-               "[Critical][After Combat Damage]Repeat this attack at [TL0] without this ability",
+               "[Critical] [After Combat Damage]Repeat this attack at [TL0] without this ability",
             }
          },
          {
@@ -448,14 +462,15 @@ return {
       }
    },
    {
-      name="Guntank",
+      name="Guntank [Demo]",
       pilot="Hayato Kobayashi",
       faction="Earth Federation",
       technical_name="RX-75",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10627377594558799439/245DB88773C8162E021F18810280B43EA3CA6D1F/",
+      expansion="Demo",
       hp="9",
-      timeline="3",
       vp="3",
+      timeline="3",
       attacks={
          {
             name="4-Tube Missle Launcher",
@@ -492,14 +507,15 @@ return {
       }
    },
    {
-      name="Zaku II [Enforcer]",
+      name="Zaku II [Enforcer] [Demo]",
       pilot="Mass Produced",
       faction="Zeon",
       technical_name="MS-06",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17979974708630630669/AA7DD9E45DE1A3421036889A6E6AFE528D9DF309/",
+      expansion="Demo",
       hp="11",
-      timeline="2",
       vp="4",
+      timeline="2",
       attacks={
          {
             name="Shoulder Bash",
@@ -535,14 +551,15 @@ return {
       }
    },
    {
-      name="Zaku II [Line Breaker]",
+      name="Zaku II [Line Breaker] [Demo]",
       pilot="Mass Produced",
       faction="Zeon",
       technical_name="MS-06",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15234252328470518598/4F63F32965A672DCCD8ABA93983E201B02FA8251/",
+      expansion="Demo",
       hp="9",
-      timeline="2",
       vp="4",
+      timeline="2",
       attacks={
          {
             name="Cracker Grenade",
@@ -583,9 +600,10 @@ return {
       faction="G Team",
       technical_name="XXXG-00W0",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17908449623980494584/365D21189F6F16185D06628CCA8D2B82539C25EB/",
+      expansion="ST01",
       hp="12",
-      timeline="3",
       vp="9",
+      timeline="3",
       attacks={
          {
             name="Beam Saber",
@@ -631,9 +649,10 @@ return {
       faction="Z.A.F.T.",
       technical_name="GAT-X103",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/16586820249349490753/10533B2431FE94EDC5723F2C2FF5C3418E6AB4F7/",
+      expansion="DX02",
       hp="12",
-      timeline="3",
       vp="7",
+      timeline="3",
       attacks={
          {
             name="94mm High-Energy Beam Rifle",
@@ -669,9 +688,10 @@ return {
       faction="Earth Federation",
       technical_name="SCV-70 (LMSD-71)",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/11466243444129241733/231926C03EB7FD0D844616CE8002FAC99B44332B/",
+      expansion="DX01",
       hp="30",
-      timeline="5",
       vp="15",
+      timeline="5",
       attacks={
          {
             name="2-Barrel Main Guns",
@@ -702,9 +722,10 @@ return {
       faction="Zeon",
       technical_name="MP-02A",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15686569731421021158/FE55817560E69771284DDBF1FC2046F63BE09515/",
+      expansion="DX01",
       hp="8",
-      timeline="2",
       vp="5",
+      timeline="2",
       attacks={
          {
             name="120mm Machine Gun",
@@ -735,62 +756,15 @@ return {
       }
    },
    {
-      name="Guntank [Long-Range Support]",
-      pilot="Hayato Kobayashi",
-      faction="Earth Federation",
-      technical_name="RX-75",
-      splash_art="https://steamusercontent-a.akamaihd.net/ugc/10440369582541771870/8ACA34870CD0B7755C5079F53B7D4DA17C128CBC/",
-      hp="11",
-      timeline="3",
-      vp="7",
-      attacks={
-         {
-            name="Quadruple Bop Missile",
-            cost="2",
-            range="SP",
-            strength="3",
-            sp_shape="Flower",
-            effects={
-               "[Critical] +1 [Damage]",
-            }
-         },
-         {
-            name="120mm Low-Recoil Cannons",
-            cost="4",
-            range="4",
-            strength="7",
-            effects={
-               "[Critical] [Disarm] the target.",
-            }
-         },
-      },
-      abilities={
-         {
-            name="Long Range Assault",
-            keywords="[Command] [Energy]",
-            description="Low-Recoil Cannons gain [Range]+3 and ignore Line of Sight this activation."
-         },
-         {
-            name="Entrenched",
-            keywords="[Ongoing]",
-            description="While this unit is on or adjacent to an Objective, it gains [Strength] +2 and can't be moved by enemies."
-         },
-         {
-            name="Fueled",
-            keywords="[Response]",
-            description="After this unit deploys it gains [Energy] +1."
-         },
-      }
-   },
-   {
       name="Ball [Tactical Pod]",
       pilot="Mass Produced - Reinforcement",
       faction="Earth Federation",
       technical_name="RB-79",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/12958784132842326550/7F1C5A73FD37244D1DE01518B520840E925237C6/",
+      expansion="DX01",
       hp="5",
-      timeline="1",
       vp="5",
+      timeline="1",
       attacks={
          {
             name="180mm Cannon",
@@ -826,9 +800,10 @@ return {
       faction="Zeon",
       technical_name="Musai-class",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17869565725440878616/E7B7495DFC64DBD531F94D7EDE9E340431185974/",
+      expansion="DX01",
       hp="20",
-      timeline="5",
       vp="12",
+      timeline="5",
       attacks={
          {
             name="Twin Mega Particle Guns",
@@ -855,9 +830,10 @@ return {
       faction="Civilian, Earth Federation, Londo Bell",
       technical_name="RX-0",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/11585503904370165087/CDC920BC3A4B7E3D9FD5BA4CECF4101824D943C1/",
+      expansion="EX01",
       hp="14",
-      timeline="3",
       vp="14",
+      timeline="3",
       attacks={
          {
             name="Beam Saber",
@@ -897,9 +873,10 @@ return {
       faction="Zeon",
       technical_name="MSN-02",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14599459605719343032/6A1DC41D938031DC01DCFC59FABC63D8769703A0/",
+      expansion="DX01",
       hp="",
-      timeline="1",
       vp="9",
+      timeline="1",
       attacks={
          {
             name="Rocket Punch?",
@@ -922,7 +899,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \\"
+            description="When Zeong uses \\\\"
          },
          {
             name="Judgement of Zeon",
@@ -942,9 +919,10 @@ return {
       faction="Civilian Earth Federation Mass Produced",
       technical_name="",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/11950086338309350550/87E815F8CCF10FF8E705D08D0391AF0CA1DB4D95/",
+      expansion="EX01",
       hp="8",
-      timeline="1",
       vp="5",
+      timeline="1",
       attacks={
          {
             name="Armored Frame",
@@ -980,9 +958,10 @@ return {
       faction="Earth Federation, Londo Bell",
       technical_name="MSN-001A1",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15228777665552233589/3AF5B3FB29DC444D15329F3FF23528218FA4C925/",
+      expansion="EX01",
       hp="11",
-      timeline="2",
       vp="7",
+      timeline="2",
       attacks={
          {
             name="Twin-Barreled Grenade Launcher",
@@ -1014,6 +993,333 @@ return {
             name="Jet Through",
             keywords="[Ongoing]",
             description="While this unit has at least 1 [Speed] Upgrade, it has Hover"
+         },
+      }
+   },
+   {
+      name="Guntank [Battlefield Bombarder]",
+      pilot="Hayato Kobayashi",
+      faction="Earth Federation",
+      technical_name="RX-75",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/10627377594558799439/245DB88773C8162E021F18810280B43EA3CA6D1F/",
+      expansion="Paint Pack 01",
+      hp="13",
+      vp="7",
+      timeline="2",
+      attacks={
+         {
+            name="120mm Low-Recoil Cannons",
+            cost="2",
+            range="4",
+            strength="2",
+            effects={
+               "This attack ignores line of sight .",
+               "[Critical] Disarm the target",
+            }
+         },
+         {
+            name="Quadruple Bop Missile",
+            cost="4",
+            range="SP",
+            strength="4",
+            sp_shape="Flower",
+            effects={
+               "Flower Patterned AOE",
+               "[Critical] Damage +1",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Coordinated Payload",
+            keywords="[Response][Energy] ",
+            description="[Before Combat Damage] If this unit is attacking, it gain [Strength +2] this attack for each allied unit within [Range 3]"
+         },
+         {
+            name="Crowd Control",
+            keywords="[Response]",
+            description="[After Combat Damage] If this unit deals Damage to 2 or more enemies this attack, draw 1 card"
+         },
+      }
+   },
+   {
+      name="Gundam [Commited to the End]",
+      pilot="Amuro Ray",
+      faction="Earth Federation",
+      technical_name="RX-78-2",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/14790108839331300881/F20437B13966D5A51E410902BE30956516B0D322/",
+      expansion="DX01",
+      hp="12",
+      vp="8",
+      timeline="4",
+      attacks={
+         {
+            name="Beam Rifle",
+            cost="2",
+            range="3",
+            strength="4",
+            effects={
+               "[Critical] [After Combat Damage] Fracture the target",
+            }
+         },
+         {
+            name="Hyper Bazooka",
+            cost="4",
+            range="4",
+            strength="7",
+            effects={
+               "+3 [Strength] while targeting enemies worth 9 or more VP",
+               "[Critical] +1 [Damage] for each [Crit] rolled (max +4)",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Newtype Reflexes",
+            keywords="[Response][Energy]",
+            description="[After Attack Roll] If this unit is attacking, it sets 2 of those dice to [Critical]"
+         },
+         {
+            name="Federation Icon",
+            keywords="[Command]",
+            description="Another allied Earth Federation unit within 4 hexes Moves 2"
+         },
+      }
+   },
+   {
+      name="Gundam Aerial [Protective Heroine]",
+      pilot="Suletta Mercury",
+      faction="Asticassia",
+      technical_name="XVX-016",
+      splash_art="",
+      expansion="EX02",
+      hp="16",
+      vp="10",
+      timeline="1",
+      attacks={
+         {
+            name="Beam Sabers",
+            cost="2",
+            range="1",
+            strength="3",
+            effects={
+               "[Critical] [After Combat Damage] Repeat this attack at [Timeline 0] without this ability",
+            }
+         },
+         {
+            name="Beam Rifle",
+            cost="4",
+            range="4",
+            strength="6",
+            effects={
+               "[Strength +1] for each allied RWS adjacent to the target",
+               "[Critical] [Damage +2]",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Permet Burst",
+            keywords="[Response] [Energy 1]",
+            description="[After Attack Roll] If this unit or another allied unit within [Range 3] is attacking, set 1 die to a [Critical]"
+         },
+         {
+            name="BIT Stave Direct",
+            keywords="[Command]",
+            description="Deploy or reposition this unit's BIT Stave on an empty hex within [Range 3]"
+         },
+         {
+            name="Challenge",
+            keywords="[Response]",
+            description="[Before Attack Roll] If this unit is not defending, swap it with a defending ally within [Range 2]. This unit becomes the defender"
+         },
+      }
+   },
+   {
+      name="Gundam Pharact [Silent Hunter]",
+      pilot="Beak Foot",
+      faction="Asticassia",
+      technical_name="FP/A-77",
+      splash_art="",
+      expansion="EX02",
+      hp="12",
+      vp="7",
+      timeline="2",
+      attacks={
+         {
+            name="Beak Foot",
+            cost="2",
+            range="3",
+            strength="3",
+            effects={
+               "[Critical] Roll 2 additional dice",
+            }
+         },
+         {
+            name="Beam Arquebus",
+            cost="4",
+            range="5",
+            strength="6",
+            effects={
+               "[After Attack Roll] Deactivate all [Shield] Upgrades on the target",
+               "[Critical] [After Combat Damage] This Unit Moves 2, ignoring Engagement",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Lockdown",
+            keywords="[Response] [Energy 1]",
+            description="[After Combat Damage] If this unit attacked an enemy adjacent tothis Unit's Corax, it applies [Slow] to that enemy unit"
+         },
+         {
+            name="Corax Direct",
+            keywords="[Command]",
+            description="Deploy or reposition this unit's Corax on an empty hex within [Range 4]"
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties"
+         },
+      }
+   },
+   {
+      name="Guntank [Long-Range Support]",
+      pilot="Hayato Kobayashi",
+      faction="Earth Federation",
+      technical_name="RX-75",
+      splash_art="",
+      expansion="DX01",
+      hp="11",
+      vp="6",
+      timeline="3",
+      attacks={
+         {
+            name="Quadruple Bop Missile",
+            cost="2",
+            range="SP",
+            strength="3",
+            sp_shape="Flower",
+            effects={
+               "Flower Patterned AOE",
+               "[Critical] Damage +1",
+            }
+         },
+         {
+            name="Low Recoil Cannons",
+            cost="4",
+            range="4",
+            strength="7",
+            effects={
+               "[Critical] Disarm the target",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Long Range Assault",
+            keywords="[Command] [Energy]",
+            description="Low Recoils Cannons gains +3[Range] and ignores Line of Sight this Activation."
+         },
+         {
+            name="Entrenched",
+            keywords="[Ongoing]",
+            description="While this unit is on or adjacent to an Objective, it gains +2 Strength and can't be moved by enemies."
+         },
+         {
+            name="Fueled",
+            keywords="[Response]",
+            description="After this unit deploys, it gains 1 [Energy]"
+         },
+      }
+   },
+   {
+      name="Guncannon [In Position]",
+      pilot="Kai Shiden",
+      faction="Earth Federation",
+      technical_name="RX-77-2",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/15258626936620923240/46C6EBEA3ADA9FB58F38B24582A9186DBFADD733/",
+      expansion="Paint Pack 01",
+      hp="12",
+      vp="7",
+      timeline="2",
+      attacks={
+         {
+            name="240mm Low-Recoil Cannon",
+            cost="2",
+            range="SP",
+            strength="3",
+            sp_shape="Hammer",
+            effects={
+               "[Critical] [After Combat Damage] [Fracture] the targets",
+            }
+         },
+         {
+            name="Shoulder Cannons",
+            cost="4",
+            range="4",
+            strength="7",
+            effects={
+               "This attack also targets each enemy adjacent to the target",
+               "[Critical] [Damage +1]",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Stunning Shot",
+            keywords="[Response][Energy]",
+            description="[After Combat Damage] If this unit attacked, each target moves up 1 [Timeline]"
+         },
+         {
+            name="Firing Line",
+            keywords="[Ongoing]",
+            description="If this unit hasn't moved this activation, its attacks gain [Accuracy +1] and [Strength +1]"
+         },
+      }
+   },
+   {
+      name="Darilbalde [Frontline Duelist]",
+      pilot="Guel Jeturk",
+      faction="Asticassia",
+      technical_name="MD-0064",
+      splash_art="",
+      expansion="EX02",
+      hp="13",
+      vp="8",
+      timeline="3",
+      attacks={
+         {
+            name="Shackle Claw",
+            cost="2",
+            range="2",
+            strength="4",
+            effects={
+               "[After Attack Roll] Move 1 towards the target ignoring terrain penalties.",
+               "[Critical] [Disarm] the target.",
+            }
+         },
+         {
+            name="Beam Saber",
+            cost="3",
+            range="1",
+            strength="7",
+            effects={
+               "[Critical] Deal [Damage 2] to each enemy adjacent to this unit's Iśvara B Type.",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Sundering Strike",
+            keywords="[Command] [Energy 1]",
+            description="[Fracture] an adjacent enemy unit."
+         },
+         {
+            name="Iśvara B Type Direct",
+            keywords="[Command]",
+            description="Deploy or reposition this unit's Iśvara B Type on an empty hex within [Range 2]"
          },
       }
    }
