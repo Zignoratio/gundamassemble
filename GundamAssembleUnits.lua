@@ -48,7 +48,7 @@ return {
       }
    },
    {
-      name="Char's Zaku II",
+      name="Char's Zaku II [Demo]",
       pilot="Char Aznable",
       faction="Zeon",
       technical_name="MS-06S",
@@ -95,7 +95,7 @@ return {
       }
    },
    {
-      name="Char's Zaku II [Red Comet]",
+      name="Char's Zaku II [Fast Encounter]",
       pilot="Char Aznable",
       faction="Zeon",
       technical_name="MS-06S",
@@ -110,11 +110,11 @@ return {
             range="1",
             strength="4",
             effects={
-               "[Critical] [After Attack  Roll] Fracture Enemy Target",
+               "[Critical] [After Attack  Roll] [Fracture] Enemy Target",
             }
          },
          {
-            name="Bazooka",
+            name="Zaku Bazooka",
             cost="4",
             range="4",
             strength="7",
@@ -138,7 +138,7 @@ return {
          {
             name="Char Kick",
             keywords="[Response]",
-            description="After this unit dashes, deal 1 [Damage] to an adjacent enemy"
+            description="After this unit dashes, deal [Damage 1] to an adjacent enemy"
          },
       }
    },
@@ -922,7 +922,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \"Emergency Escape,\" remove its miniature from the board and replace it with the Zeong Head miniature instead. Zeong is not considered to have been defeated, does not take a Timeline penalty, and does not award victory points. All Upgrades, Energy, and status effects remain in place. The next time you would command Zeong, you’ll command the Zeong Head instead. (FAQ 42) "
+            description="When Zeong uses \\"
          },
          {
             name="Judgement of Zeon",
@@ -971,6 +971,49 @@ return {
             name="Material Transfer",
             keywords="[Command]",
             description="Redistribute Upgrades among this unit and another allied unit within [Range 3]"
+         },
+      }
+   },
+   {
+      name="Delta Plus [Rapid Response]",
+      pilot="Riddhe Marcenas",
+      faction="Earth Federation, Londo Bell",
+      technical_name="MSN-001A1",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/15228777665552233589/3AF5B3FB29DC444D15329F3FF23528218FA4C925/",
+      hp="11",
+      timeline="2",
+      vp="7",
+      attacks={
+         {
+            name="Twin-Barreled Grenade Launcher",
+            cost="2",
+            range="3",
+            strength="3",
+            effects={
+               "[Critical] [After Combat Damage] [Slow] the target.",
+            }
+         },
+         {
+            name="Beam Rifle",
+            cost="4",
+            range="5",
+            strength="6",
+            effects={
+               "[Strength +1] for each [Speed] Upgrade on this unit",
+               "[Critical] Gain 1[Speed] Upgrade",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Blitzing Slash",
+            keywords="[Response] [Energy]",
+            description="After this unit ends its movement: It deals [Damage 1] to each enemy it moved adjacent to "
+         },
+         {
+            name="Jet Through",
+            keywords="[Ongoing]",
+            description="While this unit has at least 1 [Speed] Upgrade, it has Hover"
          },
       }
    }
