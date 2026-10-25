@@ -99,6 +99,7 @@ body { background: var(--bg-deep); }
 .btn:hover { border-color: var(--accent); background: rgba(230,57,70,0.08); }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 .btn-primary:hover { background: #c1303e; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .btn-sm { padding: 6px 14px; font-size: 11px; clip-path: none; }
 .btn-danger { border-color: #e63946; color: #e63946; }
 .btn-danger:hover { background: rgba(230,57,70,0.15); }
@@ -148,6 +149,35 @@ body { background: var(--bg-deep); }
 }
 .unit-stat span { font-size: 9px; color: var(--text-dim); display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 1px; }
 .unit-actions { display: flex; gap: 6px; }
+.unit-new-tag {
+  display: inline-block; margin-left: 0; padding: 1px 6px; vertical-align: middle;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 400; letter-spacing: 1px;
+  color: #000; background: var(--warning);
+}
+.tc-group.is-new .tc-group-toggle { color: var(--warning); }
+.tts-modal { max-width: 900px; max-height: 88vh; }
+.lua-modal-body.tts-body { padding: 18px 24px; display: flex; flex-direction: column; gap: 18px; }
+.tts-set { border: 1px solid var(--border); border-left: 3px solid var(--accent2); background: var(--bg-card); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.tts-set-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.tts-set-name { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: 2px; }
+.tts-sheet { display: grid; grid-template-columns: 200px 1fr; gap: 4px 12px; align-items: center; }
+.tts-sheet-label { font-family: var(--font-mono); font-size: 12px; color: var(--text); display: flex; flex-direction: column; }
+.tts-sheet-label span { font-size: 10px; color: var(--text-dim); letter-spacing: 1px; }
+.tts-status { grid-column: 2; font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; }
+.tts-status.ok { color: var(--success); }
+.tts-status.need { color: var(--text-dim); }
+.tts-status.warn { color: var(--warning); }
+@media (max-width: 700px) { .tts-sheet { grid-template-columns: 1fr; } .tts-status { grid-column: 1; } }
+.unit-new-check {
+  display: flex; align-items: center; gap: 8px; height: 40px; cursor: pointer;
+  font-family: var(--font-body); font-size: 13px; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--text);
+}
+.unit-new-check input { width: 16px; height: 16px; accent-color: var(--warning); }
+.crit-row { gap: 0; }
+.crit-prefix {
+  font-family: var(--font-mono); font-size: 12px; color: #fff; background: #EB0000;
+  padding: 0 10px; align-self: stretch; display: flex; align-items: center;
+}
 
 .editor-backdrop {
   position: fixed; inset: 0; background: rgba(0,0,0,0.7);
@@ -355,10 +385,6 @@ textarea { resize: vertical; min-height: 50px; font-size: 13px; }
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 45%);
 }
-.card-side { position: absolute; left: 1.2%; width: 4.6%; border-radius: 3px; }
-.card-side.up   { top: 1.3%;  height: 7.5%; background: #2e8b3d; }
-.card-side.down { top: 9.6%;  height: 7.5%; background: #b71c1c; }
-.card-side.pin  { top: 17.5%; height: 7.5%; background: #1e6fe0; }
 
 .card-stats {
   position: absolute; left: 6.5%; top: 1.6%; color: #fff; font-weight: 700; font-size: 17px;
@@ -608,11 +634,12 @@ input[type=range].tc-slider { width: 100%; accent-color: var(--accent2); }
 <script type="text/babel">
 const { useState, useRef, useEffect } = React;
 
-const EMPTY_ATTACK = { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""] };
+const EMPTY_ATTACK = { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""], crit: "" };
 const EMPTY_ABILITY = { name: "", keywords: "", description: "" };
 const EMPTY_UNIT = {
   name: "", pilot: "", faction: "", splash_art: "", technical_name: "",
-  hp: "", timeline: "", vp: "",
+  expansion: "",
+  hp: "", vp: "", timeline: "",
   attacks: [{ ...EMPTY_ATTACK, effects: [""] }],
   abilities: [],
 };
@@ -620,6 +647,18 @@ const EMPTY_UNIT = {
 function generateId() {
   return Math.random().toString(16).slice(2, 10);
 }
+
+// The [Critical] effect is edited in its own field but stored in the Lua as the last effect line ("[Critical] ...").
+const CRIT_RE = /^\s*\[Critical\]\s*/i;
+function splitCrit(effects) {
+  const list = (effects || []).filter(e => e !== undefined);
+  const idx = list.findIndex(e => CRIT_RE.test(e));
+  if (idx < 0) return { effects: list.length ? list : [""], crit: "" };
+  const crit = list[idx].replace(CRIT_RE, "");
+  const rest = list.filter((_, i) => i !== idx);
+  return { effects: rest.length ? rest : [""], crit };
+}
+const critLine = (crit) => (crit && crit.trim()) ? "[Critical] " + crit.trim().replace(CRIT_RE, "") : "";
 
 function escapeStr(s) {
   return s.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
@@ -635,9 +674,10 @@ function toLua(units) {
     lines.push(`${indent(2)}faction="${escapeStr(u.faction)}",`);
     lines.push(`${indent(2)}technical_name="${escapeStr(u.technical_name)}",`);
     lines.push(`${indent(2)}splash_art="${escapeStr(u.splash_art)}",`);
+    lines.push(`${indent(2)}expansion="${escapeStr(u.expansion || "")}",`);
     lines.push(`${indent(2)}hp="${u.hp}",`);
-    lines.push(`${indent(2)}timeline="${u.timeline}",`);
     lines.push(`${indent(2)}vp="${u.vp}",`);
+    lines.push(`${indent(2)}timeline="${u.timeline}",`);
     lines.push(`${indent(2)}attacks={`);
     u.attacks.forEach((a) => {
       lines.push(`${indent(3)}{`);
@@ -647,8 +687,8 @@ function toLua(units) {
       lines.push(`${indent(4)}strength="${a.strength}",`);
       if (isSP(a.range) && a.sp_shape) lines.push(`${indent(4)}sp_shape="${a.sp_shape}",`);
       lines.push(`${indent(4)}effects={`);
-      a.effects.forEach((e) => {
-        if (e.trim()) lines.push(`${indent(5)}"${escapeStr(e.trim())}",`);
+      [...a.effects, critLine(a.crit)].forEach((e) => {
+        if (e && e.trim()) lines.push(`${indent(5)}"${escapeStr(e.trim())}",`);
       });
       lines.push(`${indent(4)}}`);
       lines.push(`${indent(3)}},`);
@@ -687,9 +727,10 @@ function parseLua(text) {
         faction: getStr("faction"),
         technical_name: getStr("technical_name"),
         splash_art: getStr("splash_art"),
+        expansion: getStr("expansion"),
         hp: getStr("hp"),
-        timeline: getStr("timeline"),
         vp: getStr("vp"),
+        timeline: getStr("timeline"),
         attacks: [],
         abilities: [],
       };
@@ -710,8 +751,7 @@ function parseLua(text) {
             const efItems = efStr.match(/"([^"]*)"/g);
             if (efItems) efItems.forEach(e => effects.push(e.replace(/"/g, "")));
           }
-          if (effects.length === 0) effects.push("");
-          unit.attacks.push({ name: aGetStr("name"), cost: aGetStr("cost"), range: aGetStr("range"), strength: aGetStr("strength"), sp_shape: aGetStr("sp_shape"), effects });
+          unit.attacks.push({ name: aGetStr("name"), cost: aGetStr("cost"), range: aGetStr("range"), strength: aGetStr("strength"), sp_shape: aGetStr("sp_shape"), ...splitCrit(effects) });
         }
       }
       if (unit.attacks.length === 0) unit.attacks.push({ ...EMPTY_ATTACK, effects: [""] });
@@ -754,9 +794,10 @@ function parseWiki(text) {
       faction: getField("Faction"),
       technical_name: getField("caption"),
       splash_art: getField("image"),
+      expansion: getField("Expansion") || getField("Set") || getField("Release"),
       hp: getField("HP"),
-      timeline: getField("Timeline"),
       vp: getField("VP"),
+      timeline: getField("Timeline"),
       attacks: [],
       abilities: [],
     };
@@ -780,15 +821,13 @@ function parseWiki(text) {
           const effectLines = effectText.split("\n").map(l => l.trim()).filter(l => l);
           effectLines.forEach(l => effects.push(l));
         }
-        if (effects.length === 0) effects.push("");
-
         unit.attacks.push({
           name: atkName,
           cost: costMatch ? costMatch[1] : "",
           range: rangeMatch ? rangeMatch[1] : "",
           strength: strengthMatch ? strengthMatch[1] : "",
           sp_shape: "",
-          effects,
+          ...splitCrit(effects),
         });
       }
     }
@@ -885,7 +924,6 @@ function CardPreview({ unit }) {
   return (
     <div className="card">
       <div className="card-art" style={has(unit.splash_art) ? { backgroundImage: `url("${unit.splash_art}")` } : {}} />
-      <div className="card-side up" /><div className="card-side down" /><div className="card-side pin" />
       <div className="card-stats">
         <span>HP {has(unit.hp) ? unit.hp : "–"}</span>
         <span>VP {has(unit.vp) ? unit.vp : "–"}</span>
@@ -906,6 +944,7 @@ function CardPreview({ unit }) {
           <div className={"card-atk-body" + (isSP(a.range) ? " sp" : "")}>
             <div className="card-atk-fx">
               {a.effects.filter(has).map((e, j) => <div key={j}>{renderKeywords(e)}</div>)}
+              {has(a.crit) && <div>{renderKeywords(critLine(a.crit))}</div>}
             </div>
             {isSP(a.range) && (
               <div className="card-atk-sp">
@@ -938,7 +977,7 @@ const TC_STORAGE_KEY = "ga_tactics_cards";
 const TC_TYPES = { attack: "Attack", command: "Command", response: "Response" };
 const EMPTY_TCARD = {
   _key: "", type: "attack", name: "", cardId: "", rarity: "", tag1: "", tag2: "",
-  effect: "", scenario: "", boxStyle: "auto", footer: "Fan-made card · Not for sale",
+  effect: "", scenario: "", boxStyle: "auto", footer: "Fan-made card · Not for sale", isNew: false, unit: "",
   attack: { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""] },
   art: null, artW: 0, artH: 0, artX: 0, artY: 0, artZoom: 100,
 };
@@ -1277,7 +1316,9 @@ function tcCompare(a, b) {
 }
 
 // Which collapsible group a card belongs to: ST01, ST02 ... then other ID prefixes, then "Missing ID".
-function tcGroupOf(c) {
+// pullNew: cards ticked "New" go into their own group at the top (display only; sheet exports keep them in their real set).
+function tcGroupOf(c, pullNew = true) {
+  if (pullNew && c.isNew) return { key: "~new", label: "New / In Progress", order: [-1, 0, ""] };
   const id = (c.cardId || "").trim();
   if (!id) return { key: "~missing", label: "Missing ID", order: [2, 0, ""] };
   const m = id.match(/ST\s*0*(\d+)/i);
@@ -1285,10 +1326,10 @@ function tcGroupOf(c) {
   const p = (id.split(/[-\s]/)[0] || id).toUpperCase();
   return { key: p, label: p, order: [1, 0, p] };
 }
-function tcGroupCards(sorted) {
+function tcGroupCards(sorted, pullNew = true) {
   const map = new Map();
   for (const c of sorted) {
-    const g = tcGroupOf(c);
+    const g = tcGroupOf(c, pullNew);
     if (!map.has(g.key)) map.set(g.key, { ...g, cards: [] });
     map.get(g.key).cards.push(c);
   }
@@ -1298,7 +1339,98 @@ function tcGroupCards(sorted) {
   });
 }
 
-function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, folderRef, format, setFormat }) {
+// --- Tabletop Simulator decks ---
+// Every set's sheets, in the exact order the sheet export draws them. fileBase matches the exported image name.
+function tcSheetPlan(cards, setKeys = null) {
+  const plan = [];
+  for (const g of tcGroupCards([...cards].sort(tcCompare), false)) {
+    if (setKeys && !setKeys.has(g.key)) continue;
+    const pages = [];
+    for (let i = 0; i < g.cards.length; i += TC_SHEET_PER) pages.push(g.cards.slice(i, i + TC_SHEET_PER));
+    pages.forEach((pc, p) => plan.push({
+      setKey: g.key, setLabel: g.label, page: p + 1, pages: pages.length, cards: pc,
+      rows: Math.ceil((pc.length + 1) / TC_SHEET_COLS),
+      fileBase: tcSheetName(g.label) + (pages.length > 1 ? "_" + (p + 1) : ""),
+      label: g.label + (pages.length > 1 ? ` (${p + 1}/${pages.length})` : ""),
+    }));
+  }
+  return plan;
+}
+// Fingerprint of what a sheet looks like (card order + everything drawn on the card). Used to spot sheets that changed after upload.
+function tcSheetSig(pageCards) {
+  const str = pageCards.map(c => {
+    const { art, isNew, unit, _key, ...rest } = c;
+    const a = art ? art.length + ":" + art.slice(-64) : "";
+    return _key + JSON.stringify(rest) + a;
+  }).join("|");
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
+  return (h >>> 0).toString(36) + "-" + pageCards.length;
+}
+// CustomDeck id for a sheet: ST01 page 1 -> 11, ST01 page 2 -> 12, ST02 -> 21 ... other sets get a stable id from 500 up.
+function ttsDeckId(setLabel, page) {
+  const m = String(setLabel).match(/^ST(\d+)$/i);
+  if (m) return +m[1] * 10 + page;
+  let h = 0; for (const ch of String(setLabel)) h = (h * 31 + ch.charCodeAt(0)) % 4900;
+  return 500 + h * 10 + page;
+}
+const ttsGuid = () => Math.random().toString(16).slice(2, 8).padEnd(6, "0");
+const todayStr = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
+const ttsTransform = () => ({ posX: 0, posY: 1, posZ: 0, rotX: 0, rotY: 180, rotZ: 0, scaleX: 1, scaleY: 1, scaleZ: 1 });
+const TTS_COMMON = {
+  Description: "", GMNotes: "", AltLookAngle: { x: 0, y: 0, z: 0 }, ColorDiffuse: { r: 0.713235259, g: 0.713235259, b: 0.713235259 },
+  LayoutGroupSortIndex: 0, Value: 0, Locked: false, Grid: true, Snap: true, IgnoreFoW: false, MeasureMovement: false,
+  DragSelectable: true, Autoraise: true, Sticky: true, Tooltip: true, GridProjection: false, HideWhenFaceDown: true,
+  SidewaysCard: false, LuaScript: "", LuaScriptState: "", XmlUI: "",
+};
+// One TTS saved-object file for a set. sheets: [{ cards, rows, url }] (one per sheet page).
+function ttsDeckJSON(setLabel, sheets, backUrl, dateStr) {
+  const customDeck = {}, contained = [], deckIds = [];
+  sheets.forEach((sh) => {
+    const id = ttsDeckId(setLabel, sh.page);
+    customDeck[id] = { FaceURL: sh.url, BackURL: backUrl, NumWidth: TC_SHEET_COLS, NumHeight: sh.rows, BackIsHidden: true, UniqueBack: false, Type: 0 };
+    sh.cards.forEach((c, i) => {
+      const cid = id * 100 + i;
+      deckIds.push(cid);
+      contained.push({ ...TTS_COMMON, GUID: ttsGuid(), Name: "Card", Transform: ttsTransform(), Nickname: c.name || "", Description: c.unit || "",
+        Hands: true, CardID: cid, CustomDeck: { [id]: customDeck[id] } });
+    });
+  });
+  const name = `${setLabel} Tactics`;
+  const obj = contained.length === 1
+    ? { ...contained[0] }
+    : { ...TTS_COMMON, GUID: ttsGuid(), Name: "Deck", Transform: ttsTransform(), Nickname: name, Description: "",
+        Hands: false, DeckIDs: deckIds, CustomDeck: customDeck, ContainedObjects: contained };
+  return JSON.stringify({ SaveName: `${name} ${dateStr}`, Date: dateStr, VersionNumber: "", GameMode: "", GameType: "", GameComplexity: "",
+    Tags: [], Gravity: 0.5, PlayArea: 0.5, Table: "", Sky: "", Note: "", TabStates: {}, LuaScript: "", LuaScriptState: "", XmlUI: "",
+    ObjectStates: [obj] }, null, 2);
+}
+
+// Unit groups: by Expansion / Release, ordered like the tactics sets (ST01, ST02 ... then other names, then "No Expansion").
+const natCmp = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: "base" });
+function unitGroupOf(u) {
+  const ex = (u.expansion || "").trim();
+  if (!ex) return { key: "~none", label: "No Expansion", order: [2, 0, ""] };
+  const m = ex.match(/^ST\s*-?\s*0*(\d+)$/i);
+  if (m) { const k = "ST" + String(+m[1]).padStart(2, "0"); return { key: k, label: k, order: [0, +m[1], ""] }; }
+  return { key: "x:" + ex.toLowerCase(), label: ex, order: [1, 0, ex] };
+}
+function unitGroups(list) {
+  const map = new Map();
+  for (const u of list) {
+    const g = unitGroupOf(u);
+    if (!map.has(g.key)) map.set(g.key, { ...g, units: [] });
+    map.get(g.key).units.push(u);
+  }
+  const groups = [...map.values()].sort((a, b) => {
+    for (let i = 0; i < 2; i++) { if (a.order[i] !== b.order[i]) return a.order[i] - b.order[i]; }
+    return natCmp(a.order[2], b.order[2]);
+  });
+  groups.forEach(g => g.units.sort((a, b) => natCmp(a.name, b.name)));
+  return groups;
+}
+
+function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, folderRef, format, setFormat, unitNames = [] }) {
   const [search, setSearch] = useState("");
   const [showTypes, setShowTypes] = useState({ attack: true, command: true, response: true });
   const [collapsed, setCollapsed] = useState({});
@@ -1308,6 +1440,21 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
   const setGroupsCollapsed = (next) => { setCollapsed(next); tcDB.set("ga_tactics_collapsed", next); };
   const toggleGroup = (key) => setGroupsCollapsed({ ...collapsed, [key]: !collapsed[key] });
   const [exporting, setExporting] = useState("");
+  // TTS deck builder: card back URL, the Steam URL pasted for each sheet, and what each sheet looked like when exported.
+  const [showTts, setShowTts] = useState(false);
+  const [ttsBack, setTtsBack] = useState("");
+  const [ttsUrls, setTtsUrls] = useState({});     // fileBase -> { url, sig }
+  const [ttsSheets, setTtsSheets] = useState({}); // fileBase -> { sig, date }
+  const [ttsFolder, setTtsFolder] = useState(null);
+  useEffect(() => {
+    tcDB.get("ga_tts_back").then(v => { if (v) setTtsBack(v); });
+    tcDB.get("ga_tts_urls").then(v => { if (v) setTtsUrls(v); });
+    tcDB.get("ga_tts_sheets").then(v => { if (v) setTtsSheets(v); });
+    tcDB.get("ga_tts_folder").then(h => { if (h) setTtsFolder(h); });
+  }, []);
+  const saveTtsBack = (v) => { setTtsBack(v); tcDB.set("ga_tts_back", v); };
+  const saveTtsUrls = (v) => { setTtsUrls(v); tcDB.set("ga_tts_urls", v); };
+  const saveTtsSheets = (v) => { setTtsSheets(v); tcDB.set("ga_tts_sheets", v); };
   const [folder, setFolder] = useState(null);
   const artInput = useRef();
 
@@ -1430,20 +1577,70 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
         }
       }
       if (sheets) {
-        for (const g of tcGroupCards([...chosen].sort(tcCompare))) {
-          const pages = [];
-          for (let i = 0; i < g.cards.length; i += TC_SHEET_PER) pages.push(g.cards.slice(i, i + TC_SHEET_PER));
-          for (let p = 0; p < pages.length; p++) {
-            const label = g.label.toUpperCase() + (pages.length > 1 ? ` (${p + 1}/${pages.length})` : "");
-            const blob = await buildSheet(pages[p], label);
-            await sink.put(TC_RENDER_DIR, `${tcSheetName(g.label)}${pages.length > 1 ? "_" + (p + 1) : ""}.${ext}`, blob);
-          }
+        // Sheets always cover whole sets, so a sheet file never ends up with only part of its set on it.
+        const setKeys = new Set(chosen.map(c => tcGroupOf(c, false).key));
+        const recorded = { ...ttsSheets };
+        for (const sh of tcSheetPlan(cards, setKeys)) {
+          const blob = await buildSheet(sh.cards, sh.label.toUpperCase());
+          await sink.put(TC_RENDER_DIR, `${sh.fileBase}.${ext}`, blob);
+          recorded[sh.fileBase] = { sig: tcSheetSig(sh.cards), date: todayStr() };
         }
+        saveTtsSheets(recorded);
       }
       if (json) await sink.put("", TC_JSON_NAME, new Blob([tcLibraryJSON(cards, format)], { type: "application/json" }));
       await sink.finish(zipName);
     } catch (e) { console.error(e); showToast("EXPORT FAILED"); }
     setExporting(""); setForceAll(false);
+  };
+
+  // Status of each sheet for the TTS builder.
+  const ttsPlan = showTts ? tcSheetPlan(cards).map(sh => {
+    const sig = tcSheetSig(sh.cards);
+    const exp = ttsSheets[sh.fileBase];
+    const u = ttsUrls[sh.fileBase];
+    let status = "ok", msg = "Ready";
+    if (!exp) { status = "warn"; msg = "Sheet not exported yet — export it, upload to Steam, paste the URL"; }
+    else if (exp.sig !== sig) { status = "warn"; msg = "Cards changed since this sheet was exported — re-export and re-upload"; }
+    else if (!u || !u.url) { status = "need"; msg = "Paste the Steam URL for this sheet"; }
+    else if (u.sig !== exp.sig) { status = "warn"; msg = "Sheet was re-exported after this URL was pasted — upload the new sheet and paste its URL"; }
+    return { ...sh, sig, url: (u && u.url) || "", status, msg };
+  }) : [];
+  const ttsSets = [];
+  for (const sh of ttsPlan) {
+    let g = ttsSets.find(x => x.key === sh.setKey);
+    if (!g) { g = { key: sh.setKey, label: sh.setLabel, sheets: [] }; ttsSets.push(g); }
+    g.sheets.push(sh);
+  }
+  const setUrl = (sh, url) => {
+    const exp = ttsSheets[sh.fileBase];
+    saveTtsUrls({ ...ttsUrls, [sh.fileBase]: { url: url.trim(), sig: exp ? exp.sig : sh.sig } });
+  };
+  const setReady = (g) => ttsBack.trim() && g.sheets.every(sh => sh.url);
+  const ttsFileName = (g, dateStr) => `${tcSheetName(g.label)}_Tactics_${dateStr}.json`;
+  // Writes deck files to the remembered TTS folder (Chrome/Edge), otherwise downloads them (several at once go in a zip).
+  const saveDecks = async (sets, pickNew = false) => {
+    const ready = sets.filter(setReady);
+    if (!ready.length) { showToast("NO DECKS READY — NEED BACK URL AND A URL FOR EVERY SHEET"); return; }
+    const warned = ready.filter(g => g.sheets.some(sh => sh.status === "warn"));
+    if (warned.length && !window.confirm(`${warned.map(g => g.label).join(", ")}: a sheet may not match the current cards (see the warnings). Build anyway?`)) return;
+    const dateStr = todayStr();
+    const files = ready.map(g => ({ name: ttsFileName(g, dateStr), text: ttsDeckJSON(g.label, g.sheets, ttsBack.trim(), dateStr) }));
+    try {
+      if (tcFolderSupported()) {
+        let dir = ttsFolder;
+        if (pickNew || !dir || !(await tcFolderUsable(dir))) {
+          try { dir = await window.showDirectoryPicker({ mode: "readwrite", id: "ga-tts-out" }); } catch { return; }
+          setTtsFolder(dir); tcDB.set("ga_tts_folder", dir);
+        }
+        for (const f of files) await tcWriteFile(dir, f.name, new Blob([f.text], { type: "application/json" }));
+        showToast(`${files.length} DECK FILE(S) SAVED TO ${dir.name.toUpperCase()}`);
+      } else if (files.length === 1) {
+        tcDownload(new Blob([files[0].text], { type: "application/json" }), files[0].name); showToast("DECK FILE SAVED");
+      } else {
+        const zip = new JSZip(); files.forEach(f => zip.file(f.name, f.text));
+        tcDownload(await zip.generateAsync({ type: "blob" }), `TTS_Tactics_Decks_${dateStr}.zip`); showToast("DECK FILES SAVED");
+      }
+    } catch (e) { console.error(e); showToast("DECK SAVE FAILED"); }
   };
 
   const filtered = cards.filter(c => {
@@ -1480,6 +1677,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
               </label>
               <button className="btn btn-sm btn-primary" onClick={() => exportCards({ art: true, sheets: true, json: true })}>EXPORT EVERYTHING</button>
               {tcFolderSupported() && <button className="btn btn-sm" onClick={() => exportCards({ art: true, sheets: true, json: true, pickNew: true })}>CHOOSE FOLDER…</button>}
+              <button className="btn btn-sm btn-accent2" onClick={() => setShowTts(true)}>TTS DECKS…</button>
             </div>
             <div className="tc-hint">
               {tcFolderSupported()
@@ -1509,7 +1707,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
           groups.map(g => {
             const isClosed = !forceAll && !!collapsed[g.key];
             return (
-            <div className={"tc-group" + (isClosed ? " collapsed" : "") + (g.key === "~missing" ? " missing" : "")} key={g.key}>
+            <div className={"tc-group" + (isClosed ? " collapsed" : "") + (g.key === "~missing" ? " missing" : "") + (g.key === "~new" ? " is-new" : "")} key={g.key}>
               <div className="tc-group-head">
                 <button className="tc-group-toggle" onClick={() => toggleGroup(g.key)} aria-expanded={!isClosed}>
                   <span className="tc-group-caret">▾</span>
@@ -1526,6 +1724,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
             {g.cards.map(c => (
               <div className="tc-item" key={c._key} data-tc={c._key}>
                 <TacticsCard card={c} />
+                {c.isNew && <span className="unit-new-tag">NEW</span>}
                 <div className="tc-item-controls">
                   <button className="btn btn-sm btn-primary" onClick={() => exportOne(c._key)}>{ext.toUpperCase()}</button>
                   <button className="btn btn-sm" onClick={() => setEditing(JSON.parse(JSON.stringify(c)))}>EDIT</button>
@@ -1563,12 +1762,24 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
                     </div>
                   </div>
                   <div className="field-row">
+                    <div className="field-group" style={{ flex: "1 1 100%" }}><label>Unit (TTS description)</label>
+                      <input value={editing.unit || ""} onChange={(e) => upd("unit", e.target.value)} placeholder="e.g. Gundam [Legendary Hero] — leave blank for generic cards" list="tc-unit-names" />
+                      <datalist id="tc-unit-names">{[...new Set(unitNames)].sort(natCmp).map(n => <option key={n} value={n} />)}</datalist>
+                    </div>
+                  </div>
+                  <div className="field-row">
                     <div className="field-group"><label>Tag 1</label><input value={editing.tag1} onChange={(e) => upd("tag1", e.target.value)} placeholder="e.g. Legendary Hero" /></div>
                     <div className="field-group"><label>Tag 2</label><input value={editing.tag2} onChange={(e) => upd("tag2", e.target.value)} placeholder="e.g. Earth Federation" /></div>
                   </div>
                   <div className="field-row">
                     <div className="field-group"><label>Card ID</label><input value={editing.cardId} onChange={(e) => upd("cardId", e.target.value)} placeholder="e.g. ST01-T01" /></div>
                     <div className="field-group"><label>Rarity</label><input value={editing.rarity} onChange={(e) => upd("rarity", e.target.value)} placeholder="e.g. C, U, R, S" maxLength={2} /></div>
+                    <div className="field-group"><label>Status</label>
+                      <label className="unit-new-check">
+                        <input type="checkbox" checked={!!editing.isNew} onChange={(e) => upd("isNew", e.target.checked)} />
+                        New
+                      </label>
+                    </div>
                     <div className="field-group"><label>Text Box</label>
                       <select value={editing.boxStyle} onChange={(e) => upd("boxStyle", e.target.value)} disabled={editing.type === "attack"}>
                         <option value="auto">Auto</option><option value="dark">Dark</option><option value="color">Type color</option>
@@ -1657,6 +1868,52 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
         </div>
       )}
 
+      {showTts && (
+        <div className="lua-modal-backdrop" onClick={() => setShowTts(false)}>
+          <div className="lua-modal tts-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="lua-modal-header">
+              <div className="editor-title">TABLETOP SIMULATOR DECKS</div>
+              <button className="remove-btn" onClick={() => setShowTts(false)}>✕</button>
+            </div>
+            <div className="lua-modal-body tts-body">
+              <div className="tc-hint" style={{ textAlign: "left", lineHeight: 1.7 }}>
+                1. Export a set's sheet · 2. Upload it to Steam Cloud and paste the URL below · 3. Save the deck file (named {"<SET>"}_Tactics_{todayStr()}.json).
+                {tcFolderSupported() ? " Pick your TTS \"Saved Objects\" folder once and decks go straight there." : " Put the downloaded file in your TTS \"Saved Objects\" folder."}
+              </div>
+              <div className="field-group">
+                <label>Card Back URL (used by every deck)</label>
+                <input value={ttsBack} onChange={(e) => saveTtsBack(e.target.value)} placeholder="https://steamusercontent-a.akamaihd.net/ugc/..." />
+              </div>
+              {ttsSets.map(g => (
+                <div className="tts-set" key={g.key}>
+                  <div className="tts-set-head">
+                    <span className="tts-set-name">{g.label}</span>
+                    <span className="tc-group-count">{g.sheets.reduce((n, sh) => n + sh.cards.length, 0)} CARDS · {g.sheets.length} SHEET{g.sheets.length > 1 ? "S" : ""}</span>
+                    <span style={{ flex: 1 }} />
+                    <button className="btn btn-sm" onClick={() => exportCards({ subset: g.sheets.flatMap(sh => sh.cards), sheets: true, zipName: `${tcSheetName(g.label)}_${TC_RENDER_DIR}.zip` })}>EXPORT SHEET</button>
+                    <button className="btn btn-sm btn-primary" disabled={!setReady(g)} onClick={() => saveDecks([g])}>SAVE DECK JSON</button>
+                  </div>
+                  {g.sheets.map(sh => (
+                    <div className="tts-sheet" key={sh.fileBase}>
+                      <div className="tts-sheet-label">{sh.fileBase}.{ext}<span>{sh.cards.length} cards · {TC_SHEET_COLS}×{sh.rows}</span></div>
+                      <input value={sh.url} onChange={(e) => setUrl(sh, e.target.value)} placeholder="Steam URL for this sheet" />
+                      <div className={"tts-status " + sh.status}>{sh.msg}</div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className="lua-modal-footer">
+              <span className="tc-hint" style={{ marginRight: "auto", textAlign: "left" }}>
+                {tcFolderSupported() ? (ttsFolder ? `TTS FOLDER: ${ttsFolder.name}` : "No TTS folder yet — the first save asks for one") : "Decks download as files"}
+              </span>
+              {tcFolderSupported() && <button className="btn btn-sm" style={{ whiteSpace: "nowrap" }} onClick={() => saveDecks(ttsSets.filter(setReady), true)}>CHOOSE TTS FOLDER…</button>}
+              <button className="btn btn-sm btn-primary" style={{ whiteSpace: "nowrap" }} onClick={() => saveDecks(ttsSets)}>SAVE ALL READY DECKS</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {exporting && <div className="tc-export-overlay">{exporting}</div>}
     </React.Fragment>
   );
@@ -1681,6 +1938,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [loadingGithub, setLoadingGithub] = useState(false);
   const [mode, setMode] = useState("units");
+  const [unitCollapsed, setUnitCollapsed] = useState({});
+  useEffect(() => { tcDB.get("ga_units_collapsed").then(v => { if (v) setUnitCollapsed(v); }); }, []);
+  const setUnitGroupsCollapsed = (next) => { setUnitCollapsed(next); tcDB.set("ga_units_collapsed", next); };
   const [tcards, setTcards] = useState([]);
   const [tcEditing, setTcEditing] = useState(null);
   const [tcLoaded, setTcLoaded] = useState(false);
@@ -1800,13 +2060,18 @@ function App() {
     showToast("UNIT DUPLICATED");
   };
   const handleExport = () => setShowLua(true);
+  const handleCopyLua = async () => {
+    const text = toLua(units);
+    try { await navigator.clipboard.writeText(text); showToast("LUA COPIED TO CLIPBOARD"); }
+    catch { luaRef.current?.select(); document.execCommand("copy"); showToast("LUA COPIED TO CLIPBOARD"); }
+  };
   const handleDownload = () => {
     try {
       const data = toLua(units);
       const dataUri = "data:text/plain;charset=utf-8," + encodeURIComponent(data);
       const a = document.createElement("a");
       a.href = dataUri;
-      a.download = "units.lua";
+      a.download = "GundamAssembleUnits.lua";
       a.style.display = "none";
       document.body.appendChild(a);
       a.click();
@@ -1915,8 +2180,9 @@ function App() {
   const filtered = units.filter(u => {
     if (!search.trim()) return true;
     const s = search.toLowerCase();
-    return u.name.toLowerCase().includes(s) || u.pilot.toLowerCase().includes(s) || u.faction.toLowerCase().includes(s);
+    return [u.name, u.pilot, u.faction, u.expansion].some(v => (v || "").toLowerCase().includes(s));
   });
+  const uGroups = unitGroups(filtered);
 
   return (
     <div className="app">
@@ -1946,33 +2212,54 @@ function App() {
           <input type="file" ref={fileRef} accept=".lua,.txt" style={{ display: "none" }} onChange={handleFileImport} />
           <button className="btn btn-accent2 btn-sm" onClick={() => setShowWikiImport(true)}>PASTE WIKI</button>
           <button className="btn btn-accent2 btn-sm" onClick={() => setShowImport(true)}>PASTE LUA</button>
-          <button className="btn btn-sm" onClick={() => fileRef.current?.click()}>LOAD FILE</button>
+          <button className="btn btn-sm" onClick={() => fileRef.current?.click()}>LOAD LUA</button>
+          <button className="btn btn-sm" onClick={handleExport} disabled={units.length === 0}>SHOW LUA</button>
+          <button className="btn btn-sm" onClick={handleDownload} disabled={units.length === 0}>DOWNLOAD LUA</button>
           <button className="btn btn-sm" onClick={() => { if (units.length === 0 || window.confirm("Replace the current unit list with the GitHub version?")) loadFromGithub(true); }} disabled={loadingGithub}>{loadingGithub ? "LOADING…" : "RELOAD GITHUB"}</button>
-          <button className="btn btn-sm" onClick={handleExport} disabled={units.length === 0}>EXPORT LUA</button>
           <button className="btn btn-primary btn-sm" onClick={handleNew}>+ NEW UNIT</button>
           </React.Fragment>
           )}
         </div>
       </div>
 
-      {mode === "cards" && <TacticsCardEditor cards={tcards} setCards={setTcards} showToast={showToast} editing={tcEditing} setEditing={setTcEditing} folderRef={tcFolderRef} format={tcFormat} setFormat={changeFormat} />}
+      {mode === "cards" && <TacticsCardEditor cards={tcards} setCards={setTcards} showToast={showToast} editing={tcEditing} setEditing={setTcEditing} folderRef={tcFolderRef} format={tcFormat} setFormat={changeFormat} unitNames={units.map(u => u.name).filter(Boolean)} />}
 
       {mode === "units" && <React.Fragment>
       <div className="main">
         {units.length > 0 && (
           <div className="search-bar">
-            <input placeholder="Search units by name, pilot, or faction..." value={search} onChange={(e) => setSearch(e.target.value)} />
+            <input placeholder="Search units by name, pilot, faction, or expansion..." value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>
         )}
-        <div className="unit-count">{filtered.length} UNIT{filtered.length !== 1 ? "S" : ""} LOADED</div>
+        <div className="tc-count-row">
+          <div className="unit-count">{filtered.length} UNIT{filtered.length !== 1 ? "S" : ""} LOADED</div>
+          {uGroups.length > 1 && (
+            <div className="tc-count-actions">
+              <button className="btn btn-sm" onClick={() => setUnitGroupsCollapsed({})}>EXPAND ALL</button>
+              <button className="btn btn-sm" onClick={() => setUnitGroupsCollapsed(Object.fromEntries(uGroups.map(g => [g.key, true])))}>COLLAPSE ALL</button>
+            </div>
+          )}
+        </div>
         {filtered.length === 0 && units.length === 0 ? (
           <div className="empty-state">
             <div className="empty-state-icon">⬡</div>
             <p>NO UNITS — ADD ONE OR IMPORT FROM LUA / WIKI</p>
           </div>
         ) : (
+          uGroups.map(g => {
+            const isClosed = !!unitCollapsed[g.key];
+            return (
+            <div className={"tc-group" + (isClosed ? " collapsed" : "") + (g.key === "~none" ? " missing" : "") + (g.key === "~new" ? " is-new" : "")} key={g.key}>
+              <div className="tc-group-head">
+                <button className="tc-group-toggle" onClick={() => setUnitGroupsCollapsed({ ...unitCollapsed, [g.key]: !isClosed })} aria-expanded={!isClosed}>
+                  <span className="tc-group-caret">▾</span>
+                  <span>{g.label}</span>
+                  <span className="tc-group-count">{g.units.length} UNIT{g.units.length !== 1 ? "S" : ""}</span>
+                </button>
+              </div>
+              {!isClosed && (
           <div className="unit-grid">
-            {filtered.map(u => (
+            {g.units.map(u => (
               <div className="unit-row" key={u._key} onClick={() => handleEdit(u)}>
                 <div>
                   <div className="unit-name">{u.name}</div>
@@ -1980,8 +2267,8 @@ function App() {
                 </div>
                 <div className="unit-faction">{u.faction}</div>
                 <div className="unit-stat"><span>HP</span>{u.hp}</div>
-                <div className="unit-stat"><span>TL</span>{u.timeline}</div>
                 <div className="unit-stat"><span>VP</span>{u.vp}</div>
+                <div className="unit-stat"><span>TL</span>{u.timeline}</div>
                 <div className="unit-actions" onClick={(e) => e.stopPropagation()}>
                   <button className="btn btn-sm" onClick={() => handleDuplicate(u)}>DUP</button>
                   <button className="btn btn-sm btn-danger" onClick={() => handleDelete(u._key)}>DEL</button>
@@ -1989,6 +2276,10 @@ function App() {
               </div>
             ))}
           </div>
+              )}
+            </div>
+            );
+          })
         )}
       </div>
 
@@ -2027,9 +2318,18 @@ function App() {
                 <input value={editing.splash_art} onChange={(e) => updateField("splash_art", e.target.value)} placeholder="e.g. https://example.com/gundam.png" />
               </div>
               <div className="field-row">
+                <div className="field-group">
+                  <label>Expansion / Release</label>
+                  <input value={editing.expansion || ""} onChange={(e) => updateField("expansion", e.target.value)} placeholder="e.g. ST01" list="unit-expansions" />
+                  <datalist id="unit-expansions">
+                    {[...new Set(units.map(u => (u.expansion || "").trim()).filter(Boolean))].sort(natCmp).map(x => <option key={x} value={x} />)}
+                  </datalist>
+                </div>
+              </div>
+              <div className="field-row">
                 <div className="field-group"><label>HP</label><input value={editing.hp} onChange={(e) => updateField("hp", e.target.value)} /></div>
-                <div className="field-group"><label>Timeline</label><input value={editing.timeline} onChange={(e) => updateField("timeline", e.target.value)} /></div>
                 <div className="field-group"><label>VP</label><input value={editing.vp} onChange={(e) => updateField("vp", e.target.value)} /></div>
+                <div className="field-group"><label>Timeline</label><input value={editing.timeline} onChange={(e) => updateField("timeline", e.target.value)} /></div>
               </div>
 
               <div className="section-label">
@@ -2064,11 +2364,18 @@ function App() {
                     <label>Effects</label>
                     {atk.effects.map((ef, ei) => (
                       <div className="effect-row" key={ei}>
-                        <input value={ef} onChange={(e) => updateEffect(ai, ei, e.target.value)} placeholder="e.g. [Critical] [After Combat Damage] Fracture the target" />
+                        <input value={ef} onChange={(e) => updateEffect(ai, ei, e.target.value)} placeholder="e.g. [After Attack Roll] Reroll up to 2 dice" />
                         {atk.effects.length > 1 && <button className="effect-remove" onClick={() => removeEffect(ai, ei)}>✕</button>}
                       </div>
                     ))}
                     <button className="effect-add" onClick={() => addEffect(ai)}>+ add effect line</button>
+                  </div>
+                  <div className="field-group">
+                    <label>Critical Effect</label>
+                    <div className="effect-row crit-row">
+                      <span className="crit-prefix">[Critical]</span>
+                      <input value={atk.crit || ""} onChange={(e) => updateAttack(ai, "crit", e.target.value.replace(CRIT_RE, ""))} placeholder="e.g. [After Combat Damage] Fracture the target (leave blank for none)" />
+                    </div>
                   </div>
                 </div>
               ))}
@@ -2146,7 +2453,7 @@ function App() {
         <div className="lua-modal-backdrop" onClick={() => setShowLua(false)}>
           <div className="lua-modal" onClick={(e) => e.stopPropagation()}>
             <div className="lua-modal-header">
-              <div className="editor-title">LUA OUTPUT</div>
+              <div className="editor-title">UNIT DATA LUA</div>
               <button className="remove-btn" onClick={() => setShowLua(false)}>✕</button>
             </div>
             <div className="lua-modal-body">
@@ -2164,8 +2471,10 @@ function App() {
               />
             </div>
             <div className="lua-modal-footer">
-              <button className="btn btn-sm" onClick={() => { luaRef.current?.select(); }}>SELECT ALL</button>
-              <button className="btn btn-sm btn-primary" onClick={handleDownload}>DOWNLOAD .LUA</button>
+              <span className="tc-hint" style={{ marginRight: "auto", textAlign: "left" }}>Paste into GundamAssembleUnits.lua on GitHub</span>
+              <button className="btn btn-sm" style={{ whiteSpace: "nowrap" }} onClick={() => { luaRef.current?.select(); }}>SELECT ALL</button>
+              <button className="btn btn-sm btn-accent2" style={{ whiteSpace: "nowrap" }} onClick={handleCopyLua}>COPY TO CLIPBOARD</button>
+              <button className="btn btn-sm btn-primary" style={{ whiteSpace: "nowrap" }} onClick={handleDownload}>DOWNLOAD .LUA</button>
             </div>
           </div>
         </div>
