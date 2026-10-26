@@ -214,6 +214,10 @@ body { background: var(--bg-deep); }
 .field-row { display: flex; gap: 12px; }
 .field-row > .field-group { flex: 1; }
 
+/* Cost / Range / Strength: short values, so narrow boxes */
+.field-row > .field-group.stat-group { flex: 0 0 76px; }
+.field-row > .field-group.stat-group input { width: 76px; text-align: center; }
+
 /* SP shape picker — inline in the attack row, after Strength */
 .field-row > .field-group.sp-group { flex: 0 0 auto; margin-left: 24px; }
 .sp-picker {
@@ -557,10 +561,6 @@ textarea { resize: vertical; min-height: 50px; font-size: 13px; }
 }
 .tcard-box.dark ~ .tcard-bottom .tcard-id::before { border-right-color: #3b3b40; }
 .tcard-box.dark ~ .tcard-bottom .tcard-id { background: #3b3b40; }
-.tcard-rarity {
-  width: 11px; height: 11px; border-radius: 50%; background: #fff; color: #111;
-  font-size: 7px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display);
-}
 .tcard-name {
   position: absolute; left: 8px; right: 44px; top: 21px;
   font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 24px; height: 24px; color: #111;
@@ -976,8 +976,8 @@ const TC_W = 300, TC_H = 420, TC_ART_W = 288, TC_ART_H = 252, TC_EXPORT_SCALE = 
 const TC_STORAGE_KEY = "ga_tactics_cards";
 const TC_TYPES = { attack: "Attack", command: "Command", response: "Response" };
 const EMPTY_TCARD = {
-  _key: "", type: "attack", name: "", cardId: "", rarity: "", tag1: "", tag2: "",
-  effect: "", scenario: "", boxStyle: "auto", footer: "Fan-made card · Not for sale", isNew: false, unit: "",
+  _key: "", type: "attack", name: "", cardId: "", description: "", tag1: "", tag2: "",
+  effect: "", scenario: "", boxStyle: "auto", footer: "Fan-made card · Not for sale", isNew: false,
   attack: { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""] },
   art: null, artW: 0, artH: 0, artX: 0, artY: 0, artZoom: 100,
 };
@@ -1186,8 +1186,8 @@ function TacticsCard({ card, interactive, onArtDrag }) {
               {has(card.tag2) && <div className="tcard-tag">{card.tag2}</div>}
             </div>
           )}
-          {(has(card.cardId) || has(card.rarity)) && (
-            <div className="tcard-id">{card.cardId}{has(card.rarity) && <span className="tcard-rarity">{card.rarity}</span>}</div>
+          {has(card.cardId) && (
+            <div className="tcard-id">{card.cardId}</div>
           )}
           <div className="tcard-name" ref={nameRef} style={has(card.name) ? {} : { opacity: 0.3 }}>{has(card.name) ? card.name : "Card Name"}</div>
           <div className="tcard-emblem"><img src={TC_EMBLEM_SRC} alt="" draggable={false} /></div>
@@ -1224,8 +1224,13 @@ function tcLibraryJSON(cards, fmt = "webp") {
 }
 const blobToDataUrl = (blob) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); });
 // Turn a loaded card record (artFile reference, or legacy base64) into a working card with a data-URI art.
+// Older cards: "rarity" is gone, and the TTS description used to be called "unit".
+function tcMigrateCard(c) {
+  const { rarity, unit, ...rest } = c;
+  return { ...rest, description: rest.description || unit || "" };
+}
 async function tcHydrateCard(raw, artLoader) {
-  const card = { ...JSON.parse(JSON.stringify(EMPTY_TCARD)), ...raw, _key: raw._key || generateId() };
+  const card = tcMigrateCard({ ...JSON.parse(JSON.stringify(EMPTY_TCARD)), ...raw, _key: raw._key || generateId() });
   if (card.art && String(card.art).startsWith("data:")) return card;
   card.art = null;
   if (raw.artFile && artLoader) {
@@ -1349,7 +1354,7 @@ function tcSheetPlan(cards, setKeys = null) {
     for (let i = 0; i < g.cards.length; i += TC_SHEET_PER) pages.push(g.cards.slice(i, i + TC_SHEET_PER));
     pages.forEach((pc, p) => plan.push({
       setKey: g.key, setLabel: g.label, page: p + 1, pages: pages.length, cards: pc,
-      rows: Math.ceil((pc.length + 1) / TC_SHEET_COLS),
+      rows: TC_SHEET_ROWS,
       fileBase: tcSheetName(g.label) + (pages.length > 1 ? "_" + (p + 1) : ""),
       label: g.label + (pages.length > 1 ? ` (${p + 1}/${pages.length})` : ""),
     }));
@@ -1359,13 +1364,13 @@ function tcSheetPlan(cards, setKeys = null) {
 // Fingerprint of what a sheet looks like (card order + everything drawn on the card). Used to spot sheets that changed after upload.
 function tcSheetSig(pageCards) {
   const str = pageCards.map(c => {
-    const { art, isNew, unit, _key, ...rest } = c;
+    const { art, isNew, unit, description, rarity, _key, ...rest } = c;
     const a = art ? art.length + ":" + art.slice(-64) : "";
     return _key + JSON.stringify(rest) + a;
   }).join("|");
   let h = 5381;
   for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
-  return (h >>> 0).toString(36) + "-" + pageCards.length;
+  return "g10x7-" + (h >>> 0).toString(36) + "-" + pageCards.length; // layout prefix: sheets from the old trimmed layout need re-exporting
 }
 // CustomDeck id for a sheet: ST01 page 1 -> 11, ST01 page 2 -> 12, ST02 -> 21 ... other sets get a stable id from 500 up.
 function ttsDeckId(setLabel, page) {
@@ -1392,7 +1397,7 @@ function ttsDeckJSON(setLabel, sheets, backUrl, dateStr) {
     sh.cards.forEach((c, i) => {
       const cid = id * 100 + i;
       deckIds.push(cid);
-      contained.push({ ...TTS_COMMON, GUID: ttsGuid(), Name: "Card", Transform: ttsTransform(), Nickname: c.name || "", Description: c.unit || "",
+      contained.push({ ...TTS_COMMON, GUID: ttsGuid(), Name: "Card", Transform: ttsTransform(), Nickname: c.name || "", Description: c.description || "",
         Hands: true, CardID: cid, CustomDeck: { [id]: customDeck[id] } });
     });
   });
@@ -1506,11 +1511,10 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
   // One sheet image: cards left to right, top to bottom, then the card back.
   const buildSheet = async (page, label) => {
     const canvas = document.createElement("canvas");
-    // Always 10 wide; only as many rows as the cards + card back need (unused rows at the bottom are trimmed).
-    const rowsUsed = Math.ceil((page.length + 1) / TC_SHEET_COLS);
-    canvas.width = TC_SHEET_COLS * TC_SHEET_CW; canvas.height = rowsUsed * TC_SHEET_CH;
+    // Always the full 10 x 7 grid; empty slots stay white.
+    canvas.width = TC_SHEET_COLS * TC_SHEET_CW; canvas.height = TC_SHEET_ROWS * TC_SHEET_CH;
     const ctx = canvas.getContext("2d");
-    if (format === "jpg") { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingQuality = "high";
     const slot = (i) => [(i % TC_SHEET_COLS) * TC_SHEET_CW, Math.floor(i / TC_SHEET_COLS) * TC_SHEET_CH];
     for (let i = 0; i < page.length; i++) {
@@ -1683,7 +1687,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
               {tcFolderSupported()
                 ? (folder ? `OUTPUT FOLDER: ${folder.name}` : "No output folder yet — the first export asks for one")
                 : "This browser can't write to folders, so exports arrive as a zip"}
-              {` · EVERYTHING = ${TC_JSON_NAME} + ${TC_ART_DIR}/ + a card sheet per set in ${TC_RENDER_DIR}/ · Each set below has its own ART and CARD IMAGES export · Sheets are 10 cards wide (7500 px) and up to 7 rows tall (7350 px max), 750×1050 per card, with the card back after the last card`}
+              {` · EVERYTHING = ${TC_JSON_NAME} + ${TC_ART_DIR}/ + a card sheet per set in ${TC_RENDER_DIR}/ · Each set below has its own ART and CARD IMAGES export · Sheets are always 10×7 cards (7500×7350 px), 750×1050 per card, with the card back after the last card and any unused slots left white`}
             </div>
           </div>
         )}
@@ -1729,7 +1733,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
                   <button className="btn btn-sm btn-primary" onClick={() => exportOne(c._key)}>{ext.toUpperCase()}</button>
                   <button className="btn btn-sm" onClick={() => setEditing(JSON.parse(JSON.stringify(c)))}>EDIT</button>
                   <button className="btn btn-sm" onClick={() => setCards(p => [...p, { ...JSON.parse(JSON.stringify(c)), _key: generateId(), name: c.name + " (copy)" }])}>DUP</button>
-                  <button className="btn btn-sm btn-danger" onClick={() => { if (window.confirm(`Delete "${c.name}"?`)) setCards(p => p.filter(x => x._key !== c._key)); }}>DEL</button>
+                  <button className="btn btn-sm btn-danger" onClick={() => { if (window.confirm(`Delete "${c.name || "this card"}"?`)) setCards(p => p.filter(x => x._key !== c._key)); }}>DEL</button>
                 </div>
               </div>
             ))}
@@ -1762,18 +1766,15 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
                     </div>
                   </div>
                   <div className="field-row">
-                    <div className="field-group" style={{ flex: "1 1 100%" }}><label>Unit (TTS description)</label>
-                      <input value={editing.unit || ""} onChange={(e) => upd("unit", e.target.value)} placeholder="e.g. Gundam [Legendary Hero] — leave blank for generic cards" list="tc-unit-names" />
-                      <datalist id="tc-unit-names">{[...new Set(unitNames)].sort(natCmp).map(n => <option key={n} value={n} />)}</datalist>
-                    </div>
-                  </div>
-                  <div className="field-row">
                     <div className="field-group"><label>Tag 1</label><input value={editing.tag1} onChange={(e) => upd("tag1", e.target.value)} placeholder="e.g. Legendary Hero" /></div>
                     <div className="field-group"><label>Tag 2</label><input value={editing.tag2} onChange={(e) => upd("tag2", e.target.value)} placeholder="e.g. Earth Federation" /></div>
                   </div>
                   <div className="field-row">
                     <div className="field-group"><label>Card ID</label><input value={editing.cardId} onChange={(e) => upd("cardId", e.target.value)} placeholder="e.g. ST01-T01" /></div>
-                    <div className="field-group"><label>Rarity</label><input value={editing.rarity} onChange={(e) => upd("rarity", e.target.value)} placeholder="e.g. C, U, R, S" maxLength={2} /></div>
+                    <div className="field-group" style={{ flex: 2.5 }}><label>Description</label>
+                      <input value={editing.description || ""} onChange={(e) => upd("description", e.target.value)} placeholder="e.g. Char's Zaku II [Fast Encounter]" list="tc-unit-names" />
+                      <datalist id="tc-unit-names">{[...new Set(unitNames)].sort(natCmp).map(n => <option key={n} value={n} />)}</datalist>
+                    </div>
                     <div className="field-group"><label>Status</label>
                       <label className="unit-new-check">
                         <input type="checkbox" checked={!!editing.isNew} onChange={(e) => upd("isNew", e.target.checked)} />
@@ -1997,7 +1998,7 @@ function App() {
   // Startup: use the locally auto-saved library if there is one (it may hold unsaved edits); otherwise pull GitHub.
   useEffect(() => {
     tcDB.get(TC_STORAGE_KEY).then(async v => {
-      if (Array.isArray(v) && v.length > 0) setTcards(v);
+      if (Array.isArray(v) && v.length > 0) setTcards(v.map(tcMigrateCard));
       else await loadCardsFromGithub();
       setTcLoaded(true);
     });
@@ -2271,7 +2272,7 @@ function App() {
                 <div className="unit-stat"><span>TL</span>{u.timeline}</div>
                 <div className="unit-actions" onClick={(e) => e.stopPropagation()}>
                   <button className="btn btn-sm" onClick={() => handleDuplicate(u)}>DUP</button>
-                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(u._key)}>DEL</button>
+                  <button className="btn btn-sm btn-danger" onClick={() => { if (window.confirm(`Delete "${u.name || "this unit"}"?`)) handleDelete(u._key); }}>DEL</button>
                 </div>
               </div>
             ))}
@@ -2344,9 +2345,9 @@ function App() {
                     <input value={atk.name} onChange={(e) => updateAttack(ai, "name", e.target.value)} placeholder="e.g. Beam Rifle" />
                   </div>
                   <div className="field-row">
-                    <div className="field-group"><label>Cost</label><input value={atk.cost} onChange={(e) => updateAttack(ai, "cost", e.target.value)} placeholder="e.g. 2TL" /></div>
-                    <div className="field-group"><label>Range</label><input value={atk.range} onChange={(e) => updateAttack(ai, "range", e.target.value)} /></div>
-                    <div className="field-group"><label>Strength</label><input value={atk.strength} onChange={(e) => updateAttack(ai, "strength", e.target.value)} /></div>
+                    <div className="field-group stat-group"><label>Cost</label><input value={atk.cost} onChange={(e) => updateAttack(ai, "cost", e.target.value)} placeholder="2" /></div>
+                    <div className="field-group stat-group"><label>Range</label><input value={atk.range} onChange={(e) => updateAttack(ai, "range", e.target.value)} placeholder="4" /></div>
+                    <div className="field-group stat-group"><label>Strength</label><input value={atk.strength} onChange={(e) => updateAttack(ai, "strength", e.target.value)} placeholder="5" /></div>
                     {isSP(atk.range) && (
                       <div className="field-group sp-group"><label>SP Shape</label>
                         <div className="sp-picker">
