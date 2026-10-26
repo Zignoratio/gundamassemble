@@ -341,7 +341,7 @@ return {
             }
          },
          {
-            name="Beam Saber",
+            name="Beam Rifle",
             cost="3",
             range="3",
             strength="5",
