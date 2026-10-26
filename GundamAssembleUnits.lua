@@ -899,7 +899,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \\\\"
+            description="When Zeong uses \\\\\\\\"
          },
          {
             name="Judgement of Zeon",
