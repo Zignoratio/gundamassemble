@@ -8,7 +8,7 @@
       "type": "command",
       "name": "Last Shot Counts",
       "cardId": "",
-      "tag1": "Gundam",
+      "tag1": "Gundam [Demo]",
       "tag2": "",
       "effect": "Gundam gains a [Strength] Upgrade. Its attacks cost [TL -1] this turn. If it defeats an enemy unit this turn, it gains an additional [Strength] Upgrade.",
       "scenario": "",
@@ -32,7 +32,7 @@
       "uid": 1771805650409,
       "faction": "Gundam",
       "artFile": "last_shot_counts.webp",
-      "description": ""
+      "description": "Gundam [Demo]"
     },
     {
       "_key": "ec892149",
@@ -101,7 +101,7 @@
       "type": "command",
       "name": "Forward Artillery Position",
       "cardId": "",
-      "tag1": "Guncannon",
+      "tag1": "Guncannon [Demo]",
       "tag2": "",
       "effect": "Guncannon gains an [Energy] Upgrade. It gains +1 [Strength] this turn for each Garrison you've rescued.",
       "scenario": "",
@@ -125,7 +125,7 @@
       "uid": 1771805650412,
       "faction": "Guncannon",
       "artFile": "forward_artillery_position.webp",
-      "description": ""
+      "description": "Guncannon [Demo]"
     },
     {
       "_key": "010a7522",
@@ -194,7 +194,7 @@
       "type": "command",
       "name": "Entrenched Position",
       "cardId": "",
-      "tag1": "Guntank",
+      "tag1": "Guntank [Demo]",
       "tag2": "",
       "effect": "Guntank gains a [Shield] Upgrade. It captures an objective it is on or adjacent to.",
       "scenario": "",
@@ -311,7 +311,7 @@
       "uid": 1771805650418,
       "faction": "Char's Zaku II (Red Comet)",
       "artFile": "crimson_execution.webp",
-      "description": ""
+      "description": "Char's Zaku II [Fast Encounter]"
     },
     {
       "_key": "feca8cbc",
@@ -380,7 +380,7 @@
       "type": "command",
       "name": "Rescued Extraction",
       "cardId": "",
-      "tag1": "Zaku II (Line Breaker)",
+      "tag1": "Zaku II [Line Breaker] [Demo]",
       "tag2": "",
       "effect": "Zaku II (Linebreaker) rescues an allied Garrison within [Range 3] at [TL 0]. Then it gains an [Energy] Upgrade.",
       "scenario": "",
@@ -404,7 +404,7 @@
       "uid": 1771805650421,
       "faction": "Zaku II (Line Breaker)",
       "artFile": "rescued_extraction.webp",
-      "description": ""
+      "description": "Zaku II [Line Breaker] [Demo]"
     },
     {
       "_key": "62ec9d4f",
@@ -473,7 +473,7 @@
       "type": "response",
       "name": "Iron Grip",
       "cardId": "",
-      "tag1": "Enforcer",
+      "tag1": "Enforcer [Demo]",
       "tag2": "",
       "effect": "After an enemy unit ends its movement adjacent to Zaku II Enforcer: it deals 3 [Damage] to that enemy unit.",
       "scenario": "",
@@ -497,7 +497,7 @@
       "uid": 1771805650424,
       "faction": "Zaku II (Enforcer)",
       "artFile": "iron_grip.webp",
-      "description": ""
+      "description": "Zaku II [Enforcer] [Demo]"
     },
     {
       "_key": "8de70edd",
@@ -808,7 +808,7 @@
       "uid": 1771805650435,
       "faction": "Gundam Barbatos Lupus Rex (Final Stand)",
       "artFile": "iron_blooded_tenacity.webp",
-      "description": ""
+      "description": "Gundam Barbatos Lupus Rex [Final Stand]"
     },
     {
       "_key": "a55c581e",
@@ -963,7 +963,7 @@
       "uid": 1771805650440,
       "faction": "Wing Gundam Zero (Angel of Destruction)",
       "artFile": "sacrificial_overload.webp",
-      "description": ""
+      "description": "Wing Gundam Zero (EW) [Wing of Destruction]"
     },
     {
       "_key": "1658c94e",
@@ -1088,7 +1088,7 @@
       "uid": 1771805650444,
       "faction": "Gundam Epyon (Crimson Cataclysm)",
       "artFile": "war_edge.webp",
-      "description": ""
+      "description": "Gundam Epyon (EW) [Crimson Cataclysm]"
     },
     {
       "_key": "23a5d8ad",
@@ -1409,7 +1409,7 @@
       "artY": 149.83331298828125,
       "artZoom": 123,
       "isNew": false,
-      "description": "",
+      "description": "GM [Federation Backbone]",
       "artFile": "bold_stand.webp"
     },
     {
@@ -1740,7 +1740,7 @@
       "artY": 125.183349609375,
       "artZoom": 100,
       "isNew": false,
-      "description": "",
+      "description": "Rick Dom [Charging Bulwark]",
       "artFile": "three_pronged_assault.webp"
     },
     {
