@@ -2162,6 +2162,276 @@
       "artY": 5.8000030517578125,
       "artZoom": 100,
       "artFile": "interception.webp"
+    },
+    {
+      "_key": "95686c6b",
+      "type": "response",
+      "name": " Interference",
+      "cardId": "PA01-T09",
+      "description": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "[Before Attack Roll] The attacker gets [Accuracy -2] this attack.",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 890,
+      "artH": 662,
+      "artX": -9,
+      "artY": 17,
+      "artZoom": 100,
+      "artFile": "interference.webp"
+    },
+    {
+      "_key": "efb6658e",
+      "type": "response",
+      "name": "Counter Attack",
+      "cardId": "PA01-T08",
+      "description": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "[After Combat Damage] If the allied defender survives, it makes an attack against the attacking enemy unit at [Timeline -1].",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 1800,
+      "artH": 1270,
+      "artX": 38,
+      "artY": 43,
+      "artZoom": 100,
+      "artFile": "counter_attack.webp"
+    },
+    {
+      "_key": "856172d0",
+      "type": "command",
+      "name": "Systematic Elimination",
+      "cardId": "PA01-T07",
+      "description": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "[Before Attack Roll] If you've defeated 3 or more Garrisons, the attacker gains [Strength +4] this attack.",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 640,
+      "artH": 360,
+      "artX": 4,
+      "artY": -17,
+      "artZoom": 100,
+      "artFile": "systematic_elimination.webp"
+    },
+    {
+      "_key": "def454de",
+      "type": "command",
+      "name": "Breaker Sweep",
+      "cardId": "PA01-T06",
+      "description": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "Your active unit destroys up to 2 Upgrades on an enemy unit within [Range 2].",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 771,
+      "artH": 1080,
+      "artX": 22,
+      "artY": -3,
+      "artZoom": 100,
+      "artFile": "breaker_sweep.webp"
+    },
+    {
+      "_key": "31cedfed",
+      "type": "response",
+      "name": "Sayla's Encouragement ",
+      "cardId": "PA01-T05",
+      "description": "",
+      "tag1": "",
+      "tag2": "",
+      "effect": "After an allied unit is dealt [Damage]: It gains [Energy 2].",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 640,
+      "artH": 360,
+      "artX": -136,
+      "artY": -7,
+      "artZoom": 143,
+      "artFile": "sayla_s_encouragement.webp"
+    },
+    {
+      "_key": "66dbd6c7",
+      "type": "response",
+      "name": "Formative Strength",
+      "cardId": "PA01-T04",
+      "description": "",
+      "tag1": "",
+      "tag2": "Earth Federation",
+      "effect": "[Before Attack Roll] The attacker gains [Accuracy +2] and [Strength +2] this attack if it is within [Range 3] of another allied unit.",
+      "scenario": "",
+      "boxStyle": "auto",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 640,
+      "artH": 676,
+      "artX": 66,
+      "artY": 132,
+      "artZoom": 100,
+      "artFile": "formative_strength.webp"
+    },
+    {
+      "_key": "2b75215f",
+      "type": "command",
+      "name": "Bulwark Siege",
+      "cardId": "PA01-T03",
+      "description": "Guntank [Battlefield Bombarder]",
+      "tag1": "Battlefield Bombarder",
+      "tag2": "",
+      "effect": "Guntank Moves 2. Then, it applies [Fracture] to each enemy unit within [Range 2].",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 595,
+      "artH": 842,
+      "artX": -16,
+      "artY": 55,
+      "artZoom": 100,
+      "artFile": "bulwark_siege.webp"
+    },
+    {
+      "_key": "c81e4f68",
+      "type": "command",
+      "name": "All In",
+      "cardId": "PA01-T02",
+      "description": "Guncannon [In Position]",
+      "tag1": "In Position",
+      "tag2": "",
+      "effect": "Guncannon makes an additional 240mm Low-Recoil Cannon attack at [Timeline 0].",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 850,
+      "artH": 1232,
+      "artX": 30,
+      "artY": 136,
+      "artZoom": 107,
+      "artFile": "all_in.webp"
+    },
+    {
+      "_key": "306f1aac",
+      "type": "response",
+      "name": "Protective Shot",
+      "cardId": "PA01-T01",
+      "description": "Gundam [Elite Mobile Suit]",
+      "tag1": "Elite Mobile Suit",
+      "tag2": "",
+      "effect": "After an enemy ends its movement within [Range 3] of this unit: Gundam immediately makes a Beam Rifle attack at [Timeline 1] against it.",
+      "scenario": "",
+      "boxStyle": "color",
+      "footer": "Fan-made card · Not for sale",
+      "isNew": false,
+      "attack": {
+        "name": "",
+        "cost": "",
+        "range": "",
+        "strength": "",
+        "sp_shape": "",
+        "effects": [
+          ""
+        ]
+      },
+      "artW": 1280,
+      "artH": 720,
+      "artX": -21,
+      "artY": 71,
+      "artZoom": 100,
+      "artFile": "protective_shot.webp"
     }
   ]
 }
