@@ -899,7 +899,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \\\\\\\\\\\\\\\\"
+            description="When Zeong uses \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
          },
          {
             name="Judgement of Zeon",
@@ -1189,7 +1189,7 @@ return {
       pilot="Hayato Kobayashi",
       faction="Earth Federation",
       technical_name="RX-75",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/10627377594558799439/245DB88773C8162E021F18810280B43EA3CA6D1F/",
       expansion="DX01",
       hp="11",
       vp="6",
