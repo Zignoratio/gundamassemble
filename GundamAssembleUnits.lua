@@ -899,7 +899,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
+            description="When Zeong uses \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
          },
          {
             name="Judgement of Zeon",
@@ -1091,7 +1091,7 @@ return {
       pilot="Suletta Mercury",
       faction="Asticassia",
       technical_name="XVX-016",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/16660102253366289694/0E31974C65369BCE3CDB9B7E5FBA3F2E9D61296C/",
       expansion="EX02",
       hp="16",
       vp="10",
@@ -1140,7 +1140,7 @@ return {
       pilot="Beak Foot",
       faction="Asticassia",
       technical_name="FP/A-77",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/12380668107142337372/907704BEDC7F5021F32B76E2E7AA02EE9BF9CF70/",
       expansion="EX02",
       hp="12",
       vp="7",
@@ -1284,7 +1284,7 @@ return {
       pilot="Guel Jeturk",
       faction="Asticassia",
       technical_name="MD-0064",
-      splash_art="",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/9558326408268881955/61125EE376E377E9611493927E36483FEBBF6E0D/",
       expansion="EX02",
       hp="13",
       vp="8",
