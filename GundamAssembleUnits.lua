@@ -899,7 +899,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
+            description="When Zeong uses \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
          },
          {
             name="Judgement of Zeon",
@@ -1320,6 +1320,49 @@ return {
             name="Iśvara B Type Direct",
             keywords="[Command]",
             description="Deploy or reposition this unit's Iśvara B Type on an empty hex within [Range 2]"
+         },
+      }
+   },
+   {
+      name="Zaku I [Early Prototype]",
+      pilot="",
+      faction="Zeon, Mass Produced",
+      technical_name="MS-05B",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/13824201715108849604/80D15506FAFB0A7D6C54391220E87E071A52348C/",
+      expansion="DX01",
+      hp="9",
+      vp="5",
+      timeline="1",
+      attacks={
+         {
+            name="Knuckle Shield",
+            cost="2",
+            range="1",
+            strength="3",
+            effects={
+               "[Critical] Push 2 the target.",
+            }
+         },
+         {
+            name="Zaku Bazooka",
+            cost="3",
+            range="3",
+            strength="5",
+            effects={
+               "[Critical] [Damage +1]",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Push Through",
+            keywords="[Command][Energy 1]",
+            description="Move 1. Push 2 an adjacent enemy unit."
+         },
+         {
+            name="Basic Model",
+            keywords="[Response]",
+            description="When this unit is defeated: It takes 1 less [Timeline] penalty."
          },
       }
    }
