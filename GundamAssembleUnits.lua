@@ -1365,5 +1365,48 @@ return {
             description="When this unit is defeated: It takes 1 less [Timeline] penalty."
          },
       }
+   },
+   {
+      name="Zaku Minelayer [Minefield Architect]",
+      pilot="",
+      faction="Zeon",
+      technical_name="MS-06F",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/14742983202175412761/DC45B90319E79C39317F4F01ED089E776A96E0F4/",
+      expansion="DX01",
+      hp="12",
+      vp="7",
+      timeline="2",
+      attacks={
+         {
+            name="Heat Hawk",
+            cost="2",
+            range="1",
+            strength="3",
+            effects={
+               "[Critical] [Disarm] the target.",
+            }
+         },
+         {
+            name="Machine Gun",
+            cost="3",
+            range="3",
+            strength="5",
+            effects={
+               "[Critical] Push 2 the target.",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Mine Cluster",
+            keywords="[Command] [Energy 1]",
+            description="Deploy up to 2 Space Mines on empty hexes within [Range 3]"
+         },
+         {
+            name="Mine Pack Thruster",
+            keywords="[Command]",
+            description="Move 1 towards or away from an allied Space Mine within [Range 3]. Add any number of allied Space Mines this unit is on or adjacent to its supply."
+         },
+      }
    }
 }
