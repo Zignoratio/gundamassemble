@@ -899,7 +899,7 @@ return {
          {
             name="Emergency Escape",
             keywords="[Response]",
-            description="When Zeong uses \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
+            description="When Zeong uses \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
          },
          {
             name="Judgement of Zeon",
@@ -1405,7 +1405,7 @@ return {
          {
             name="Mine Pack Thruster",
             keywords="[Command]",
-            description="Move 1 towards or away from an allied Space Mine within [Range 3]. Add any number of allied Space Mines this unit is on or adjacent to its supply."
+            description="Move 1 towards or away from an allied Space Mine within [Range 3]. Add any number of allied Space Mines this unit is on or adjacent to to its supply."
          },
       }
    }
