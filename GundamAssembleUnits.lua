@@ -885,9 +885,12 @@ return {
          {
             name="Arm Mega Particle Cannon",
             cost="4",
-            range="",
+            range="SP",
             strength="",
+            sp_shape="Flower",
             effects={
+               "[Before Attack Roll] Once per attack, this unit may spend up to [Energy 1] to gain [Strength +2] this attack.",
+               "[Critical] [Damage +1]",
             }
          },
       },
