@@ -73,6 +73,7 @@ body { background: var(--bg-deep); }
   text-transform: uppercase;
   color: var(--text);
 }
+.logo-version { margin-left: 8px; opacity: 0.7; }
 .logo-sub {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -136,6 +137,22 @@ body { background: var(--bg-deep); }
   letter-spacing: 0.5px;
 }
 .unit-pilot { font-size: 12px; color: var(--text-dim); }
+.unit-row.is-extra { border-left-color: var(--accent2); }
+.unit-extra {
+  display: inline-block; margin-top: 4px; padding: 2px 6px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+  color: var(--accent2); border: 1px solid var(--accent2);
+}
+.unit-extra.has-extra { color: var(--text-dim); border-color: var(--border); }
+.unit-extra.missing { color: #000; background: var(--warning); border-color: var(--warning); }
+select.unit-select {
+  font-family: var(--font-body); font-size: 14px; padding: 10px 14px;
+  background: var(--bg-input); border: 1px solid var(--border); color: var(--text); outline: none;
+}
+select.unit-select:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow); }
+select.unit-select:disabled { opacity: 0.5; }
+.field-note { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+.field-note.warn { color: var(--warning); }
 .unit-faction {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -640,11 +657,17 @@ input[type=range].tc-slider { width: 100%; accent-color: var(--accent2); }
 <script type="text/babel">
 const { useState, useRef, useEffect } = React;
 
+// Editor version: shown in the header. Bump it with every change to this file and add a line below.
+//   1.1.0  2026-11-14  Units: "Extra Content For" field (extra_for in the Lua) + list tags. Version number added.
+const EDITOR_VERSION = "1.1.0";
+const EDITOR_VERSION_DATE = "2026-11-14";
+
 const EMPTY_ATTACK = { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""], crit: "" };
 const EMPTY_ABILITY = { name: "", keywords: "", description: "" };
 const EMPTY_UNIT = {
   name: "", pilot: "", faction: "", splash_art: "", technical_name: "",
   expansion: "",
+  extra_for: "", // name of the unit this card is extra content for (reinforcement / 2nd card); "" = normal unit
   hp: "", vp: "", timeline: "",
   attacks: [{ ...EMPTY_ATTACK, effects: [""] }],
   abilities: [],
@@ -681,6 +704,8 @@ function toLua(units) {
     lines.push(`${indent(2)}technical_name="${escapeStr(u.technical_name)}",`);
     lines.push(`${indent(2)}splash_art="${escapeStr(u.splash_art)}",`);
     lines.push(`${indent(2)}expansion="${escapeStr(u.expansion || "")}",`);
+    // Only written for extra-content cards, so normal units look exactly as before.
+    if ((u.extra_for || "").trim()) lines.push(`${indent(2)}extra_for="${escapeStr(u.extra_for.trim())}",`);
     lines.push(`${indent(2)}hp="${u.hp}",`);
     lines.push(`${indent(2)}vp="${u.vp}",`);
     lines.push(`${indent(2)}timeline="${u.timeline}",`);
@@ -734,6 +759,7 @@ function parseLua(text) {
         technical_name: getStr("technical_name"),
         splash_art: getStr("splash_art"),
         expansion: getStr("expansion"),
+        extra_for: getStr("extra_for"),
         hp: getStr("hp"),
         vp: getStr("vp"),
         timeline: getStr("timeline"),
@@ -2065,7 +2091,15 @@ function App() {
     if (!editing.name.trim()) return;
     setUnits(prev => {
       const idx = prev.findIndex(u => u._key === editing._key);
-      if (idx >= 0) { const next = [...prev]; next[idx] = editing; return next; }
+      if (idx >= 0) {
+        const oldName = prev[idx].name;
+        const next = [...prev]; next[idx] = editing;
+        // Renamed a unit that has extra content: keep its extras pointing at the new name.
+        if (oldName && oldName !== editing.name) {
+          return next.map(u => (u._key !== editing._key && u.extra_for === oldName) ? { ...u, extra_for: editing.name } : u);
+        }
+        return next;
+      }
       return [...prev, editing];
     });
     setEditing(null);
@@ -2199,9 +2233,18 @@ function App() {
   const filtered = units.filter(u => {
     if (!search.trim()) return true;
     const s = search.toLowerCase();
-    return [u.name, u.pilot, u.faction, u.expansion].some(v => (v || "").toLowerCase().includes(s));
+    return [u.name, u.pilot, u.faction, u.expansion, u.extra_for].some(v => (v || "").toLowerCase().includes(s));
   });
   const uGroups = unitGroups(filtered);
+  // Extra content: an extra names its parent in extra_for; extrasOf maps parent name -> extra names.
+  const unitNameSet = new Set(units.map(u => u.name));
+  const extrasOf = {};
+  units.forEach(u => { const p = (u.extra_for || "").trim(); if (p) (extrasOf[p] = extrasOf[p] || []).push(u.name); });
+  // Parents the unit being edited may pick: any other unit that isn't itself an extra.
+  const parentChoices = editing
+    ? [...new Set(units.filter(u => u._key !== editing._key && u.name && !(u.extra_for || "").trim()).map(u => u.name))].sort(natCmp)
+    : [];
+  const editingExtras = editing ? units.filter(u => u._key !== editing._key && u.extra_for && u.extra_for === editing.name).map(u => u.name) : [];
 
   return (
     <div className="app">
@@ -2210,7 +2253,7 @@ function App() {
           <div className="logo-mark"><div className="logo-mark-inner" /></div>
           <div>
             <div className="logo-text">Gundam Assemble</div>
-            <div className="logo-sub">{mode === "units" ? "UNIT DATA EDITOR" : "TACTICS CARD EDITOR"}</div>
+            <div className="logo-sub">{mode === "units" ? "UNIT DATA EDITOR" : "TACTICS CARD EDITOR"} <span className="logo-version" title={"Updated " + EDITOR_VERSION_DATE}>v{EDITOR_VERSION}</span></div>
           </div>
         </div>
         <div className="header-actions">
@@ -2279,10 +2322,16 @@ function App() {
               {!isClosed && (
           <div className="unit-grid">
             {g.units.map(u => (
-              <div className="unit-row" key={u._key} onClick={() => handleEdit(u)}>
+              <div className={"unit-row" + ((u.extra_for || "").trim() ? " is-extra" : "")} key={u._key} onClick={() => handleEdit(u)}>
                 <div>
                   <div className="unit-name">{u.name}</div>
                   <div className="unit-pilot">{u.pilot}</div>
+                  {(u.extra_for || "").trim() && (
+                    <div className={"unit-extra" + (unitNameSet.has(u.extra_for) ? "" : " missing")}>
+                      Extra for: {u.extra_for}{unitNameSet.has(u.extra_for) ? "" : " (unit not found)"}
+                    </div>
+                  )}
+                  {extrasOf[u.name] && <div className="unit-extra has-extra">Has extra: {extrasOf[u.name].join(", ")}</div>}
                 </div>
                 <div className="unit-faction">{u.faction}</div>
                 <div className="unit-stat"><span>HP</span>{u.hp}</div>
@@ -2343,6 +2392,21 @@ function App() {
                   <datalist id="unit-expansions">
                     {[...new Set(units.map(u => (u.expansion || "").trim()).filter(Boolean))].sort(natCmp).map(x => <option key={x} value={x} />)}
                   </datalist>
+                </div>
+                <div className="field-group" style={{ flex: 2 }}>
+                  <label>Extra Content For</label>
+                  <select className="unit-select" value={editing.extra_for || ""} onChange={(e) => updateField("extra_for", e.target.value)} disabled={editingExtras.length > 0}>
+                    <option value="">— None (normal unit) —</option>
+                    {(editing.extra_for || "") && !parentChoices.includes(editing.extra_for) && <option value={editing.extra_for}>{editing.extra_for} (unit not found)</option>}
+                    {parentChoices.map(n => <option key={n} value={n}>{n}</option>)}
+                  </select>
+                  {editingExtras.length > 0
+                    ? <div className="field-note">Has extra content: {editingExtras.join(", ")}. A unit with extras can't be an extra itself.</div>
+                    : (editing.extra_for || "") && !parentChoices.includes(editing.extra_for)
+                      ? <div className="field-note warn">That unit isn't in the list (renamed or deleted?). Pick it again.</div>
+                      : (editing.extra_for || "")
+                        ? <div className="field-note">Spawns with {editing.extra_for} and is hidden from the unit dropdown.</div>
+                        : <div className="field-note">Set this for a reinforcement or 2nd card that belongs to another unit.</div>}
                 </div>
               </div>
               <div className="field-row">
