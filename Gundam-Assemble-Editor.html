@@ -137,6 +137,7 @@ body { background: var(--bg-deep); }
   letter-spacing: 0.5px;
 }
 .unit-pilot { font-size: 12px; color: var(--text-dim); }
+.unit-code { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; font-weight: 400; color: var(--text-dim); letter-spacing: 0.5px; }
 .unit-row.is-extra { border-left-color: var(--accent2); }
 .unit-extra {
   display: inline-block; margin-top: 4px; padding: 2px 6px;
@@ -659,7 +660,8 @@ const { useState, useRef, useEffect } = React;
 
 // Editor version: shown in the header. Bump it with every change to this file and add a line below.
 //   1.1.0  2026-11-14  Units: "Extra Content For" field (extra_for in the Lua) + list tags. Version number added.
-const EDITOR_VERSION = "1.1.0";
+//   1.2.0  2026-11-14  Units: unit number in the release code (EX02-U03), sorted by it within a release. "Extra content card" checkbox.
+const EDITOR_VERSION = "1.2.0";
 const EDITOR_VERSION_DATE = "2026-11-14";
 
 const EMPTY_ATTACK = { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""], crit: "" };
@@ -1450,8 +1452,20 @@ function ttsDeckJSON(setLabel, sheets, backUrl, dateStr) {
 
 // Unit groups: by Expansion / Release, ordered like the tactics sets (ST01, ST02 ... then other names, then "No Expansion").
 const natCmp = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: "base" });
+// The Lua's expansion value is "<release>" or "<release>-U<unit number>", e.g. "EX02" or "EX02-U03".
+// Units are grouped by the release part and ordered by the unit number inside it.
+function splitExpansion(ex) {
+  const m = (ex || "").match(/^(.*?)\s*-\s*U\s*(\d+)\s*$/i);
+  return m ? { release: m[1], unitNo: m[2] } : { release: ex || "", unitNo: "" };
+}
+const joinExpansion = (release, unitNo) => unitNo ? `${release}-U${unitNo}` : release;
+// Tidy form for saving: trimmed release, unit number padded to 2 digits.
+function normalizeExpansion(ex) {
+  const { release, unitNo } = splitExpansion(ex);
+  return joinExpansion(release.trim(), unitNo ? String(+unitNo).padStart(2, "0") : "");
+}
 function unitGroupOf(u) {
-  const ex = (u.expansion || "").trim();
+  const ex = splitExpansion(u.expansion).release.trim();
   if (!ex) return { key: "~none", label: "No Expansion", order: [2, 0, ""] };
   const m = ex.match(/^ST\s*-?\s*0*(\d+)$/i);
   if (m) { const k = "ST" + String(+m[1]).padStart(2, "0"); return { key: k, label: k, order: [0, +m[1], ""] }; }
@@ -1468,7 +1482,9 @@ function unitGroups(list) {
     for (let i = 0; i < 2; i++) { if (a.order[i] !== b.order[i]) return a.order[i] - b.order[i]; }
     return natCmp(a.order[2], b.order[2]);
   });
-  groups.forEach(g => g.units.sort((a, b) => natCmp(a.name, b.name)));
+  // Inside a release: numbered units first, in unit-number order; the rest after, by name.
+  const no = (u) => { const n = splitExpansion(u.expansion).unitNo; return n ? +n : Infinity; };
+  groups.forEach(g => g.units.sort((a, b) => (no(a) - no(b)) || natCmp(a.name, b.name)));
   return groups;
 }
 
@@ -2089,18 +2105,23 @@ function App() {
   const handleDelete = (id) => { setUnits(prev => prev.filter(u => u._key !== id)); showToast("UNIT DELETED"); };
   const handleSave = () => {
     if (!editing.name.trim()) return;
+    // _isExtra is the form's checkbox only; the Lua just carries extra_for.
+    const { _isExtra, ...rest } = editing;
+    const isExtra = _isExtra ?? !!(editing.extra_for || "").trim();
+    if (isExtra && !(editing.extra_for || "").trim()) { showToast("PICK THE UNIT THIS CARD IS EXTRA CONTENT FOR"); return; }
+    const saved = { ...rest, extra_for: isExtra ? editing.extra_for : "", expansion: normalizeExpansion(editing.expansion) };
     setUnits(prev => {
-      const idx = prev.findIndex(u => u._key === editing._key);
+      const idx = prev.findIndex(u => u._key === saved._key);
       if (idx >= 0) {
         const oldName = prev[idx].name;
-        const next = [...prev]; next[idx] = editing;
+        const next = [...prev]; next[idx] = saved;
         // Renamed a unit that has extra content: keep its extras pointing at the new name.
-        if (oldName && oldName !== editing.name) {
-          return next.map(u => (u._key !== editing._key && u.extra_for === oldName) ? { ...u, extra_for: editing.name } : u);
+        if (oldName && oldName !== saved.name) {
+          return next.map(u => (u._key !== saved._key && u.extra_for === oldName) ? { ...u, extra_for: saved.name } : u);
         }
         return next;
       }
-      return [...prev, editing];
+      return [...prev, saved];
     });
     setEditing(null);
     showToast("UNIT SAVED");
@@ -2173,6 +2194,7 @@ function App() {
     }
   };
 
+  const unitNoRef = useRef(null);
   const updateField = (key, val) => setEditing(prev => ({ ...prev, [key]: val }));
   const updateAttack = (idx, key, val) => {
     setEditing(prev => {
@@ -2244,6 +2266,8 @@ function App() {
   const parentChoices = editing
     ? [...new Set(units.filter(u => u._key !== editing._key && u.name && !(u.extra_for || "").trim()).map(u => u.name))].sort(natCmp)
     : [];
+  const editingIsExtra = editing ? (editing._isExtra ?? !!(editing.extra_for || "").trim()) : false;
+  const editingExp = splitExpansion(editing ? editing.expansion : "");
   const editingExtras = editing ? units.filter(u => u._key !== editing._key && u.extra_for && u.extra_for === editing.name).map(u => u.name) : [];
 
   return (
@@ -2324,7 +2348,7 @@ function App() {
             {g.units.map(u => (
               <div className={"unit-row" + ((u.extra_for || "").trim() ? " is-extra" : "")} key={u._key} onClick={() => handleEdit(u)}>
                 <div>
-                  <div className="unit-name">{u.name}</div>
+                  <div className="unit-name">{u.name}{splitExpansion(u.expansion).unitNo && <span className="unit-code">{normalizeExpansion(u.expansion)}</span>}</div>
                   <div className="unit-pilot">{u.pilot}</div>
                   {(u.extra_for || "").trim() && (
                     <div className={"unit-extra" + (unitNameSet.has(u.extra_for) ? "" : " missing")}>
@@ -2388,27 +2412,51 @@ function App() {
               <div className="field-row">
                 <div className="field-group">
                   <label>Expansion / Release</label>
-                  <input value={editing.expansion || ""} onChange={(e) => updateField("expansion", e.target.value)} placeholder="e.g. ST01" list="unit-expansions" />
+                  <input value={editingExp.release} onChange={(e) => {
+                    const v = e.target.value;
+                    // Typed or pasted a whole code here (EX02-U03): split it and carry on in the Unit No. box.
+                    if (splitExpansion(v).unitNo) { updateField("expansion", v); unitNoRef.current?.focus(); }
+                    else updateField("expansion", joinExpansion(v, editingExp.unitNo));
+                  }} placeholder="e.g. EX02" list="unit-expansions" />
                   <datalist id="unit-expansions">
-                    {[...new Set(units.map(u => (u.expansion || "").trim()).filter(Boolean))].sort(natCmp).map(x => <option key={x} value={x} />)}
+                    {[...new Set(units.map(u => splitExpansion(u.expansion).release.trim()).filter(Boolean))].sort(natCmp).map(x => <option key={x} value={x} />)}
                   </datalist>
                 </div>
-                <div className="field-group" style={{ flex: 2 }}>
+                <div className="field-group stat-group">
+                  <label>Unit No.</label>
+                  <input ref={unitNoRef} value={editingExp.unitNo} inputMode="numeric" placeholder="03"
+                    onChange={(e) => updateField("expansion", joinExpansion(editingExp.release, e.target.value.replace(/\D/g, "").slice(0, 3)))}
+                    onBlur={() => updateField("expansion", normalizeExpansion(editing.expansion))} />
+                </div>
+                <div className="field-group">
+                  <label>Extra Content</label>
+                  <label className="unit-new-check">
+                    <input type="checkbox" checked={editingIsExtra} disabled={editingExtras.length > 0} onChange={(e) => updateField("_isExtra", e.target.checked)} />
+                    Extra content card
+                  </label>
+                </div>
+              </div>
+              {(editingExp.unitNo || editingExtras.length > 0) && (
+                <div className="field-note" style={{ marginTop: -6, marginBottom: 10 }}>
+                  {editingExp.unitNo && <span>Saved as {normalizeExpansion(editing.expansion)}. </span>}
+                  {editingExtras.length > 0 && <span>Has extra content: {editingExtras.join(", ")}. A unit with extras can't be an extra itself.</span>}
+                </div>
+              )}
+              {editingIsExtra && editingExtras.length === 0 && (
+                <div className="field-group">
                   <label>Extra Content For</label>
-                  <select className="unit-select" value={editing.extra_for || ""} onChange={(e) => updateField("extra_for", e.target.value)} disabled={editingExtras.length > 0}>
-                    <option value="">— None (normal unit) —</option>
+                  <select className="unit-select" value={editing.extra_for || ""} onChange={(e) => updateField("extra_for", e.target.value)}>
+                    <option value="">— Pick the unit this belongs to —</option>
                     {(editing.extra_for || "") && !parentChoices.includes(editing.extra_for) && <option value={editing.extra_for}>{editing.extra_for} (unit not found)</option>}
                     {parentChoices.map(n => <option key={n} value={n}>{n}</option>)}
                   </select>
-                  {editingExtras.length > 0
-                    ? <div className="field-note">Has extra content: {editingExtras.join(", ")}. A unit with extras can't be an extra itself.</div>
-                    : (editing.extra_for || "") && !parentChoices.includes(editing.extra_for)
-                      ? <div className="field-note warn">That unit isn't in the list (renamed or deleted?). Pick it again.</div>
-                      : (editing.extra_for || "")
-                        ? <div className="field-note">Spawns with {editing.extra_for} and is hidden from the unit dropdown.</div>
-                        : <div className="field-note">Set this for a reinforcement or 2nd card that belongs to another unit.</div>}
+                  {(editing.extra_for || "") && !parentChoices.includes(editing.extra_for)
+                    ? <div className="field-note warn">That unit isn't in the list (renamed or deleted?). Pick it again.</div>
+                    : (editing.extra_for || "")
+                      ? <div className="field-note">Spawns with {editing.extra_for} and is hidden from the unit dropdown.</div>
+                      : <div className="field-note warn">Pick the unit this reinforcement or 2nd card belongs to.</div>}
                 </div>
-              </div>
+              )}
               <div className="field-row">
                 <div className="field-group"><label>HP</label><input value={editing.hp} onChange={(e) => updateField("hp", e.target.value)} /></div>
                 <div className="field-group"><label>VP</label><input value={editing.vp} onChange={(e) => updateField("vp", e.target.value)} /></div>
