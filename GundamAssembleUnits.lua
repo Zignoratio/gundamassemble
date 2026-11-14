@@ -194,18 +194,18 @@ return {
       faction="Earth Federation",
       technical_name="RX-77-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13861841706079639305/AE938D42F97E48A0C492C83D31142484B29C6FDF/",
-      expansion="DX01",
+      expansion="DX01-U02",
       hp="14",
       vp="8",
       timeline="2",
       attacks={
          {
-            name="Shoulder Cannons",
+            name="240mm Low-Recail Cannon",
             cost="2",
             range="3",
             strength="3",
             effects={
-               "[Critical] Disarm the target",
+               "[Critical] [Disarm] the target.",
             }
          },
          {
@@ -214,16 +214,16 @@ return {
             range="3",
             strength="4",
             effects={
-               "[After Attack roll] Push the target 2 hexes.",
-               "[Critical] Gain 1 [Energy]",
+               "[After Attack roll] Push 2 the target.",
+               "[Critical] Gain [Energy 1].",
             }
          },
       },
       abilities={
          {
-            name="Frenzied Charge",
-            keywords="[Response] [Energy]",
-            description="[After Combat Damage] If this unit attacked, Slow the target"
+            name="Cowardly Shot",
+            keywords="[Response] [Energy 1]",
+            description="[After Combat Damage] If this unit attacked, Slow the target."
          },
          {
             name="Reactive Fire",
@@ -685,10 +685,10 @@ return {
    {
       name="White Base [Trojan Horse]",
       pilot="Bright Noa",
-      faction="Earth Federation",
-      technical_name="SCV-70 (LMSD-71)",
+      faction="Earth Federation - Carrier",
+      technical_name="SCV-70",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/11466243444129241733/231926C03EB7FD0D844616CE8002FAC99B44332B/",
-      expansion="DX01",
+      expansion="DX01-U06(C)",
       hp="30",
       vp="15",
       timeline="5",
@@ -709,11 +709,6 @@ return {
             keywords="[Energy] [Command]",
             description="Another allied unit within 4 hexes repairs 2 [Damage]"
          },
-         {
-            name="Carrier",
-            keywords="[Ongoing]",
-            description="This unit ignores terrain movement penalties and enemies while moving and can't be moved by other effects. It can't be engaged with enemy units."
-         },
       }
    },
    {
@@ -722,7 +717,7 @@ return {
       faction="Zeon",
       technical_name="MP-02A",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15686569731421021158/FE55817560E69771284DDBF1FC2046F63BE09515/",
-      expansion="DX01",
+      expansion="DX01-U11",
       hp="8",
       vp="5",
       timeline="2",
@@ -761,8 +756,8 @@ return {
       faction="Earth Federation",
       technical_name="RB-79",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/12958784132842326550/7F1C5A73FD37244D1DE01518B520840E925237C6/",
-      expansion="DX01",
-      hp="5",
+      expansion="DX01-U05",
+      hp="10",
       vp="5",
       timeline="1",
       attacks={
@@ -795,12 +790,12 @@ return {
       }
    },
    {
-      name="Musai (Light Cruiser)",
+      name="Musai [Light Cruiser]",
       pilot="",
-      faction="Zeon",
+      faction="Zeon - Carrier",
       technical_name="Musai-class",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17869565725440878616/E7B7495DFC64DBD531F94D7EDE9E340431185974/",
-      expansion="DX01",
+      expansion="DX01-U12(C)",
       hp="20",
       vp="12",
       timeline="5",
@@ -873,17 +868,18 @@ return {
       faction="Zeon",
       technical_name="MSN-02",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14599459605719343032/6A1DC41D938031DC01DCFC59FABC63D8769703A0/",
-      expansion="DX01",
-      hp="",
+      expansion="DX01-U09",
+      hp="13",
       vp="9",
-      timeline="1",
+      timeline="3",
       attacks={
          {
-            name="Rocket Punch?",
+            name="Waist Mega Particle Cannon",
             cost="2",
-            range="",
-            strength="",
+            range="2",
+            strength="4",
             effects={
+               "[Critical] [Slow] the target.",
             }
          },
          {
@@ -898,8 +894,8 @@ return {
       abilities={
          {
             name="Emergency Escape",
-            keywords="[Response]",
-            description="When Zeong uses \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
+            keywords="[Response] [Energy 1]",
+            description="When this unit would be defeated: Remove all [Damage] from it and it Transforms into Zeong Head instead."
          },
          {
             name="Judgement of Zeon",
@@ -1048,7 +1044,7 @@ return {
       faction="Earth Federation",
       technical_name="RX-78-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14790108839331300881/F20437B13966D5A51E410902BE30956516B0D322/",
-      expansion="DX01",
+      expansion="DX01-U01",
       hp="12",
       vp="8",
       timeline="4",
@@ -1059,7 +1055,7 @@ return {
             range="3",
             strength="4",
             effects={
-               "[Critical] [After Combat Damage] Fracture the target",
+               "[Critical] [After Combat Damage] [Fracture] the target.",
             }
          },
          {
@@ -1068,21 +1064,21 @@ return {
             range="4",
             strength="7",
             effects={
-               "+3 [Strength] while targeting enemies worth 9 or more VP",
-               "[Critical] +1 [Damage] for each [Crit] rolled (max +4)",
+               "[Strength +3] while targeting enemies worth 9 or more VP.",
+               "[Critical] [Damage +1 ] for each [Critical] rolled (max +4).",
             }
          },
       },
       abilities={
          {
             name="Newtype Reflexes",
-            keywords="[Response][Energy]",
-            description="[After Attack Roll] If this unit is attacking, it sets 2 of those dice to [Critical]"
+            keywords="[Response] [Energy 1]",
+            description="[After Attack Roll] If this unit is attacking, it sets 2 of those dice to [Critical]."
          },
          {
             name="Federation Icon",
             keywords="[Command]",
-            description="Another allied Earth Federation unit within 4 hexes Moves 2"
+            description="Another allied Earth Federation unit within 4 hexes Moves 2."
          },
       }
    },
@@ -1190,7 +1186,7 @@ return {
       faction="Earth Federation",
       technical_name="RX-75",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10627377594558799439/245DB88773C8162E021F18810280B43EA3CA6D1F/",
-      expansion="DX01",
+      expansion="DX01-U03",
       hp="11",
       vp="6",
       timeline="3",
@@ -1220,17 +1216,17 @@ return {
          {
             name="Long Range Assault",
             keywords="[Command] [Energy]",
-            description="Low Recoils Cannons gains +3[Range] and ignores Line of Sight this Activation."
+            description="Low Recoils Cannons gains [Range +3] and ignores Line of Sight this Activation."
          },
          {
             name="Entrenched",
             keywords="[Ongoing]",
-            description="While this unit is on or adjacent to an Objective, it gains +2 Strength and can't be moved by enemies."
+            description="While this unit is on or adjacent to an Objective, it gains [Strength +2] and can't be moved by enemies."
          },
          {
             name="Fueled",
             keywords="[Response]",
-            description="After this unit deploys, it gains 1 [Energy]"
+            description="After this unit deploys, it gains [Energy 1]"
          },
       }
    },
@@ -1326,10 +1322,10 @@ return {
    {
       name="Zaku I [Early Prototype]",
       pilot="",
-      faction="Zeon, Mass Produced",
+      faction="Zeon - Mass Produced",
       technical_name="MS-05B",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13824201715108849604/80D15506FAFB0A7D6C54391220E87E071A52348C/",
-      expansion="DX01",
+      expansion="DX01-U07",
       hp="9",
       vp="5",
       timeline="1",
@@ -1349,7 +1345,7 @@ return {
             range="3",
             strength="5",
             effects={
-               "[Critical] [Damage +1]",
+               "[Critical] [Damage +1].",
             }
          },
       },
@@ -1372,7 +1368,7 @@ return {
       faction="Zeon",
       technical_name="MS-06F",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14742983202175412761/DC45B90319E79C39317F4F01ED089E776A96E0F4/",
-      expansion="DX01",
+      expansion="DX01-U10",
       hp="12",
       vp="7",
       timeline="2",
@@ -1407,6 +1403,244 @@ return {
             keywords="[Command]",
             description="Move 1 towards or away from an allied Space Mine within [Range 3]. Add any number of allied Space Mines this unit is on or adjacent to to its supply."
          },
+      }
+   },
+   {
+      name="Ball [Tactical Pod] [Reinforcement]",
+      pilot="Mass Produced - Reinforcement",
+      faction="Earth Federation",
+      technical_name="RB-79",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/12958784132842326550/7F1C5A73FD37244D1DE01518B520840E925237C6/",
+      expansion="DX01-U05A",
+      extra_for="Ball [Tactical Pod]",
+      hp="5",
+      vp="5",
+      timeline="",
+      attacks={
+         {
+            name="180mm Cannon",
+            cost="2",
+            range="3",
+            strength="3",
+            effects={
+               "[Critical] Gain +1 [Energy]",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Emergency Repairs",
+            keywords="[Command] [Energy]",
+            description="Another allied unit within [Range] 3 Repairs 1 [Damage] for each Garrison you've Rescued."
+         },
+         {
+            name="Maneuvering Jets",
+            keywords="[Response]",
+            description="After this unit Rescues a Garrison: Move 2"
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties."
+         },
+      }
+   },
+   {
+      name="Oggo [Last Reserves] [Reinforcement]",
+      pilot="Mass Produced",
+      faction="Zeon",
+      technical_name="MP-02A",
+      splash_art="https://steamusercontent-a.akamaihd.net/ugc/15686569731421021158/FE55817560E69771284DDBF1FC2046F63BE09515/",
+      expansion="DX01-U11A",
+      extra_for="Oggo [Last Reserves]",
+      hp="4",
+      vp="5",
+      timeline="",
+      attacks={
+         {
+            name="120mm Machine Gun",
+            cost="2",
+            range="3",
+            strength="3",
+            effects={
+               "[Critical] [Disarm] the target.",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Saturated Fire",
+            keywords="[Command] [Energy]",
+            description="120mm Machine Gun targets an additional enemy within [Range] 3 this activation."
+         },
+         {
+            name="Artillery Support",
+            keywords="[Response]",
+            description="[After Combat Damage] Deal 1 [Damage] to each enemy within [Range] 3 that was attacked by another ally."
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties."
+         },
+      }
+   },
+   {
+      name="Zeong Head [Zeon's Final Weapon]",
+      pilot="Char Aznable",
+      faction="Zeon",
+      technical_name="MSN-02",
+      splash_art="",
+      expansion="DX01-U09A",
+      extra_for="Zeong [Zeon's Final Weapon]",
+      hp="3",
+      vp="9",
+      timeline="",
+      attacks={
+         {
+            name="Head Mega Particle Cannon",
+            cost="2",
+            range="3",
+            strength="4",
+            effects={
+               "[Critical] [Damage +2]",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Vengeful Echo",
+            keywords="[Response]",
+            description="After this unit is defeated: it Transforms into Zeong (return Zeong to your Reserve)."
+         },
+         {
+            name="Judgement of Zeon",
+            keywords="[Ongoing]",
+            description="Increase the non-combat [Damage] dealt to enemies by this unit and other allied Zeon units within 4 hexes of it by 1"
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties."
+         },
+      }
+   },
+   {
+      name="Rick Dom [Charging Bulwark]",
+      pilot="",
+      faction="Zeon - Mass Produced",
+      technical_name="MS-08R",
+      splash_art="",
+      expansion="DX01-U08",
+      hp="12",
+      vp="6",
+      timeline="3",
+      attacks={
+         {
+            name="Heat Saber",
+            cost="2",
+            range="1",
+            strength="4",
+            effects={
+               "[Critical] [Slow] the target.",
+            }
+         },
+         {
+            name="Giant Bazooka",
+            cost="4",
+            range="4",
+            strength="7",
+            effects={
+               "[After Attack Roll] Destory 1 Upgrade on the target.",
+               "[Critical] [Damage +1]",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Tri-Star Assault",
+            keywords="[Response][Energy 1]",
+            description="[After Combat Damage] If an enemy within [Range 4] attacked another ally, deal [Damage 3] to that enemy."
+         },
+         {
+            name="Hover",
+            keywords="[Ongoing]",
+            description="This unit ignores terrain movement penalties."
+         },
+      }
+   },
+   {
+      name="GM [Federation Backbone]",
+      pilot="",
+      faction="Earth Federation - Mass Produced",
+      technical_name="RGM-79",
+      splash_art="",
+      expansion="DX01-U04",
+      hp="10",
+      vp="6",
+      timeline="1",
+      attacks={
+         {
+            name="Beam Spray Gun",
+            cost="2",
+            range="3",
+            strength="2",
+            effects={
+               "[Accuracy +1]",
+               "[Critical] Push 1 the target.",
+            }
+         },
+         {
+            name="Beam Saber",
+            cost="3",
+            range="1",
+            strength="6",
+            effects={
+               "[Critical] Destory 1 Upgrade on the target.",
+            }
+         },
+      },
+      abilities={
+         {
+            name="Guard",
+            keywords="[Response] [Energy 1]",
+            description="[After Attack Roll] If this unit used Challenge this attack, it gains 1 [Shield] Upgrade."
+         },
+         {
+            name="Basic Model",
+            keywords="[Response]",
+            description="When this unit is defeated: It takes 1 less [Timeline] penalty."
+         },
+         {
+            name="Challenge",
+            keywords="[Response]",
+            description="[Before Attack Roll] If this unit is not defending, swap it with a defending ally within [Range 2]. This unit becomes the defender."
+         },
+      }
+   },
+   {
+      name="Space Mines",
+      pilot="",
+      faction="",
+      technical_name="",
+      splash_art="",
+      expansion="DX01-U10A",
+      extra_for="Zaku Minelayer [Minefield Architect]",
+      hp="",
+      vp="",
+      timeline="",
+      attacks={
+         {
+            name="",
+            cost="",
+            range="",
+            strength="",
+            effects={
+               "After an enemy unit ends a movement on or adjacent to an allied Space Mine: Detonate that Space Mine - Zaku Minelayer Deals [Damage 2] to each enemy on or adjactent to it and return it to its supply.",
+            }
+         },
+      },
+      abilities={
       }
    }
 }
