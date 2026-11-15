@@ -195,6 +195,19 @@ select.unit-select:disabled { opacity: 0.5; }
 .tts-sheet-label span { font-size: 10px; color: var(--text-dim); letter-spacing: 1px; }
 .tts-status { grid-column: 2; font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; }
 .tts-status.ok { color: var(--success); }
+.tts-detail { margin-top: 3px; color: var(--text); letter-spacing: 0.5px; }
+.tts-dates { margin-top: 3px; color: var(--text-dim); }
+.tts-badge { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 9px; background: var(--warning); color: #000; font-size: 11px; font-weight: 700; }
+.tts-summary { display: flex; align-items: center; gap: 14px; padding: 10px 14px; border: 1px solid var(--border); border-left: 3px solid var(--success); background: var(--bg-card); }
+.tts-summary.todo { border-left-color: var(--warning); }
+.tts-summary-text { flex: 1; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.5px; }
+.tts-summary-list { margin-top: 4px; font-size: 11px; color: var(--text-dim); }
+.tts-chip { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; padding: 2px 6px; border: 1px solid var(--success); color: var(--success); }
+.tts-chip.export { border-color: var(--warning); color: #000; background: var(--warning); }
+.tts-chip.upload { border-color: var(--warning); color: var(--warning); }
+.tts-set.step-ok { border-left-color: var(--success); }
+.tts-set.step-export, .tts-set.step-upload { border-left-color: var(--warning); }
+.gh-body { padding: 18px 24px; display: flex; flex-direction: column; gap: 14px; }
 .tts-status.need { color: var(--text-dim); }
 .tts-status.warn { color: var(--warning); }
 @media (max-width: 700px) { .tts-sheet { grid-template-columns: 1fr; } .tts-status { grid-column: 1; } }
@@ -669,8 +682,10 @@ const { useState, useRef, useEffect } = React;
 //   1.2.0  2026-11-14  Units: unit number in the release code (EX02-U03), sorted by it within a release. "Extra content card" checkbox.
 //   1.3.0  2026-11-14  Units: Extra Content section in the unit form (edit / add a unit's extra card, jump back to the parent); "Has extra" list tag opens the extra.
 //   1.4.0  2026-11-14  Units: release and unit number are one field again (EX02-U03, EX02-U03A for reinforcements); sorted by number then letter.
-const EDITOR_VERSION = "1.4.0";
-const EDITOR_VERSION_DATE = "2026-11-14";
+//   1.5.0  2026-11-15  Tactics: sheet change tracking (what changed, saved in the JSON), export only changed sheets, combined-deck option,
+//                      dated deck names. SAVE TO GITHUB (access token). Unit Lua: text with a " in it no longer gets cut off on load.
+const EDITOR_VERSION = "1.5.0";
+const EDITOR_VERSION_DATE = "2026-11-15";
 
 const EMPTY_ATTACK = { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""], crit: "" };
 const EMPTY_ABILITY = { name: "", keywords: "", description: "" };
@@ -750,6 +765,9 @@ function toLua(units) {
   return lines.join("\n");
 }
 
+// Lua string helpers for parseLua: a quoted string may contain \" and \\ (toLua writes them that way).
+const LUA_STR = '"((?:[^"\\\\]|\\\\.)*)"';
+const luaUnesc = (v) => v.replace(/\\(.)/g, "$1");
 function parseLua(text) {
   try {
     const units = [];
@@ -760,7 +778,7 @@ function parseLua(text) {
       if (inner[i] === "}") { depth--; if (depth === 0 && start >= 0) { blocks.push(inner.slice(start, i + 1)); start = -1; } }
     }
     for (const block of blocks) {
-      const getStr = (key) => { const m = block.match(new RegExp(`${key}\\s*=\\s*"([^"]*)"`, "m")); return m ? m[1] : ""; };
+      const getStr = (key) => { const m = block.match(new RegExp(`${key}\\s*=\\s*${LUA_STR}`, "m")); return m ? luaUnesc(m[1]) : ""; };
       const unit = {
         _key: generateId(),
         name: getStr("name"),
@@ -785,13 +803,13 @@ function parseLua(text) {
           if (aStr[i] === "}") { ad--; if (ad === 0 && as2 >= 0) { aBlocks.push(aStr.slice(as2, i + 1)); as2 = -1; } }
         }
         for (const ab of aBlocks) {
-          const aGetStr = (key) => { const m = ab.match(new RegExp(`${key}\\s*=\\s*"([^"]*)"`, "m")); return m ? m[1] : ""; };
+          const aGetStr = (key) => { const m = ab.match(new RegExp(`${key}\\s*=\\s*${LUA_STR}`, "m")); return m ? luaUnesc(m[1]) : ""; };
           const efMatch = ab.match(/effects\s*=\s*\{([\s\S]*?)\}/);
           const effects = [];
           if (efMatch) {
             const efStr = efMatch[1];
-            const efItems = efStr.match(/"([^"]*)"/g);
-            if (efItems) efItems.forEach(e => effects.push(e.replace(/"/g, "")));
+            const efItems = efStr.match(new RegExp(LUA_STR, "g"));
+            if (efItems) efItems.forEach(e => effects.push(luaUnesc(e.slice(1, -1))));
           }
           unit.attacks.push({ name: aGetStr("name"), cost: aGetStr("cost"), range: aGetStr("range"), strength: aGetStr("strength"), sp_shape: aGetStr("sp_shape"), ...splitCrit(effects) });
         }
@@ -806,7 +824,7 @@ function parseLua(text) {
           if (abStr[i] === "}") { ad2--; if (ad2 === 0 && as3 >= 0) { abBlocks.push(abStr.slice(as3, i + 1)); as3 = -1; } }
         }
         for (const abb of abBlocks) {
-          const abGetStr = (key) => { const m = abb.match(new RegExp(`${key}\\s*=\\s*"([^"]*)"`, "m")); return m ? m[1] : ""; };
+          const abGetStr = (key) => { const m = abb.match(new RegExp(`${key}\\s*=\\s*${LUA_STR}`, "m")); return m ? luaUnesc(m[1]) : ""; };
           unit.abilities.push({ name: abGetStr("name"), keywords: abGetStr("keywords"), description: abGetStr("description") });
         }
       }
@@ -1067,7 +1085,7 @@ function tcLoadArtFile(file) {
         const w = Math.round(img.naturalWidth * s), h = Math.round(img.naturalHeight * s);
         const c = document.createElement("canvas"); c.width = w; c.height = h;
         c.getContext("2d").drawImage(img, 0, 0, w, h);
-        resolve({ art: c.toDataURL("image/jpeg", 0.88), artW: w, artH: h });
+        resolve({ art: c.toDataURL("image/jpeg", 0.88), artW: w, artH: h, artRev: generateId() }); // artRev: new id per art change, for sheet tracking
       };
       img.onerror = reject;
       img.src = ev.target.result;
@@ -1259,13 +1277,33 @@ function tcAssignFileNames(cards) {
   });
 }
 // JSON as hosted on GitHub: no base64 — art is referenced by file name inside CardArt/.
-function tcLibraryJSON(cards, fmt = "webp") {
+// Sheet tracking as stored in the JSON (so it follows the library to GitHub):
+//   tts.sheets[<sheet file>] = { sig, date, cards: [{k,n,h}], url, urlSig, urlDate }
+// sig/date/cards describe the sheet when it was last exported; url* describe the Steam URL pasted for it.
+function tcTrackingOut(tts) {
+  const sheets = {};
+  const names = [...new Set([...Object.keys(tts.sheets || {}), ...Object.keys(tts.urls || {})])].sort();
+  for (const fb of names) {
+    const sh = (tts.sheets || {})[fb] || {}, u = (tts.urls || {})[fb] || {};
+    sheets[fb] = { sig: sh.sig || "", date: sh.date || "", url: u.url || "", urlSig: u.sig || "", urlDate: u.date || "", cards: sh.cards || [] };
+  }
+  return { back: tts.back || "", sheets };
+}
+function tcTrackingIn(t) {
+  const urls = {}, sheets = {};
+  for (const [fb, v] of Object.entries((t && t.sheets) || {})) {
+    if (v.sig) sheets[fb] = { sig: v.sig, date: v.date || "", ...(v.cards && v.cards.length ? { cards: v.cards } : {}) };
+    if (v.url) urls[fb] = { url: v.url, sig: v.urlSig || "", date: v.urlDate || "" };
+  }
+  return { ...(t && t.back ? { back: t.back } : {}), urls, sheets };
+}
+function tcLibraryJSON(cards, fmt = "webp", tts = null) {
   const ext = TC_FORMATS[fmt].ext;
   const out = tcAssignFileNames(cards).map(c => {
     const { art, file, ...rest } = c;
     return { ...rest, artFile: art ? file + "." + ext : null };
   });
-  return JSON.stringify({ version: 2, type: "tactics-cards", artDir: TC_ART_DIR, cards: out }, null, 2);
+  return JSON.stringify({ version: 2, type: "tactics-cards", artDir: TC_ART_DIR, ...(tts ? { tts: tcTrackingOut(tts) } : {}), cards: out }, null, 2);
 }
 const blobToDataUrl = (blob) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); });
 // Turn a loaded card record (artFile reference, or legacy base64) into a working card with a data-URI art.
@@ -1320,6 +1358,13 @@ const TC_CARD_BACK_SRC = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wB
 const tcLoadImage = (src) => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
 const tcSheetName = (label) => label.replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "") || "Cards";
 // Re-encode a card's stored art (data URI) into the chosen format.
+// Art file bytes for export. Art that is already in the target format (e.g. loaded from GitHub) is written
+// back byte for byte, so it is never re-compressed and an unchanged file stays identical.
+async function tcArtBlob(dataUrl, fmt = "webp") {
+  const m = /^data:([^;,]+)[;,]/.exec(dataUrl || "");
+  if (m && m[1] === TC_FORMATS[fmt].mime) return (await fetch(dataUrl)).blob();
+  return tcEncodeArt(dataUrl, fmt);
+}
 async function tcEncodeArt(dataUrl, fmt = "webp") {
   const img = await new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = dataUrl; });
   const c = document.createElement("canvas"); c.width = img.naturalWidth; c.height = img.naturalHeight;
@@ -1406,16 +1451,50 @@ function tcSheetPlan(cards, setKeys = null) {
   }
   return plan;
 }
-// Fingerprint of what a sheet looks like (card order + everything drawn on the card). Used to spot sheets that changed after upload.
+// Fingerprints, used to spot sheets that changed after they were exported and uploaded.
+const tcHash = (str) => { let h = 5381; for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0; return (h >>> 0).toString(36); };
+// JSON with sorted keys, so the same card always gives the same text whatever order its fields are in.
+const tcStable = (v) => Array.isArray(v) ? "[" + v.map(tcStable).join(",") + "]"
+  : (v && typeof v === "object") ? "{" + Object.keys(v).sort().map(k => JSON.stringify(k) + ":" + tcStable(v[k])).join(",") + "}"
+  : JSON.stringify(v === undefined ? null : v);
+// One card: everything drawn on it. Art counts through artRev (a new id each time art is loaded) and its
+// position/zoom, not through the image bytes, so re-saving or reloading from GitHub doesn't look like a change.
+function tcCardSig(c) {
+  const { art, artFile, file, isNew, unit, description, rarity, _key, ...rest } = c;
+  return tcHash(_key + tcStable(rest) + (art ? "A" : "-"));
+}
+// One sheet: its cards in order.
 function tcSheetSig(pageCards) {
+  return "v2-" + tcHash(pageCards.map(tcCardSig).join("|")) + "-" + pageCards.length;
+}
+// The fingerprint used before v1.5.0. Only for recognising sheets recorded by older versions of the editor.
+function tcSheetSigLegacy(pageCards) {
   const str = pageCards.map(c => {
     const { art, isNew, unit, description, rarity, _key, ...rest } = c;
     const a = art ? art.length + ":" + art.slice(-64) : "";
     return _key + JSON.stringify(rest) + a;
   }).join("|");
-  let h = 5381;
-  for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
-  return "g10x7-" + (h >>> 0).toString(36) + "-" + pageCards.length; // layout prefix: sheets from the old trimmed layout need re-exporting
+  return "g10x7-" + tcHash(str) + "-" + pageCards.length;
+}
+const tcSigMatches = (exp, pageCards) => !!exp && (exp.sig === tcSheetSig(pageCards) || (!String(exp.sig).startsWith("v2-") && exp.sig === tcSheetSigLegacy(pageCards)));
+// What gets remembered when a sheet is exported.
+const tcSheetRecord = (pageCards) => ({ sig: tcSheetSig(pageCards), date: todayStr(), cards: pageCards.map(c => ({ k: c._key, n: c.name || "", h: tcCardSig(c) })) });
+// Plain-words list of what differs between an exported sheet and the cards now on it.
+function tcSheetDiff(exp, pageCards) {
+  if (!exp || !exp.cards || !exp.cards.length) return "";
+  const old = new Map(exp.cards.map(x => [x.k, x]));
+  const now = new Set(pageCards.map(c => c._key));
+  const nm = (n) => n || "(unnamed)";
+  const changed = pageCards.filter(c => old.has(c._key) && old.get(c._key).h !== tcCardSig(c)).map(c => nm(c.name));
+  const added = pageCards.filter(c => !old.has(c._key)).map(c => nm(c.name));
+  const removed = exp.cards.filter(x => !now.has(x.k)).map(x => nm(x.n));
+  const list = (a) => a.slice(0, 5).join(", ") + (a.length > 5 ? ` +${a.length - 5} more` : "");
+  const parts = [];
+  if (changed.length) parts.push("Changed: " + list(changed));
+  if (added.length) parts.push("Added: " + list(added));
+  if (removed.length) parts.push("Removed: " + list(removed));
+  if (!parts.length) parts.push("Card order changed");
+  return parts.join(" · ");
 }
 // CustomDeck id for a sheet: ST01 page 1 -> 11, ST01 page 2 -> 12, ST02 -> 21 ... other sets get a stable id from 500 up.
 function ttsDeckId(setLabel, page) {
@@ -1435,11 +1514,15 @@ const TTS_COMMON = {
   DragSelectable: true, Autoraise: true, Sticky: true, Tooltip: true, GridProjection: false, HideWhenFaceDown: true,
   SidewaysCard: false, LuaScript: "", LuaScriptState: "", XmlUI: "",
 };
-// One TTS saved-object file for a set. sheets: [{ cards, rows, url }] (one per sheet page).
-function ttsDeckJSON(setLabel, sheets, backUrl, dateStr) {
-  const customDeck = {}, contained = [], deckIds = [];
+// One TTS saved-object file. sheets: [{ setLabel, page, cards, rows, url }], from one set or from several (combined deck).
+// name goes on the deck object and the save, e.g. "Gundam Assemble Tactics Cards: 2026-11-15"; note is the deck's description.
+const TTS_DECK_NAME = "Gundam Assemble Tactics Cards";
+function ttsDeckJSON(name, sheets, backUrl, dateStr, note = "") {
+  const customDeck = {}, contained = [], deckIds = [], usedIds = new Set();
   sheets.forEach((sh) => {
-    const id = ttsDeckId(setLabel, sh.page);
+    let id = ttsDeckId(sh.setLabel, sh.page);
+    while (usedIds.has(id)) id += 5000; // two sets landing on the same id (only possible in a combined deck)
+    usedIds.add(id);
     customDeck[id] = { FaceURL: sh.url, BackURL: backUrl, NumWidth: TC_SHEET_COLS, NumHeight: sh.rows, BackIsHidden: true, UniqueBack: false, Type: 0 };
     sh.cards.forEach((c, i) => {
       const cid = id * 100 + i;
@@ -1448,12 +1531,11 @@ function ttsDeckJSON(setLabel, sheets, backUrl, dateStr) {
         Hands: true, CardID: cid, CustomDeck: { [id]: customDeck[id] } });
     });
   });
-  const name = `${setLabel} Tactics`;
   const obj = contained.length === 1
     ? { ...contained[0] }
-    : { ...TTS_COMMON, GUID: ttsGuid(), Name: "Deck", Transform: ttsTransform(), Nickname: name, Description: "",
+    : { ...TTS_COMMON, GUID: ttsGuid(), Name: "Deck", Transform: ttsTransform(), Nickname: name, Description: note,
         Hands: false, DeckIDs: deckIds, CustomDeck: customDeck, ContainedObjects: contained };
-  return JSON.stringify({ SaveName: `${name} ${dateStr}`, Date: dateStr, VersionNumber: "", GameMode: "", GameType: "", GameComplexity: "",
+  return JSON.stringify({ SaveName: name, Date: dateStr, VersionNumber: "", GameMode: "", GameType: "", GameComplexity: "",
     Tags: [], Gravity: 0.5, PlayArea: 0.5, Table: "", Sky: "", Note: "", TabStates: {}, LuaScript: "", LuaScriptState: "", XmlUI: "",
     ObjectStates: [obj] }, null, 2);
 }
@@ -1498,7 +1580,7 @@ function unitGroups(list) {
   return groups;
 }
 
-function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, folderRef, format, setFormat, unitNames = [] }) {
+function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, folderRef, format, setFormat, unitNames = [], tts, saveTts }) {
   const [search, setSearch] = useState("");
   const [showTypes, setShowTypes] = useState({ attack: true, command: true, response: true });
   const [collapsed, setCollapsed] = useState({});
@@ -1510,19 +1592,35 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
   const [exporting, setExporting] = useState("");
   // TTS deck builder: card back URL, the Steam URL pasted for each sheet, and what each sheet looked like when exported.
   const [showTts, setShowTts] = useState(false);
-  const [ttsBack, setTtsBack] = useState(TTS_DEFAULT_BACK);
-  const [ttsUrls, setTtsUrls] = useState({});     // fileBase -> { url, sig }
-  const [ttsSheets, setTtsSheets] = useState({}); // fileBase -> { sig, date }
+  // The tracking itself (card back, Steam URLs, exported-sheet records) is held by App, so it can go into the library JSON.
+  const ttsBack = tts.back;
+  const ttsUrls = tts.urls;     // fileBase -> { url, sig, date }
+  const ttsSheets = tts.sheets; // fileBase -> { sig, date, cards }
+  const saveTtsBack = (v) => saveTts({ back: v });
+  const saveTtsUrls = (v) => saveTts({ urls: v });
+  const saveTtsSheets = (v) => saveTts({ sheets: v });
   const [ttsFolder, setTtsFolder] = useState(null);
+  const [ttsCombine, setTtsCombine] = useState(false); // one deck with every set in it
   useEffect(() => {
-    tcDB.get("ga_tts_back").then(v => { if (v && v.trim()) setTtsBack(v); });
-    tcDB.get("ga_tts_urls").then(v => { if (v) setTtsUrls(v); });
-    tcDB.get("ga_tts_sheets").then(v => { if (v) setTtsSheets(v); });
     tcDB.get("ga_tts_folder").then(h => { if (h) setTtsFolder(h); });
+    tcDB.get("ga_tts_combine").then(v => { if (v) setTtsCombine(true); });
   }, []);
-  const saveTtsBack = (v) => { setTtsBack(v); tcDB.set("ga_tts_back", v); };
-  const saveTtsUrls = (v) => { setTtsUrls(v); tcDB.set("ga_tts_urls", v); };
-  const saveTtsSheets = (v) => { setTtsSheets(v); tcDB.set("ga_tts_sheets", v); };
+  const saveTtsCombine = (v) => { setTtsCombine(v); tcDB.set("ga_tts_combine", v); };
+  // Sheets recorded by an older editor version: if they still match the cards, re-record them in the new form
+  // (same export date) so they don't all show as changed, and so later changes can be listed card by card.
+  useEffect(() => {
+    if (!cards.length) return;
+    let sheets = null, urls = null;
+    for (const sh of tcSheetPlan(cards)) {
+      const exp = ttsSheets[sh.fileBase];
+      if (!exp || !exp.sig || String(exp.sig).startsWith("v2-") || exp.sig !== tcSheetSigLegacy(sh.cards)) continue;
+      const rec = { ...tcSheetRecord(sh.cards), date: exp.date || "" };
+      sheets = sheets || { ...ttsSheets }; sheets[sh.fileBase] = rec;
+      const u = ttsUrls[sh.fileBase];
+      if (u && u.sig === exp.sig) { urls = urls || { ...ttsUrls }; urls[sh.fileBase] = { ...u, sig: rec.sig }; }
+    }
+    if (sheets) saveTts(urls ? { sheets, urls } : { sheets });
+  }, [cards, ttsSheets]);
   const [folder, setFolder] = useState(null);
   const artInput = useRef();
 
@@ -1629,7 +1727,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
   };
 
   // Export a set of cards (subset) or the whole library: art files, card sheets and/or the JSON.
-  const exportCards = async ({ subset = null, art = false, sheets = false, json = false, zipName = "GundamAssembleCardData.zip", pickNew = false }) => {
+  const exportCards = async ({ subset = null, art = false, sheets = false, json = false, zipName = "GundamAssembleCardData.zip", pickNew = false, sheetBases = null }) => {
     if (cards.length === 0) return;
     try {
       const sink = await makeSink(pickNew); if (!sink) return;
@@ -1640,7 +1738,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
         for (const c of chosen) {
           if (!c.art) continue;
           setExporting("ENCODING ART " + (c.name || "").toUpperCase() + "…");
-          await sink.put(TC_ART_DIR, `${c.file}.${ext}`, await tcEncodeArt(c.art, format));
+          await sink.put(TC_ART_DIR, `${c.file}.${ext}`, await tcArtBlob(c.art, format));
         }
       }
       if (sheets) {
@@ -1648,50 +1746,67 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
         const setKeys = new Set(chosen.map(c => tcGroupOf(c, false).key));
         const recorded = { ...ttsSheets };
         for (const sh of tcSheetPlan(cards, setKeys)) {
+          if (sheetBases && !sheetBases.has(sh.fileBase)) continue; // "export changed sheets": just the ones asked for
           const blob = await buildSheet(sh.cards, sh.label.toUpperCase());
           await sink.put(TC_RENDER_DIR, `${sh.fileBase}.${ext}`, blob);
-          recorded[sh.fileBase] = { sig: tcSheetSig(sh.cards), date: todayStr() };
+          recorded[sh.fileBase] = tcSheetRecord(sh.cards);
         }
         saveTtsSheets(recorded);
       }
-      if (json) await sink.put("", TC_JSON_NAME, new Blob([tcLibraryJSON(cards, format)], { type: "application/json" }));
+      if (json) await sink.put("", TC_JSON_NAME, new Blob([tcLibraryJSON(cards, format, tts)], { type: "application/json" }));
       await sink.finish(zipName);
     } catch (e) { console.error(e); showToast("EXPORT FAILED"); }
     setExporting(""); setForceAll(false);
   };
 
-  // Status of each sheet for the TTS builder.
-  const ttsPlan = showTts ? tcSheetPlan(cards).map(sh => {
-    const sig = tcSheetSig(sh.cards);
+  // Status of each sheet for the TTS builder. step = what the sheet needs next: "export", "upload" (to Steam + paste URL) or "ok".
+  const ttsPlan = React.useMemo(() => tcSheetPlan(cards).map(sh => {
     const exp = ttsSheets[sh.fileBase];
     const u = ttsUrls[sh.fileBase];
-    let status = "ok", msg = "Ready";
-    if (!exp) { status = "warn"; msg = "Sheet not exported yet — export it, upload to Steam, paste the URL"; }
-    else if (exp.sig !== sig) { status = "warn"; msg = "Cards changed since this sheet was exported — re-export and re-upload"; }
-    else if (!u || !u.url) { status = "need"; msg = "Paste the Steam URL for this sheet"; }
-    else if (u.sig !== exp.sig) { status = "warn"; msg = "Sheet was re-exported after this URL was pasted — upload the new sheet and paste its URL"; }
-    return { ...sh, sig, url: (u && u.url) || "", status, msg };
-  }) : [];
+    let status = "ok", step = "ok", msg = "Up to date", detail = "";
+    if (!exp) { status = "warn"; step = "export"; msg = "Not exported yet — export the sheet, upload it to Steam, paste the URL"; }
+    else if (!tcSigMatches(exp, sh.cards)) { status = "warn"; step = "export"; msg = "Cards changed since this sheet was exported — re-export it, upload it to Steam again and paste the new URL"; detail = tcSheetDiff(exp, sh.cards); }
+    else if (!u || !u.url) { status = "need"; step = "upload"; msg = "Upload this sheet to Steam and paste its URL"; }
+    else if (u.sig !== exp.sig) { status = "warn"; step = "upload"; msg = "Re-exported after this URL was pasted — upload the new sheet to Steam and paste its new URL"; }
+    return { ...sh, sig: tcSheetSig(sh.cards), url: (u && u.url) || "", status, step, msg, detail, exported: (exp && exp.date) || "", urlDate: (u && u.date) || "" };
+  }), [cards, ttsSheets, ttsUrls]);
+  const ttsToExport = ttsPlan.filter(sh => sh.step === "export");
+  const ttsToUpload = ttsPlan.filter(sh => sh.step === "upload");
   const ttsSets = [];
   for (const sh of ttsPlan) {
     let g = ttsSets.find(x => x.key === sh.setKey);
     if (!g) { g = { key: sh.setKey, label: sh.setLabel, sheets: [] }; ttsSets.push(g); }
     g.sheets.push(sh);
   }
+  // What a whole set needs next (export beats upload beats ok).
+  const setStep = (g) => g.sheets.some(sh => sh.step === "export") ? "export" : g.sheets.some(sh => sh.step === "upload") ? "upload" : "ok";
+  const STEP_LABEL = { export: "NEEDS EXPORT", upload: "NEEDS STEAM UPLOAD", ok: "UP TO DATE" };
   const setUrl = (sh, url) => {
     const exp = ttsSheets[sh.fileBase];
-    saveTtsUrls({ ...ttsUrls, [sh.fileBase]: { url: url.trim(), sig: exp ? exp.sig : sh.sig } });
+    saveTtsUrls({ ...ttsUrls, [sh.fileBase]: { url: url.trim(), sig: exp ? exp.sig : sh.sig, date: todayStr() } });
   };
   const setReady = (g) => ttsBack.trim() && g.sheets.every(sh => sh.url);
   const ttsFileName = (g, dateStr) => `${tcSheetName(g.label)}_Tactics_${dateStr}.json`;
   // Writes deck files to the remembered TTS folder (Chrome/Edge), otherwise downloads them (several at once go in a zip).
-  const saveDecks = async (sets, pickNew = false) => {
+  const saveDecks = async (sets, pickNew = false, combine = false) => {
     const ready = sets.filter(setReady);
     if (!ready.length) { showToast("NO DECKS READY — NEED BACK URL AND A URL FOR EVERY SHEET"); return; }
     const warned = ready.filter(g => g.sheets.some(sh => sh.status === "warn"));
     if (warned.length && !window.confirm(`${warned.map(g => g.label).join(", ")}: a sheet may not match the current cards (see the warnings). Build anyway?`)) return;
     const dateStr = todayStr();
-    const files = ready.map(g => ({ name: ttsFileName(g, dateStr), text: ttsDeckJSON(g.label, g.sheets, ttsBack.trim(), dateStr) }));
+    const count = (gs) => gs.reduce((n, g) => n + g.sheets.reduce((m, sh) => m + sh.cards.length, 0), 0);
+    const note = (gs) => `Exported ${dateStr} · ${count(gs)} cards · ${gs.map(g => g.label).join(", ")}`;
+    let files;
+    if (combine) {
+      // One deck holding every ready set, in set order.
+      const skipped = sets.filter(g => !setReady(g));
+      if (skipped.length && !window.confirm(`Not ready, so left out of the combined deck: ${skipped.map(g => g.label).join(", ")}. Build it without them?`)) return;
+      files = [{ name: `${tcSheetName(TTS_DECK_NAME)}_${dateStr}.json`,
+        text: ttsDeckJSON(`${TTS_DECK_NAME}: ${dateStr}`, ready.flatMap(g => g.sheets), ttsBack.trim(), dateStr, note(ready)) }];
+    } else {
+      files = ready.map(g => ({ name: ttsFileName(g, dateStr),
+        text: ttsDeckJSON(`${TTS_DECK_NAME} (${g.label}): ${dateStr}`, g.sheets, ttsBack.trim(), dateStr, note([g])) }));
+    }
     try {
       if (tcFolderSupported()) {
         let dir = ttsFolder;
@@ -1744,7 +1859,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
               </label>
               <button className="btn btn-sm btn-primary" onClick={() => exportCards({ art: true, sheets: true, json: true })}>EXPORT EVERYTHING</button>
               {tcFolderSupported() && <button className="btn btn-sm" onClick={() => exportCards({ art: true, sheets: true, json: true, pickNew: true })}>CHOOSE FOLDER…</button>}
-              <button className="btn btn-sm btn-accent2" onClick={() => setShowTts(true)}>TTS DECKS…</button>
+              <button className="btn btn-sm btn-accent2" onClick={() => setShowTts(true)} title={ttsToExport.length + ttsToUpload.length ? `${ttsToExport.length} sheet(s) to export, ${ttsToUpload.length} to upload to Steam` : "Every sheet is up to date"}>TTS DECKS…{ttsToExport.length + ttsToUpload.length > 0 && <span className="tts-badge">{ttsToExport.length + ttsToUpload.length}</span>}</button>
             </div>
             <div className="tc-hint">
               {tcFolderSupported()
@@ -1948,18 +2063,30 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
             </div>
             <div className="lua-modal-body tts-body">
               <div className="tc-hint" style={{ textAlign: "left", lineHeight: 1.7 }}>
-                1. Export a set's sheet · 2. Upload it to Steam Cloud and paste the URL below · 3. Save the deck file (named {"<SET>"}_Tactics_{todayStr()}.json).
+                1. Export the sheets that changed · 2. Upload each to Steam Cloud and paste its new URL below · 3. Save the deck file · 4. Save the card JSON to GitHub so this tracking is kept.
                 {tcFolderSupported() ? " Pick your TTS \"Saved Objects\" folder once and decks go straight there." : " Put the downloaded file in your TTS \"Saved Objects\" folder."}
               </div>
               <div className="field-group">
                 <label>Card Back URL (used by every deck)</label>
                 <input value={ttsBack} onChange={(e) => saveTtsBack(e.target.value)} placeholder="https://steamusercontent-a.akamaihd.net/ugc/..." />
               </div>
+              <div className={"tts-summary" + (ttsToExport.length + ttsToUpload.length ? " todo" : "")}>
+                <div className="tts-summary-text">
+                  <b>{ttsToExport.length}</b> sheet{ttsToExport.length !== 1 ? "s" : ""} to export · <b>{ttsToUpload.length}</b> to upload to Steam · <b>{ttsPlan.length - ttsToExport.length - ttsToUpload.length}</b> up to date
+                  {ttsToExport.length > 0 && <div className="tts-summary-list">Export: {ttsToExport.map(sh => sh.fileBase).join(", ")}</div>}
+                  {ttsToUpload.length > 0 && <div className="tts-summary-list">Upload + URL: {ttsToUpload.map(sh => sh.fileBase).join(", ")}</div>}
+                </div>
+                <button className="btn btn-sm btn-accent2" style={{ whiteSpace: "nowrap" }} disabled={ttsToExport.length === 0}
+                  onClick={() => exportCards({ sheets: true, sheetBases: new Set(ttsToExport.map(sh => sh.fileBase)), zipName: `Changed_${TC_RENDER_DIR}_${todayStr()}.zip` })}>
+                  EXPORT {ttsToExport.length} CHANGED SHEET{ttsToExport.length !== 1 ? "S" : ""}
+                </button>
+              </div>
               {ttsSets.map(g => (
-                <div className="tts-set" key={g.key}>
+                <div className={"tts-set step-" + setStep(g)} key={g.key}>
                   <div className="tts-set-head">
                     <span className="tts-set-name">{g.label}</span>
                     <span className="tc-group-count">{g.sheets.reduce((n, sh) => n + sh.cards.length, 0)} CARDS · {g.sheets.length} SHEET{g.sheets.length > 1 ? "S" : ""}</span>
+                    <span className={"tts-chip " + setStep(g)}>{STEP_LABEL[setStep(g)]}</span>
                     <span style={{ flex: 1 }} />
                     <button className="btn btn-sm" onClick={() => exportCards({ subset: g.sheets.flatMap(sh => sh.cards), sheets: true, zipName: `${tcSheetName(g.label)}_${TC_RENDER_DIR}.zip` })}>EXPORT SHEET</button>
                     <button className="btn btn-sm btn-primary" disabled={!setReady(g)} onClick={() => saveDecks([g])}>SAVE DECK JSON</button>
@@ -1968,7 +2095,11 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
                     <div className="tts-sheet" key={sh.fileBase}>
                       <div className="tts-sheet-label">{sh.fileBase}.{ext}<span>{sh.cards.length} cards · {TC_SHEET_COLS}×{sh.rows}</span></div>
                       <input value={sh.url} onChange={(e) => setUrl(sh, e.target.value)} placeholder="Steam URL for this sheet" />
-                      <div className={"tts-status " + sh.status}>{sh.msg}</div>
+                      <div className={"tts-status " + sh.status}>
+                        {sh.msg}
+                        {sh.detail && <div className="tts-detail">{sh.detail}</div>}
+                        {(sh.exported || sh.urlDate) && <div className="tts-dates">{sh.exported ? `Sheet exported ${sh.exported}` : ""}{sh.exported && sh.urlDate ? " · " : ""}{sh.urlDate ? `URL pasted ${sh.urlDate}` : ""}</div>}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1978,8 +2109,12 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
               <span className="tc-hint" style={{ marginRight: "auto", textAlign: "left" }}>
                 {tcFolderSupported() ? (ttsFolder ? `TTS FOLDER: ${ttsFolder.name}` : "No TTS folder yet — the first save asks for one") : "Decks download as files"}
               </span>
-              {tcFolderSupported() && <button className="btn btn-sm" style={{ whiteSpace: "nowrap" }} onClick={() => saveDecks(ttsSets.filter(setReady), true)}>CHOOSE TTS FOLDER…</button>}
-              <button className="btn btn-sm btn-primary" style={{ whiteSpace: "nowrap" }} onClick={() => saveDecks(ttsSets)}>SAVE ALL READY DECKS</button>
+              <label className="unit-new-check" style={{ whiteSpace: "nowrap" }} title={`One deck with every set in it, named "${TTS_DECK_NAME}: ${todayStr()}"`}>
+                <input type="checkbox" checked={ttsCombine} onChange={(e) => saveTtsCombine(e.target.checked)} />
+                One combined deck
+              </label>
+              {tcFolderSupported() && <button className="btn btn-sm" style={{ whiteSpace: "nowrap" }} onClick={() => saveDecks(ttsCombine ? ttsSets : ttsSets.filter(setReady), true, ttsCombine)}>CHOOSE TTS FOLDER…</button>}
+              <button className="btn btn-sm btn-primary" style={{ whiteSpace: "nowrap" }} onClick={() => saveDecks(ttsSets, false, ttsCombine)}>{ttsCombine ? "SAVE COMBINED DECK" : "SAVE ALL READY DECKS"}</button>
             </div>
           </div>
         </div>
@@ -1996,6 +2131,55 @@ const GITHUB_UNITS_URL = "https://raw.githubusercontent.com/Zignoratio/gundamass
 const GITHUB_REPO_BASE = "https://raw.githubusercontent.com/Zignoratio/gundamassemble/main/";
 const GITHUB_CARDS_URL = GITHUB_REPO_BASE + TC_JSON_NAME;
 const GITHUB_CARD_ART_URL = GITHUB_REPO_BASE + TC_ART_DIR + "/";
+
+// ---- Saving to GitHub from the editor ----
+// Uses a personal access token the user pastes in once. The token is kept in this browser only
+// (IndexedDB); it is never written into this file, the JSON or the repo.
+const GH = { owner: "Zignoratio", repo: "gundamassemble", branch: "main" };
+const GH_TOKEN_KEY = "ga_github_token";
+async function ghApi(token, method, path, body) {
+  const r = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}${path}`, {
+    method, cache: "no-store",
+    headers: { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", ...(body ? { "Content-Type": "application/json" } : {}) },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!r.ok) {
+    let m = "HTTP " + r.status;
+    try { m = (await r.json()).message || m; } catch (e) {}
+    const err = new Error(m); err.status = r.status; throw err;
+  }
+  return r.status === 204 ? null : r.json();
+}
+const bytesToB64 = (u8) => { let str = ""; for (let i = 0; i < u8.length; i += 0x8000) str += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(str); };
+// The id git gives a file's content; equal ids mean the file in the repo is already identical.
+async function gitBlobSha(u8) {
+  const head = new TextEncoder().encode(`blob ${u8.length}\0`);
+  const all = new Uint8Array(head.length + u8.length); all.set(head); all.set(u8, head.length);
+  return [...new Uint8Array(await crypto.subtle.digest("SHA-1", all))].map(b => b.toString(16).padStart(2, "0")).join("");
+}
+// files: [{ path, bytes }]. Commits, as ONE commit, only the files that differ from what the branch has now.
+// Returns { changed: [paths] } (empty when the repo was already up to date).
+async function ghCommitFiles(token, files, message, onStep = () => {}) {
+  onStep("CHECKING GITHUB…");
+  const head = (await ghApi(token, "GET", `/git/ref/heads/${GH.branch}`)).object.sha;
+  const baseTree = (await ghApi(token, "GET", `/git/commits/${head}`)).tree.sha;
+  const tree = await ghApi(token, "GET", `/git/trees/${baseTree}?recursive=1`);
+  const existing = new Map(tree.tree.filter(t => t.type === "blob").map(t => [t.path, t.sha]));
+  const changed = [];
+  for (const f of files) { if (existing.get(f.path) !== await gitBlobSha(f.bytes)) changed.push(f); }
+  if (!changed.length) return { changed: [] };
+  const entries = [];
+  for (let i = 0; i < changed.length; i++) {
+    onStep(`UPLOADING ${i + 1}/${changed.length} · ${changed[i].path.toUpperCase()}…`);
+    const blob = await ghApi(token, "POST", "/git/blobs", { content: bytesToB64(changed[i].bytes), encoding: "base64" });
+    entries.push({ path: changed[i].path, mode: "100644", type: "blob", sha: blob.sha });
+  }
+  onStep("COMMITTING…");
+  const newTree = await ghApi(token, "POST", "/git/trees", { base_tree: baseTree, tree: entries });
+  const commit = await ghApi(token, "POST", "/git/commits", { message, tree: newTree.sha, parents: [head] });
+  await ghApi(token, "PATCH", `/git/refs/heads/${GH.branch}`, { sha: commit.sha });
+  return { changed: changed.map(f => f.path) };
+}
 
 function App() {
   const [units, setUnits] = useState([]);
@@ -2020,6 +2204,67 @@ function App() {
   const luaRef = useRef();
 
   const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(""), 2500); };
+
+  // TTS sheet tracking (card back URL, Steam URL per sheet, what each sheet looked like when exported).
+  // Kept here so it can be written into the card JSON and read back from it.
+  const [tts, setTts] = useState({ back: TTS_DEFAULT_BACK, urls: {}, sheets: {} });
+  useEffect(() => {
+    Promise.all([tcDB.get("ga_tts_back"), tcDB.get("ga_tts_urls"), tcDB.get("ga_tts_sheets")]).then(([b, u, sh]) =>
+      setTts(prev => ({ back: (b && b.trim()) ? b : prev.back, urls: u || prev.urls, sheets: sh || prev.sheets })));
+  }, []);
+  const saveTts = (patch) => {
+    setTts(prev => ({ ...prev, ...patch }));
+    if ("back" in patch) tcDB.set("ga_tts_back", patch.back);
+    if ("urls" in patch) tcDB.set("ga_tts_urls", patch.urls);
+    if ("sheets" in patch) tcDB.set("ga_tts_sheets", patch.sheets);
+  };
+  // A loaded library JSON brings its tracking with it (older files have none, so the local tracking stays).
+  const importTracking = (d) => { if (d && d.tts && d.tts.sheets) saveTts(tcTrackingIn(d.tts)); };
+
+  // GitHub saving
+  const [ghToken, setGhToken] = useState("");
+  const [showGh, setShowGh] = useState(false);
+  const [ghBusy, setGhBusy] = useState("");
+  useEffect(() => { tcDB.get(GH_TOKEN_KEY).then(t => { if (t) setGhToken(t); }); }, []);
+  const saveGhToken = (t) => { setGhToken(t); tcDB.set(GH_TOKEN_KEY, t); };
+  const ghTest = async () => {
+    try {
+      const r = await ghApi(ghToken.trim(), "GET", "");
+      showToast(r.permissions && r.permissions.push === false ? "TOKEN WORKS BUT CANNOT WRITE TO THE REPO" : "TOKEN OK — " + r.full_name.toUpperCase());
+    } catch (e) { showToast("TOKEN CHECK FAILED — " + (e.status === 401 ? "TOKEN REJECTED" : e.message)); }
+  };
+  // Commits what the current mode edits: units mode -> the units Lua; cards mode -> the card JSON plus any new/changed art.
+  const saveToGithub = async () => {
+    const token = ghToken.trim();
+    if (!token) { setShowGh(true); return; }
+    const isUnits = mode === "units";
+    if ((isUnits ? units.length : tcards.length) === 0) { showToast("NOTHING LOADED — NOT SAVING AN EMPTY FILE"); return; }
+    const what = isUnits ? `the unit data (${units.length} units)` : `the card library (${tcards.length} cards, with art and sheet tracking)`;
+    if (!window.confirm(`Save ${what} to GitHub?\n\nThis replaces the version on the ${GH.branch} branch of ${GH.owner}/${GH.repo}.`)) return;
+    setGhBusy("PREPARING…");
+    try {
+      const enc = new TextEncoder();
+      const files = [];
+      if (isUnits) {
+        files.push({ path: "GundamAssembleUnits.lua", bytes: enc.encode(toLua(units) + "\n") }); // ends with a newline, like the file on GitHub
+      } else {
+        files.push({ path: TC_JSON_NAME, bytes: enc.encode(tcLibraryJSON(tcards, tcFormat, tts) + "\n") });
+        const ext = TC_FORMATS[tcFormat].ext;
+        const withArt = tcAssignFileNames(tcards).filter(c => c.art);
+        for (let i = 0; i < withArt.length; i++) {
+          setGhBusy(`PREPARING ART ${i + 1}/${withArt.length}…`);
+          const blob = await tcArtBlob(withArt[i].art, tcFormat);
+          files.push({ path: `${TC_ART_DIR}/${withArt[i].file}.${ext}`, bytes: new Uint8Array(await blob.arrayBuffer()) });
+        }
+      }
+      const res = await ghCommitFiles(token, files, `Editor v${EDITOR_VERSION}: update ${isUnits ? "unit data" : "card data"} (${todayStr()})`, setGhBusy);
+      showToast(res.changed.length ? `SAVED ${res.changed.length} FILE(S) TO GITHUB` : "GITHUB IS ALREADY UP TO DATE");
+    } catch (e) {
+      console.error(e);
+      showToast("GITHUB SAVE FAILED — " + (e.status === 401 ? "TOKEN REJECTED" : e.status === 403 || e.status === 404 ? "TOKEN CANNOT WRITE TO THE REPO" : e.message));
+    }
+    setGhBusy("");
+  };
 
   // Load the current unit list from GitHub. replace=true swaps the list out
   // (used on startup and by the RELOAD button); false appends.
@@ -2056,6 +2301,7 @@ function App() {
       if (!Array.isArray(d.cards)) throw new Error("bad format");
       const hydrated = await Promise.all(d.cards.map(c => tcHydrateCard(c, tcGithubArtLoader)));
       setTcards(hydrated);
+      importTracking(d);
       const missing = hydrated.filter((c, i) => d.cards[i].artFile && !c.art).length;
       showToast(`${d.cards.length} CARD(S) LOADED FROM GITHUB` + (missing ? ` — ${missing} ART FILE(S) MISSING` : ""));
       return true;
@@ -2082,11 +2328,11 @@ function App() {
   const changeFormat = (f) => { setTcFormat(f); tcDB.set("ga_tactics_format", f); };
   const cardJsonRef = useRef();
   const tcCopyJSON = async () => {
-    const text = tcLibraryJSON(tcards, tcFormat);
+    const text = tcLibraryJSON(tcards, tcFormat, tts);
     try { await navigator.clipboard.writeText(text); showToast("JSON COPIED TO CLIPBOARD"); }
     catch { cardJsonRef.current?.select(); document.execCommand("copy"); showToast("JSON COPIED TO CLIPBOARD"); }
   };
-  const tcDownloadJSON = () => tcDownload(new Blob([tcLibraryJSON(tcards, tcFormat)], { type: "application/json" }), TC_JSON_NAME);
+  const tcDownloadJSON = () => tcDownload(new Blob([tcLibraryJSON(tcards, tcFormat, tts)], { type: "application/json" }), TC_JSON_NAME);
   // Load a JSON file from disk. Art is looked up in the output folder's CardArt/ (if one is set) and then on GitHub.
   const tcLoadJSON = (e) => {
     const f = e.target.files[0]; e.target.value = ""; if (!f) return;
@@ -2101,6 +2347,7 @@ function App() {
         const incoming = await Promise.all(d.cards.map(c => tcHydrateCard(c, loader)));
         const replace = tcards.length === 0 || window.confirm("Replace the current card library? (Cancel = append)");
         setTcards(prev => replace ? incoming : [...prev, ...incoming]);
+        if (replace) importTracking(d);
         showToast(`${incoming.length} CARD(S) LOADED`);
       } catch { showToast("COULD NOT READ JSON"); }
     };
@@ -2315,6 +2562,9 @@ function App() {
           <button className="btn btn-sm mode-toggle" onClick={() => { setMode(m => m === "units" ? "cards" : "units"); setEditing(null); setTcEditing(null); }}>
             {mode === "units" ? "TACTICS CARD EDITOR ▸" : "◂ UNIT DATA EDITOR"}
           </button>
+          <button className="btn btn-sm" onClick={() => setShowGh(true)} title="GitHub access token for SAVE TO GITHUB">{ghToken.trim() ? "GITHUB ✓" : "GITHUB SETUP"}</button>
+          <button className="btn btn-sm btn-accent2" onClick={saveToGithub} disabled={!!ghBusy || (mode === "units" ? units.length === 0 : tcards.length === 0)}
+            title={mode === "units" ? "Commit GundamAssembleUnits.lua to GitHub" : "Commit the card JSON (with sheet tracking) and any new or changed art to GitHub"}>SAVE TO GITHUB</button>
           {mode === "cards" ? (
             <React.Fragment>
               <input type="file" ref={tcFileRef} accept=".json" style={{ display: "none" }} onChange={tcLoadJSON} />
@@ -2339,7 +2589,7 @@ function App() {
         </div>
       </div>
 
-      {mode === "cards" && <TacticsCardEditor cards={tcards} setCards={setTcards} showToast={showToast} editing={tcEditing} setEditing={setTcEditing} folderRef={tcFolderRef} format={tcFormat} setFormat={changeFormat} unitNames={units.map(u => u.name).filter(Boolean)} />}
+      {mode === "cards" && <TacticsCardEditor cards={tcards} setCards={setTcards} showToast={showToast} editing={tcEditing} setEditing={setTcEditing} folderRef={tcFolderRef} format={tcFormat} setFormat={changeFormat} unitNames={units.map(u => u.name).filter(Boolean)} tts={tts} saveTts={saveTts} />}
 
       {mode === "units" && <React.Fragment>
       <div className="main">
@@ -2599,7 +2849,7 @@ function App() {
               <textarea
                 ref={cardJsonRef}
                 readOnly
-                value={tcLibraryJSON(tcards, tcFormat)}
+                value={tcLibraryJSON(tcards, tcFormat, tts)}
                 onClick={(e) => e.target.select()}
                 style={{
                   width: "100%", height: "100%", minHeight: "400px",
@@ -2696,6 +2946,33 @@ function App() {
         </div>
       )}
 
+      {showGh && (
+        <div className="lua-modal-backdrop" onClick={() => setShowGh(false)}>
+          <div className="lua-modal" style={{ maxWidth: 640, height: "auto" }} onClick={(e) => e.stopPropagation()}>
+            <div className="lua-modal-header">
+              <div className="editor-title">GITHUB ACCESS</div>
+              <button className="remove-btn" onClick={() => setShowGh(false)}>✕</button>
+            </div>
+            <div className="gh-body">
+              <div className="tc-hint" style={{ textAlign: "left", lineHeight: 1.7 }}>
+                SAVE TO GITHUB commits straight to {GH.owner}/{GH.repo} ({GH.branch}). It needs a fine-grained personal access token:
+                GitHub → Settings → Developer settings → Fine-grained tokens → Only select repositories: {GH.repo} → Repository permissions → Contents: Read and write.
+                The token is stored in this browser only. It is never put in this file, the JSON or the repo.
+              </div>
+              <div className="field-group">
+                <label>Access Token</label>
+                <input type="password" value={ghToken} onChange={(e) => saveGhToken(e.target.value)} placeholder="github_pat_..." autoComplete="off" />
+              </div>
+            </div>
+            <div className="lua-modal-footer">
+              <button className="btn btn-sm btn-danger" style={{ marginRight: "auto" }} disabled={!ghToken} onClick={() => saveGhToken("")}>FORGET TOKEN</button>
+              <button className="btn btn-sm" disabled={!ghToken.trim()} onClick={ghTest}>TEST TOKEN</button>
+              <button className="btn btn-sm btn-primary" onClick={() => setShowGh(false)}>DONE</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {ghBusy && <div className="tc-export-overlay">{ghBusy}</div>}
       {toast && <div className="toast">{toast}</div>}
     </div>
   );
