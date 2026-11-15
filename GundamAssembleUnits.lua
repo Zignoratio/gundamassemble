@@ -1091,7 +1091,7 @@ return {
       faction="Asticassia",
       technical_name="XVX-016",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/16660102253366289694/0E31974C65369BCE3CDB9B7E5FBA3F2E9D61296C/",
-      expansion="EX02",
+      expansion="EX02-U01",
       hp="16",
       vp="10",
       timeline="1",
@@ -1140,7 +1140,7 @@ return {
       faction="Asticassia",
       technical_name="FP/A-77",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/12380668107142337372/907704BEDC7F5021F32B76E2E7AA02EE9BF9CF70/",
-      expansion="EX02",
+      expansion="EX02-U02",
       hp="12",
       vp="7",
       timeline="2",
@@ -1284,7 +1284,7 @@ return {
       faction="Asticassia",
       technical_name="MD-0064",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/9558326408268881955/61125EE376E377E9611493927E36483FEBBF6E0D/",
-      expansion="EX02",
+      expansion="EX02-U03",
       hp="13",
       vp="8",
       timeline="3",
@@ -1644,6 +1644,132 @@ return {
          },
       },
       abilities={
+      }
+   },
+   {
+      name="Fusion Charges",
+      pilot="",
+      faction="",
+      technical_name="",
+      splash_art="",
+      expansion="DX01",
+      hp="",
+      vp="",
+      timeline="",
+      attacks={
+         {
+            name="",
+            cost="",
+            range="",
+            strength="",
+            effects={
+               "After an enemy unit ends a movement on or adjactent to an allied Fusion Charge: Detonate that Fusion Charge - The unit that placed it deals [Damage 1] to each enemy on or adjacent to it and applies [Fracture] to those enemies. Then, remove the Fusion Charge token from the game.",
+            }
+         },
+      },
+      abilities={
+      }
+   },
+   {
+      name="Corax",
+      pilot="",
+      faction="  Asticassia - Remote Weapon System",
+      technical_name="",
+      splash_art="",
+      expansion="EX02-U02A",
+      extra_for="Gundam Pharact [Silent Hunter]",
+      hp="1",
+      vp="2",
+      timeline="",
+      attacks={
+         {
+            name="",
+            cost="",
+            range="",
+            strength="",
+            effects={
+            }
+         },
+      },
+      abilities={
+         {
+            name="Hold In Position",
+            keywords="[Ongoing] Allies gain [Accuracy +1] while attacking enemies adjacent to this.",
+            description=""
+         },
+         {
+            name="RWS Return",
+            keywords="[Ongoing] Return this RWS to Gundam Aerial's supply when this RWS or Gundam Aerial is defeated.",
+            description=""
+         },
+      }
+   },
+   {
+      name="Iśvara B Type",
+      pilot="",
+      faction="Asticassia - Remote Weapon System",
+      technical_name="",
+      splash_art="",
+      expansion="EX02-U03A",
+      extra_for="Darilbalde [Frontline Duelist]",
+      hp="1",
+      vp="2",
+      timeline="",
+      attacks={
+         {
+            name="",
+            cost="",
+            range="",
+            strength="",
+            effects={
+            }
+         },
+      },
+      abilities={
+         {
+            name="Beam Saber Drones",
+            keywords="[Response]",
+            description="After this is deployed or repositioned: Deal [Damage 1] to an adjacent enemy unit."
+         },
+         {
+            name="RWS Return",
+            keywords="[Ongoing]",
+            description="Return this RWS to Daribalde's supply when this RWS or Daribalde is defeated."
+         },
+      }
+   },
+   {
+      name="BIT Stave",
+      pilot="",
+      faction="",
+      technical_name="",
+      splash_art="",
+      expansion="EX02-U01A",
+      extra_for="Gundam Aerial [Protective Heroine]",
+      hp="1",
+      vp="2",
+      timeline="",
+      attacks={
+         {
+            name="",
+            cost="",
+            range="",
+            strength="",
+            effects={
+            }
+         },
+      },
+      abilities={
+         {
+            name="Blocking BIT",
+            keywords="[Ongoing]",
+            description="Allies adjacent to this are dealt [Damage -1] from enemy attacks."
+         },
+         {
+            name="RWS Return",
+            keywords="[Ongoing]",
+            description="Return this RWS to Gundam Aerial's supply when this RWS or Gundam Aerial is defeated."
+         },
       }
    }
 }
