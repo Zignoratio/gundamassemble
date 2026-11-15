@@ -2500,12 +2500,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 435,
+      "artH": 618,
+      "artX": 122.666748046875,
+      "artY": 124.66665649414062,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "minefield_cascade.webp"
     },
     {
       "_key": "39ee17b1",
@@ -2530,12 +2530,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 896,
+      "artH": 1500,
+      "artX": 51.3333740234375,
+      "artY": -20.666656494140625,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "federation_advance.webp"
     },
     {
       "_key": "544fb1cd",
@@ -2560,12 +2560,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 834,
+      "artH": 626,
+      "artX": 52.6666259765625,
+      "artY": 73.33334350585938,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "pin_down.webp"
     },
     {
       "_key": "725339f1",
@@ -2590,12 +2590,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1000,
+      "artH": 750,
+      "artX": 86.6666259765625,
+      "artY": 11.33331298828125,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "white_base_support.webp"
     },
     {
       "_key": "158faf5f",
@@ -2620,12 +2620,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1017,
+      "artX": 20,
+      "artY": -13.33331298828125,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "federation_fire.webp"
     },
     {
       "_key": "ae2b3bbb",
@@ -2650,12 +2650,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1013,
+      "artX": -18.6666259765625,
+      "artY": 50,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "formation_defense.webp"
     },
     {
       "_key": "277012ef",
@@ -2680,12 +2680,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1013,
+      "artX": 28,
+      "artY": 26,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "contest_ground.webp"
     },
     {
       "_key": "da51f3ec",
@@ -2710,12 +2710,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1255,
+      "artH": 953,
+      "artX": 62.666748046875,
+      "artY": 52,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "patch_system.webp"
     },
     {
       "_key": "3d0d844f",
@@ -2740,12 +2740,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 588,
+      "artH": 800,
+      "artX": 16.666748046875,
+      "artY": 24,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "defensive_matrix.webp"
     },
     {
       "_key": "68d28623",
@@ -2770,12 +2770,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
-      "artFile": null
+      "artW": 1000,
+      "artH": 613,
+      "artX": 1.333251953125,
+      "artY": -45.999969482421875,
+      "artZoom": 122,
+      "artFile": "oggo_reinforcements.webp"
     },
     {
       "_key": "f27d74b9",
@@ -2800,12 +2800,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
-      "artFile": null
+      "artW": 1000,
+      "artH": 750,
+      "artX": -15.3333740234375,
+      "artY": 198,
+      "artZoom": 120,
+      "artFile": "clean_shot.webp"
     },
     {
       "_key": "18fb6025",
@@ -2830,12 +2830,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 635,
+      "artH": 762,
+      "artX": 107.3333740234375,
+      "artY": 207.33331298828125,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "guerrilla_tactics.webp"
     },
     {
       "_key": "a2ca2365",
@@ -2860,12 +2860,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1800,
+      "artH": 1013,
+      "artX": -7.3333740234375,
+      "artY": 52,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "through_the_debris.webp"
     },
     {
       "_key": "b8ccfca2",
@@ -2890,12 +2890,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
-      "artZoom": 100,
-      "artFile": null
+      "artW": 1000,
+      "artH": 563,
+      "artX": 25.3333740234375,
+      "artY": 148.66668701171875,
+      "artZoom": 120,
+      "artFile": "zeonic_devotion.webp"
     },
     {
       "_key": "c480dfdb",
@@ -2920,12 +2920,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 893,
+      "artH": 1500,
+      "artX": 72,
+      "artY": -8,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "colony_suppression.webp"
     },
     {
       "_key": "3b8c94c3",
@@ -2950,12 +2950,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1000,
+      "artH": 563,
+      "artX": 76.6666259765625,
+      "artY": 39.333343505859375,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "zeon_fortification.webp"
     },
     {
       "_key": "857a0229",
@@ -2980,12 +2980,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 1000,
+      "artH": 560,
+      "artX": 35.3333740234375,
+      "artY": 26.666656494140625,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "underdog_strike.webp"
     },
     {
       "_key": "ea722682",
@@ -3010,12 +3010,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 515,
+      "artH": 388,
+      "artX": 170,
+      "artY": 97.33334350585938,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "amuro_s_guidance.webp"
     },
     {
       "_key": "6ea14d35",
@@ -3040,12 +3040,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 500,
+      "artH": 500,
+      "artX": 83.3333740234375,
+      "artY": 8.666656494140625,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "casval_s_vengeance.webp"
     },
     {
       "_key": "c7411622",
@@ -3070,12 +3070,12 @@
           ""
         ]
       },
-      "artW": 0,
-      "artH": 0,
-      "artX": 0,
-      "artY": 0,
+      "artW": 888,
+      "artH": 672,
+      "artX": 62,
+      "artY": 62.666656494140625,
       "artZoom": 100,
-      "artFile": null
+      "artFile": "kycilia_s_final_stand.webp"
     }
   ]
 }
