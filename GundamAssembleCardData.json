@@ -2,6 +2,574 @@
   "version": 2,
   "type": "tactics-cards",
   "artDir": "CardArt",
+  "tts": {
+    "back": "https://steamusercontent-a.akamaihd.net/ugc/15437785444991035547/28D2B5F477E1B292F1FD870ED8EB71B179F7DF49/",
+    "sheets": {
+      "DX01": {
+        "sig": "v2-1t0tudy-36",
+        "date": "2026-11-22",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/10548187363232581735/40806D8F9292B6FC08EA3E289F6AEF7A174CD952/",
+        "urlSig": "v2-1t0tudy-36",
+        "urlDate": "2026-11-22",
+        "cards": [
+          {
+            "k": "ee034c44",
+            "n": "Last Shooting",
+            "h": "wm8qws"
+          },
+          {
+            "k": "bf1849c0",
+            "n": "Cowardly Reflex",
+            "h": "1ih480q"
+          },
+          {
+            "k": "b8a5d72a",
+            "n": "Dig In",
+            "h": "n8ogah"
+          },
+          {
+            "k": "22071013",
+            "n": "Bold Stand",
+            "h": "1431hcp"
+          },
+          {
+            "k": "273853ba",
+            "n": "Ball Reinforcements",
+            "h": "rxgfxr"
+          },
+          {
+            "k": "39ee17b1",
+            "n": "Federation Advance",
+            "h": "ibt4fm"
+          },
+          {
+            "k": "544fb1cd",
+            "n": "Pin Down",
+            "h": "scel60"
+          },
+          {
+            "k": "be3919f3",
+            "n": "Three Man Team",
+            "h": "e84vl4"
+          },
+          {
+            "k": "725339f1",
+            "n": "White Base Support",
+            "h": "1ojup62"
+          },
+          {
+            "k": "158faf5f",
+            "n": "Federation Fire",
+            "h": "11zz21j"
+          },
+          {
+            "k": "a1b01b91",
+            "n": "Federation Shield",
+            "h": "1hyh42u"
+          },
+          {
+            "k": "ae2b3bbb",
+            "n": "Formation Defense",
+            "h": "1mjy5cf"
+          },
+          {
+            "k": "277012ef",
+            "n": "Contest Ground",
+            "h": "n6ce51"
+          },
+          {
+            "k": "da51f3ec",
+            "n": "Patch System",
+            "h": "10cnf2v"
+          },
+          {
+            "k": "3d0d844f",
+            "n": "Defensive Matrix",
+            "h": "1gq451u"
+          },
+          {
+            "k": "675e848e",
+            "n": "Veteran Swing",
+            "h": "1stji14"
+          },
+          {
+            "k": "7fc71516",
+            "n": "Three-Pronged Assault",
+            "h": "1hjwunh"
+          },
+          {
+            "k": "4a24c8a0",
+            "n": "Dominion of Zeong",
+            "h": "7pyhfm"
+          },
+          {
+            "k": "4a4ac71c",
+            "n": "Minefield Cascade",
+            "h": "4s2v9k"
+          },
+          {
+            "k": "68d28623",
+            "n": "Oggo Reinforcements",
+            "h": "1kij5u4"
+          },
+          {
+            "k": "f27d74b9",
+            "n": "Clean Shot",
+            "h": "13h5zrf"
+          },
+          {
+            "k": "18fb6025",
+            "n": "Guerrilla Tactics",
+            "h": "hzz447"
+          },
+          {
+            "k": "a2ca2365",
+            "n": "Through the Debris",
+            "h": "6kjtce"
+          },
+          {
+            "k": "b8ccfca2",
+            "n": "Zeonic Devotion",
+            "h": "14gi3cf"
+          },
+          {
+            "k": "c480dfdb",
+            "n": "Colony Suppression",
+            "h": "ebkscl"
+          },
+          {
+            "k": "68d2e326",
+            "n": "Zaku Ambush Tactics",
+            "h": "ejlqfp"
+          },
+          {
+            "k": "3b8c94c3",
+            "n": "Zeon Fortification",
+            "h": "2s5qwo"
+          },
+          {
+            "k": "b3aab8af",
+            "n": "Focus",
+            "h": "1h9pdc0"
+          },
+          {
+            "k": "0973671f",
+            "n": "Shoulder Bash",
+            "h": "198n1sg"
+          },
+          {
+            "k": "857a0229",
+            "n": "Underdog Strike",
+            "h": "73kd3a"
+          },
+          {
+            "k": "9b88182d",
+            "n": "Hyperspeed",
+            "h": "r0ols6"
+          },
+          {
+            "k": "ea722682",
+            "n": "Amuro's Guidance",
+            "h": "1pcgqek"
+          },
+          {
+            "k": "a30a334d",
+            "n": "N Field Assault",
+            "h": "76ig3c"
+          },
+          {
+            "k": "6ea14d35",
+            "n": "Casval's Vengeance",
+            "h": "tan6x3"
+          },
+          {
+            "k": "c7411622",
+            "n": "Kycilia's Final Stand",
+            "h": "1kfm735"
+          },
+          {
+            "k": "128c3b54",
+            "n": "N Field Defense",
+            "h": "uz82u8"
+          }
+        ]
+      },
+      "DX02": {
+        "sig": "v2-1jd31oo-2",
+        "date": "2026-11-14",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/14127487950379123894/D5012A264F6DEC7B69F608FB6E5AE05C5E5D0A65/",
+        "urlSig": "v2-1jd31oo-2",
+        "urlDate": "",
+        "cards": [
+          {
+            "k": "dcc349a1",
+            "n": "Locked On",
+            "h": "1sqs1l"
+          },
+          {
+            "k": "5a766084",
+            "n": "Turn of Fortune",
+            "h": "1ygnztu"
+          }
+        ]
+      },
+      "EX01": {
+        "sig": "v2-18iycf7-9",
+        "date": "2026-11-22",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/9995687475885085904/609D9A43C727717127EF01A21BB530F9BFDB95DB/",
+        "urlSig": "v2-18iycf7-9",
+        "urlDate": "2026-11-22",
+        "cards": [
+          {
+            "k": "7e6f24f7",
+            "n": "Psycho-Frame Overload",
+            "h": "1owiyea"
+          },
+          {
+            "k": "236870f2",
+            "n": "Critical Rescue",
+            "h": "82joip"
+          },
+          {
+            "k": "1097799e",
+            "n": "Swift Appropriation",
+            "h": "1u7gjgc"
+          },
+          {
+            "k": "6bcb4525",
+            "n": "Full System Burn",
+            "h": "1hnltgy"
+          },
+          {
+            "k": "aaddef62",
+            "n": "On-Site Integration",
+            "h": "1hys0fp"
+          },
+          {
+            "k": "e16d104c",
+            "n": "Salvage Systems",
+            "h": "14hita4"
+          },
+          {
+            "k": "1349a9f3",
+            "n": "Special OPs",
+            "h": "k3o8f4"
+          },
+          {
+            "k": "98cba6fe",
+            "n": "Target Reacquisition",
+            "h": "ye4fqi"
+          },
+          {
+            "k": "80090dbb",
+            "n": "Grunt's Guard",
+            "h": "rhia14"
+          }
+        ]
+      },
+      "EX02": {
+        "sig": "v2-1twz8ev-9",
+        "date": "2026-11-22",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/16853224965257837508/803D2EF9FDAC1279E3598250BFB42540B7A6A93E/",
+        "urlSig": "v2-1twz8ev-9",
+        "urlDate": "2026-11-22",
+        "cards": [
+          {
+            "k": "42933a14",
+            "n": "Bit Assault",
+            "h": "dhijka"
+          },
+          {
+            "k": "b4078d70",
+            "n": "Cold Silence",
+            "h": "krxuin"
+          },
+          {
+            "k": "773d2ee3",
+            "n": "Iśvara Assault",
+            "h": "yrsctf"
+          },
+          {
+            "k": "5c58e8ea",
+            "n": "Dismantle",
+            "h": "11jbdae"
+          },
+          {
+            "k": "7bb2cac3",
+            "n": "Drone Assault",
+            "h": "c96cw9"
+          },
+          {
+            "k": "977fc00f",
+            "n": "Interference Pattern",
+            "h": "1hlfj5f"
+          },
+          {
+            "k": "9bf08c97",
+            "n": "BIT Shield",
+            "h": "1lrpptv"
+          },
+          {
+            "k": "d59c4494",
+            "n": "Linked Strike",
+            "h": "1syyk2w"
+          },
+          {
+            "k": "1d2f30d2",
+            "n": "Interception",
+            "h": "fjk77r"
+          }
+        ]
+      },
+      "Missing_ID": {
+        "sig": "v2-5nawnz-17",
+        "date": "2026-11-22",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/14965583135430056837/6C7818E0E50617F0DBD0898835C0C24DD07CC12A/",
+        "urlSig": "v2-5nawnz-17",
+        "urlDate": "2026-11-22",
+        "cards": [
+          {
+            "k": "62ec9d4f",
+            "n": "Breaking the Line",
+            "h": "1e4k8hy"
+          },
+          {
+            "k": "307d0b6a",
+            "n": "Built to Last",
+            "h": "23bycj"
+          },
+          {
+            "k": "8de70edd",
+            "n": "Drive Them Back",
+            "h": "2xzhm9"
+          },
+          {
+            "k": "22d7b9f3",
+            "n": "Entrenched Position",
+            "h": "6xkf0i"
+          },
+          {
+            "k": "feca8cbc",
+            "n": "Exploited Chaos",
+            "h": "yjtg2w"
+          },
+          {
+            "k": "5c56ea2d",
+            "n": "Forward Artillery Position",
+            "h": "10w0w17"
+          },
+          {
+            "k": "fa79ab2b",
+            "n": "I-Field Generator",
+            "h": "1mb2569"
+          },
+          {
+            "k": "37f27963",
+            "n": "Iron Grip",
+            "h": "l1fd93"
+          },
+          {
+            "k": "98e8f4e0",
+            "n": "Last Shot Counts",
+            "h": "1y1iprt"
+          },
+          {
+            "k": "123b8d8a",
+            "n": "Lock Down the Perimeter",
+            "h": "64c3v2"
+          },
+          {
+            "k": "42e907f1",
+            "n": "Logistics Relay",
+            "h": "1tpq3so"
+          },
+          {
+            "k": "8365cfc8",
+            "n": "Rescued Extraction",
+            "h": "a6drm0"
+          },
+          {
+            "k": "010a7522",
+            "n": "Return Fire",
+            "h": "ykeo66"
+          },
+          {
+            "k": "0363a4a3",
+            "n": "Shattered Formation",
+            "h": "1smomqn"
+          },
+          {
+            "k": "90ccc53e",
+            "n": "Shield the Recovery",
+            "h": "o05p08"
+          },
+          {
+            "k": "21799203",
+            "n": "Sudden Pressure",
+            "h": "1abejad"
+          },
+          {
+            "k": "ec892149",
+            "n": "Veteran's Momentum",
+            "h": "17m6xao"
+          }
+        ]
+      },
+      "PA01": {
+        "sig": "v2-67jfpe-9",
+        "date": "2026-11-22",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/13377475749960172954/DA3FBA8792683F6ECF91D9F7419CEFEE844439E3/",
+        "urlSig": "v2-67jfpe-9",
+        "urlDate": "2026-11-22",
+        "cards": [
+          {
+            "k": "306f1aac",
+            "n": "Protective Shot",
+            "h": "1pbgaa0"
+          },
+          {
+            "k": "c81e4f68",
+            "n": "All In",
+            "h": "2pnd09"
+          },
+          {
+            "k": "2b75215f",
+            "n": "Bulwark Siege",
+            "h": "got2ge"
+          },
+          {
+            "k": "66dbd6c7",
+            "n": "Formative Strength",
+            "h": "14s1z5b"
+          },
+          {
+            "k": "31cedfed",
+            "n": "Sayla's Encouragement ",
+            "h": "1wywwkd"
+          },
+          {
+            "k": "def454de",
+            "n": "Breaker Sweep",
+            "h": "hzc6vp"
+          },
+          {
+            "k": "856172d0",
+            "n": "Systematic Elimination",
+            "h": "r4rqgf"
+          },
+          {
+            "k": "efb6658e",
+            "n": "Counter Attack",
+            "h": "18e97mi"
+          },
+          {
+            "k": "95686c6b",
+            "n": " Interference",
+            "h": "ewqvv"
+          }
+        ]
+      },
+      "ST01": {
+        "sig": "v2-hoed6e-18",
+        "date": "2026-11-14",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/9954033152870967838/053C10C45F373C9E80C76535F11FC586B619DBC7/",
+        "urlSig": "v2-hoed6e-18",
+        "urlDate": "",
+        "cards": [
+          {
+            "k": "307a939a",
+            "n": "Epic Shot",
+            "h": "1karjn2"
+          },
+          {
+            "k": "ac0d091b",
+            "n": "Sacrificial Overload",
+            "h": "1xqhql5"
+          },
+          {
+            "k": "4b224f74",
+            "n": "Iron-Blooded Tenacity",
+            "h": "tz4q5k"
+          },
+          {
+            "k": "077b46eb",
+            "n": "Armour Shatter",
+            "h": "5j6v4u"
+          },
+          {
+            "k": "7e9654a8",
+            "n": "Field Engineers",
+            "h": "1in8j3d"
+          },
+          {
+            "k": "23a5d8ad",
+            "n": "Hero's Might",
+            "h": "1emiq8w"
+          },
+          {
+            "k": "81e4593a",
+            "n": "Thrust Boosters",
+            "h": "1130ko4"
+          },
+          {
+            "k": "b197ae00",
+            "n": "Breaking Blow",
+            "h": "anqwj"
+          },
+          {
+            "k": "7677c63c",
+            "n": "Quick Block",
+            "h": "zxm9dh"
+          },
+          {
+            "k": "29d8df66",
+            "n": "Crimson Execution",
+            "h": "5kfjrd"
+          },
+          {
+            "k": "cd2630aa",
+            "n": "War Edge",
+            "h": "1rkwb4o"
+          },
+          {
+            "k": "0e0b240f",
+            "n": "Claiming Vengeance",
+            "h": "13onq2w"
+          },
+          {
+            "k": "3272be6b",
+            "n": "Armor Upgrade",
+            "h": "16hisjz"
+          },
+          {
+            "k": "84e7439a",
+            "n": "Ghost Step",
+            "h": "17f8qh0"
+          },
+          {
+            "k": "4446531c",
+            "n": "Renewed Power",
+            "h": "1shc38p"
+          },
+          {
+            "k": "a55c581e",
+            "n": "Limiter Removal",
+            "h": "1kfbk7c"
+          },
+          {
+            "k": "0ee8bc6b",
+            "n": "Neutralize",
+            "h": "thmkgf"
+          },
+          {
+            "k": "1658c94e",
+            "n": "Strikethrough",
+            "h": "5fejpe"
+          }
+        ]
+      }
+    }
+  },
   "cards": [
     {
       "_key": "98e8f4e0",
@@ -9,8 +577,9 @@
       "name": "Last Shot Counts",
       "cardId": "",
       "description": "Gundam [Demo]",
-      "tag1": "Gundam [Demo]",
-      "tag2": "",
+      "tags": [
+        "Gundam [Demo]"
+      ],
       "effect": "Gundam gains a [Strength] Upgrade. Its attacks cost [TL -1] this turn. If it defeats an enemy unit this turn, it gains an additional [Strength] Upgrade.",
       "scenario": "",
       "boxStyle": "color",
@@ -41,8 +610,9 @@
       "name": "Veteran's Momentum",
       "cardId": "",
       "description": "",
-      "tag1": "Earth Federation",
-      "tag2": "",
+      "tags": [
+        "Earth Federation"
+      ],
       "effect": "Your active unit gains +2 [Strength] this turn. Its attacks count 7's and 8's as [Critical] this turn.",
       "scenario": "",
       "boxStyle": "auto",
@@ -73,8 +643,10 @@
       "name": "Federation Shield",
       "cardId": "DX01-T11",
       "description": "",
-      "tag1": "",
-      "tag2": "Earth Federation",
+      "tags": [
+        "",
+        "Earth Federation"
+      ],
       "effect": "[After Attack Roll] An allied Earth Federation defender is dealt [Damage -2] this attack and gains 1 [Shield] Upgrade.",
       "scenario": "",
       "boxStyle": "auto",
@@ -105,8 +677,9 @@
       "name": "Forward Artillery Position",
       "cardId": "",
       "description": "Guncannon [Demo]",
-      "tag1": "Guncannon [Demo]",
-      "tag2": "",
+      "tags": [
+        "Guncannon [Demo]"
+      ],
       "effect": "Guncannon gains an [Energy] Upgrade. It gains +1 [Strength] this turn for each Garrison you've rescued.",
       "scenario": "",
       "boxStyle": "color",
@@ -137,8 +710,9 @@
       "name": "Return Fire",
       "cardId": "",
       "description": "",
-      "tag1": "Earth Federation",
-      "tag2": "",
+      "tags": [
+        "Earth Federation"
+      ],
       "effect": "[After Combat Damage] The defending allied unit makes an attack at [TL -1].",
       "scenario": "",
       "boxStyle": "auto",
@@ -169,8 +743,9 @@
       "name": "Shield the Recovery",
       "cardId": "",
       "description": "",
-      "tag1": "Earth Federation",
-      "tag2": "",
+      "tags": [
+        "Earth Federation"
+      ],
       "effect": "After an allied unit rescues a Garrison: it gains a [Shield] Upgrade.",
       "scenario": "",
       "boxStyle": "auto",
@@ -201,8 +776,9 @@
       "name": "Entrenched Position",
       "cardId": "",
       "description": "Guntank [Demo]",
-      "tag1": "Guntank [Demo]",
-      "tag2": "",
+      "tags": [
+        "Guntank [Demo]"
+      ],
       "effect": "Guntank gains a [Shield] Upgrade. It captures an objective it is on or adjacent to.",
       "scenario": "",
       "boxStyle": "color",
@@ -233,8 +809,9 @@
       "name": "Built to Last",
       "cardId": "",
       "description": "",
-      "tag1": "Earth Federation",
-      "tag2": "",
+      "tags": [
+        "Earth Federation"
+      ],
       "effect": "Your active unit gains 1 hit point for each Upgrade on it (cannot exceed its maximum hit points).",
       "scenario": "",
       "boxStyle": "auto",
@@ -265,8 +842,9 @@
       "name": "Lock Down the Perimeter",
       "cardId": "",
       "description": "",
-      "tag1": "Earth Federation",
-      "tag2": "",
+      "tags": [
+        "Earth Federation"
+      ],
       "effect": "Your active unit destroys 1 Upgrade on an enemy unit within [Range 3] and [Slows] that unit.",
       "scenario": "",
       "boxStyle": "auto",
@@ -297,8 +875,9 @@
       "name": "Crimson Execution",
       "cardId": "ST01-T10",
       "description": "Char's Zaku II [Fast Encounter]",
-      "tag1": "Fast Encounter",
-      "tag2": "",
+      "tags": [
+        "Fast Encounter"
+      ],
       "effect": "Char's Zaku II makes an additional Dash at [TL 0]. Then it makes an additional Heat Hawk attack at [TL 0].",
       "scenario": "",
       "boxStyle": "color",
@@ -329,8 +908,9 @@
       "name": "Exploited Chaos",
       "cardId": "",
       "description": "",
-      "tag1": "Zeon",
-      "tag2": "",
+      "tags": [
+        "Zeon"
+      ],
       "effect": "[After Combat Damage] The attacking allied unit gains an [Energy] Upgrade and a [Strength] Upgrade.",
       "scenario": "",
       "boxStyle": "auto",
@@ -361,8 +941,9 @@
       "name": "Sudden Pressure",
       "cardId": "",
       "description": "",
-      "tag1": "Zeon",
-      "tag2": "",
+      "tags": [
+        "Zeon"
+      ],
       "effect": "Your active unit deals 2 [Damage] to each enemy unit and Garrison within [Range 3].",
       "scenario": "",
       "boxStyle": "auto",
@@ -393,8 +974,9 @@
       "name": "Rescued Extraction",
       "cardId": "",
       "description": "Zaku II [Line Breaker] [Demo]",
-      "tag1": "Zaku II [Line Breaker] [Demo]",
-      "tag2": "",
+      "tags": [
+        "Zaku II [Line Breaker] [Demo]"
+      ],
       "effect": "Zaku II (Linebreaker) rescues an allied Garrison within [Range 3] at [TL 0]. Then it gains an [Energy] Upgrade.",
       "scenario": "",
       "boxStyle": "color",
@@ -425,8 +1007,9 @@
       "name": "Breaking the Line",
       "cardId": "",
       "description": "",
-      "tag1": "Zeon",
-      "tag2": "",
+      "tags": [
+        "Zeon"
+      ],
       "effect": "Your active unit destroys 1 Upgrade on an enemy unit within [Range 3] and [Fractures] that unit.",
       "scenario": "",
       "boxStyle": "auto",
@@ -457,8 +1040,9 @@
       "name": "Logistics Relay",
       "cardId": "",
       "description": "",
-      "tag1": "Zeon",
-      "tag2": "",
+      "tags": [
+        "Zeon"
+      ],
       "effect": "After an allied unit rescues a Garrison: it gains a [Speed] Upgrade.",
       "scenario": "",
       "boxStyle": "auto",
@@ -489,8 +1073,9 @@
       "name": "Iron Grip",
       "cardId": "",
       "description": "Zaku II [Enforcer] [Demo]",
-      "tag1": "Enforcer [Demo]",
-      "tag2": "",
+      "tags": [
+        "Enforcer [Demo]"
+      ],
       "effect": "After an enemy unit ends its movement adjacent to Zaku II Enforcer: it deals 3 [Damage] to that enemy unit.",
       "scenario": "",
       "boxStyle": "color",
@@ -521,8 +1106,9 @@
       "name": "Drive Them Back",
       "cardId": "",
       "description": "",
-      "tag1": "Zeon",
-      "tag2": "",
+      "tags": [
+        "Zeon"
+      ],
       "effect": "Your active unit Moves 2. Then Push 1 an adjacent enemy unit and deal 1 [Damage] to it.",
       "scenario": "",
       "boxStyle": "auto",
@@ -553,8 +1139,9 @@
       "name": "Shattered Formation",
       "cardId": "",
       "description": "",
-      "tag1": "Zeon",
-      "tag2": "",
+      "tags": [
+        "Zeon"
+      ],
       "effect": "[After Combat Damage] If the defending allied unit survives the attack, it deals 2 [Damage] to the attacker.",
       "scenario": "",
       "boxStyle": "auto",
@@ -585,8 +1172,7 @@
       "name": "Armour Shatter",
       "cardId": "ST01-T04",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Fracture] an adjacent enemy unit.",
       "scenario": "",
       "boxStyle": "auto",
@@ -617,8 +1203,7 @@
       "name": "Breaking Blow",
       "cardId": "ST01-T08",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Before Attack Roll] The attacker gains [Strength +2] for this attack. Destroy 1 Upgrade on each target.",
       "scenario": "",
       "boxStyle": "auto",
@@ -649,8 +1234,9 @@
       "name": "Epic Shot",
       "cardId": "ST01-T01",
       "description": "Gundam [Legendary Hero]",
-      "tag1": "Legendary Hero",
-      "tag2": "",
+      "tags": [
+        "Legendary Hero"
+      ],
       "effect": "",
       "scenario": "",
       "boxStyle": "auto",
@@ -682,8 +1268,7 @@
       "name": "Field Engineers",
       "cardId": "ST01-T05",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit repairs 4 [Damage].",
       "scenario": "",
       "boxStyle": "auto",
@@ -714,8 +1299,7 @@
       "name": "Ghost Step",
       "cardId": "ST01-T14",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit moves 2 hexes.",
       "scenario": "",
       "boxStyle": "auto",
@@ -746,8 +1330,10 @@
       "name": "Hyperspeed",
       "cardId": "DX01-T31 (S)",
       "description": "Gundam [Commited to the End]",
-      "tag1": "Committed to the End",
-      "tag2": "Earth Federation",
+      "tags": [
+        "Committed to the End",
+        "Earth Federation"
+      ],
       "effect": "Gundam's Hyper Bazooka costs [Timeline -3] this activation (min. 1).",
       "scenario": "Scenario : Operation Star One",
       "boxStyle": "auto",
@@ -778,8 +1364,7 @@
       "name": "I-Field Generator",
       "cardId": "",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit gains 1 [Shield] Upgrade.",
       "scenario": "",
       "boxStyle": "auto",
@@ -810,8 +1395,9 @@
       "name": "Iron-Blooded Tenacity",
       "cardId": "ST01-T03",
       "description": "Gundam Barbatos Lupus Rex [Final Stand]",
-      "tag1": "Gundam Barbatos Lupus Rex",
-      "tag2": "",
+      "tags": [
+        "Gundam Barbatos Lupus Rex"
+      ],
       "effect": "When Gundam Barbatos Lupus Rex would be defeated: Set its HP to 1 instead. It Moves 2 and makes a Rex Claws attack at [TL 0].",
       "scenario": "",
       "boxStyle": "color",
@@ -842,8 +1428,7 @@
       "name": "Limiter Removal",
       "cardId": "ST01-T16",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Before Attack Roll] This attack gains +3 [Strength].",
       "scenario": "",
       "boxStyle": "auto",
@@ -874,8 +1459,7 @@
       "name": "Neutralize",
       "cardId": "ST01-T17",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Before Attack Roll] A defender is dealt [Damage -2] this attack and destroys 1 Upgrade on the attacker.",
       "scenario": "",
       "boxStyle": "auto",
@@ -906,8 +1490,7 @@
       "name": "Quick Block",
       "cardId": "ST01-T09",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[After Attack Roll] A defender is dealt [Damage -3] this attack.",
       "scenario": "",
       "boxStyle": "auto",
@@ -938,8 +1521,7 @@
       "name": "Renewed Power",
       "cardId": "ST01-T15",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit gains 1 [Strength] Upgrade.",
       "scenario": "",
       "boxStyle": "auto",
@@ -970,8 +1552,9 @@
       "name": "Sacrificial Overload",
       "cardId": "ST01-T02",
       "description": "Wing Gundam Zero (EW) [Wing of Destruction]",
-      "tag1": "Wing Gundam Zero",
-      "tag2": "",
+      "tags": [
+        "Wing Gundam Zero"
+      ],
       "effect": "[After Combat Damage] If Wing Gundam Zero attacked, deal 2 [Damage] to it and to each target.",
       "scenario": "",
       "boxStyle": "color",
@@ -1002,8 +1585,7 @@
       "name": "Strikethrough",
       "cardId": "ST01-T18",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[After Attack Roll] This attack deals +1 [Damage].",
       "scenario": "",
       "boxStyle": "auto",
@@ -1034,8 +1616,9 @@
       "name": "Three Man Team",
       "cardId": "DX01-T08",
       "description": "",
-      "tag1": "Earth Federation",
-      "tag2": "",
+      "tags": [
+        "Earth Federation"
+      ],
       "effect": "Your allied (RX-78-2) Gundam, (RX-77-2) Guncannon, and (RX-75) Guntank may each make an additional [Timeline 2] attack at [Timeline 1].",
       "scenario": "",
       "boxStyle": "auto",
@@ -1066,8 +1649,7 @@
       "name": "Thrust Boosters",
       "cardId": "ST01-T07",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit gains 1 [Speed] Upgrade.",
       "scenario": "",
       "boxStyle": "auto",
@@ -1098,8 +1680,9 @@
       "name": "War Edge",
       "cardId": "ST01-T11",
       "description": "Gundam Epyon (EW) [Crimson Cataclysm]",
-      "tag1": "Gundam Epyon",
-      "tag2": "",
+      "tags": [
+        "Gundam Epyon"
+      ],
       "effect": "",
       "scenario": "",
       "boxStyle": "auto",
@@ -1131,8 +1714,7 @@
       "name": "Hero's Might",
       "cardId": "ST01-T06",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "If you've Rescued 3 or more Garrisons, your active unit gains [Energy +2].",
       "scenario": "",
       "boxStyle": "auto",
@@ -1161,8 +1743,9 @@
       "name": "Claiming Vengeance",
       "cardId": "ST01-T12",
       "description": "Gundam Vidar [Cold Justice]",
-      "tag1": "Cold Justice",
-      "tag2": "",
+      "tags": [
+        "Cold Justice"
+      ],
       "effect": "",
       "scenario": "",
       "boxStyle": "auto",
@@ -1192,8 +1775,7 @@
       "name": "Armor Upgrade",
       "cardId": "ST01-T13",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit gains 1 [Shield] Upgrade.",
       "scenario": "",
       "boxStyle": "auto",
@@ -1222,8 +1804,7 @@
       "name": "Turn of Fortune",
       "cardId": "DX02-T13",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[After Attack Roll] Set 1 of those dice to a [Critical]",
       "scenario": "",
       "boxStyle": "auto",
@@ -1252,8 +1833,7 @@
       "name": "Locked On",
       "cardId": "DX02-T12",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Before Attack Roll] The attacker gains 2 [Accuracy] this attack.",
       "scenario": "",
       "boxStyle": "auto",
@@ -1282,8 +1862,9 @@
       "name": "Psycho-Frame Overload",
       "cardId": "EX01-T01",
       "description": "Unicorn Gundam (Destroy Mode) [Laplace's Guardian]",
-      "tag1": "Laplace's Guardian",
-      "tag2": "",
+      "tags": [
+        "Laplace's Guardian"
+      ],
       "effect": "Unicorn Gundam deals [Damage] equal to that number of Upgrades on it to an enemy within [Range 2]",
       "scenario": "",
       "boxStyle": "color",
@@ -1312,8 +1893,9 @@
       "name": "Dominion of Zeong",
       "cardId": "DX01-T18",
       "description": "Zeong [Zeon's Final Weapon]",
-      "tag1": "Zeon's Final Weapon",
-      "tag2": "",
+      "tags": [
+        "Zeon's Final Weapon"
+      ],
       "effect": "Zeong deals [Damage 1] to each enemy within [Range 3]",
       "scenario": "",
       "boxStyle": "color",
@@ -1342,8 +1924,9 @@
       "name": "Swift Appropriation",
       "cardId": "EX01-T03",
       "description": "Delta Plus [Rapid Response]",
-      "tag1": "Rapid Response",
-      "tag2": "",
+      "tags": [
+        "Rapid Response"
+      ],
       "effect": "Delta Plus takes an [Energy] and 1 Upgrade from a unit within [Range 3]",
       "scenario": "",
       "boxStyle": "color",
@@ -1372,8 +1955,9 @@
       "name": "Critical Rescue",
       "cardId": "EX01-T02",
       "description": "Torohachi [Petite Mobile Suit]",
-      "tag1": "Petite Mobile Suit",
-      "tag2": "",
+      "tags": [
+        "Petite Mobile Suit"
+      ],
       "effect": "Torohachi Moves 5. After it ends its movement, it Rescues each Allied Garrison it moved adjacent to",
       "scenario": "",
       "boxStyle": "color",
@@ -1402,8 +1986,9 @@
       "name": "Cowardly Reflex",
       "cardId": "DX01-T02",
       "description": "Guncannon [Bastion of Fire]",
-      "tag1": "Bastion of Fire",
-      "tag2": "",
+      "tags": [
+        "Bastion of Fire"
+      ],
       "effect": "After an enemy ends its movement within [Range 3] of Guncannon: Guncannon moves 3",
       "scenario": "",
       "boxStyle": "color",
@@ -1432,8 +2017,9 @@
       "name": "Bold Stand",
       "cardId": "DX01-T04",
       "description": "GM [Federation Backbone]",
-      "tag1": "Federation Backbone",
-      "tag2": "",
+      "tags": [
+        "Federation Backbone"
+      ],
       "effect": "[Before Attack Roll] GM can use Challenge on units within [Range 4] this attack. GM is dealt [Damage -2] this attack",
       "scenario": "",
       "boxStyle": "color",
@@ -1462,8 +2048,9 @@
       "name": "Bit Assault",
       "cardId": "EX02-T01",
       "description": "Gundam Aerial [Protective Heroine]",
-      "tag1": "Protective Heroine",
-      "tag2": "",
+      "tags": [
+        "Protective Heroine"
+      ],
       "effect": "Gundam repositions all ally and enemy Remote Weapon Systems onto any empty hexes on the battlefield. Each RWS deals [Damage 1] to an enemy unit adjacent to it.",
       "scenario": "",
       "boxStyle": "color",
@@ -1492,8 +2079,9 @@
       "name": "Ball Reinforcements",
       "cardId": "DX01-T05",
       "description": "Ball [Tactical Pod]",
-      "tag1": "Tactical Pod",
-      "tag2": "",
+      "tags": [
+        "Tactical Pod"
+      ],
       "effect": "Add an Ball Reinforcement to your Reserve and place its Timeline token at the end of the next round. After it is defeated, remove both the unit and its Timeline token from the game.",
       "scenario": "",
       "boxStyle": "color",
@@ -1522,8 +2110,9 @@
       "name": "Last Shooting",
       "cardId": "DX01-T01",
       "description": "Gundam [Commited to the End]",
-      "tag1": "Commited to the End",
-      "tag2": "",
+      "tags": [
+        "Commited to the End"
+      ],
       "effect": "Beam Rifle\nTimeline 0, Range 4, Strength 5\n\nWhen Gundam would be defeated by an attacker, before returning it to your Reserve, make this attack.\n[Critical][Damage+5]",
       "scenario": "",
       "boxStyle": "color",
@@ -1552,8 +2141,9 @@
       "name": "N Field Assault",
       "cardId": "DX01-T33 (S)",
       "description": "",
-      "tag1": "Earth Federation",
-      "tag2": "",
+      "tags": [
+        "Earth Federation"
+      ],
       "effect": "Your active unit gains 1 [Upgrade] of your choice. If you control the Vantage Point, it gains 1 [Upgrade] of each type instead",
       "scenario": "Operation Star One",
       "boxStyle": "dark",
@@ -1582,8 +2172,9 @@
       "name": "N Field Defense",
       "cardId": "DX01-T36 (S)",
       "description": "",
-      "tag1": "Zeon",
-      "tag2": "",
+      "tags": [
+        "Zeon"
+      ],
       "effect": "When an allied unit redeploys: It redeploys on or adjacent to the Vantage Point",
       "scenario": "Scenario: Operation Star One",
       "boxStyle": "dark",
@@ -1612,8 +2203,9 @@
       "name": "On-Site Integration",
       "cardId": "EX01-T05",
       "description": "",
-      "tag1": "Londo Bell",
-      "tag2": "",
+      "tags": [
+        "Londo Bell"
+      ],
       "effect": "Your active unit gains 1 Upgrade of your choice",
       "scenario": "Operation Star One",
       "boxStyle": "dark",
@@ -1642,8 +2234,9 @@
       "name": "Salvage Systems",
       "cardId": "EX01-T06",
       "description": "",
-      "tag1": "Londo Bell",
-      "tag2": "",
+      "tags": [
+        "Londo Bell"
+      ],
       "effect": "Your active unit Repairs [Damage 3]. Then, if it has full HP, gain [Energy 1]",
       "scenario": "",
       "boxStyle": "dark",
@@ -1672,8 +2265,7 @@
       "name": "Shoulder Bash",
       "cardId": "DX01-T29",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit Pushes 2 an adjacent enemy.",
       "scenario": "",
       "boxStyle": "dark",
@@ -1702,8 +2294,9 @@
       "name": "Special OPs",
       "cardId": "EX01-T07",
       "description": "",
-      "tag1": "Londo Bell",
-      "tag2": "",
+      "tags": [
+        "Londo Bell"
+      ],
       "effect": "Up to three of your Londo Bell units on the battlefield gain 1 different Upgrade of your choice",
       "scenario": "",
       "boxStyle": "dark",
@@ -1732,8 +2325,9 @@
       "name": "Target Reacquisition",
       "cardId": "EX01-T08",
       "description": "",
-      "tag1": "Londo Bell",
-      "tag2": "",
+      "tags": [
+        "Londo Bell"
+      ],
       "effect": "[After Attack Roll] Reroll any number of misses. If you reroll 3 or more of your misses, draw 1 card",
       "scenario": "",
       "boxStyle": "dark",
@@ -1762,8 +2356,9 @@
       "name": "Three-Pronged Assault",
       "cardId": "DX01-T17",
       "description": "Rick Dom [Charging Bulwark]",
-      "tag1": "Charging Bulwark",
-      "tag2": "",
+      "tags": [
+        "Charging Bulwark"
+      ],
       "effect": "",
       "scenario": "",
       "boxStyle": "auto",
@@ -1793,8 +2388,9 @@
       "name": "Veteran Swing",
       "cardId": "DX01-T16",
       "description": "Zaku I [Early Prototype]",
-      "tag1": "Early Prototype",
-      "tag2": "",
+      "tags": [
+        "Early Prototype"
+      ],
       "effect": "[After Attack Roll] If Zaku I is attacking, set 1 die to a [Critical]. Increase collision [Damage] dealt by it this activation by 1",
       "scenario": "",
       "boxStyle": "color",
@@ -1823,8 +2419,10 @@
       "name": "Zaku Ambush Tactics",
       "cardId": "DX01-T26",
       "description": "",
-      "tag1": "",
-      "tag2": "Zeon",
+      "tags": [
+        "",
+        "Zeon"
+      ],
       "effect": "After an enemy ends its movement within [Range 3] of an allied Zeon unit: That allied unit makes an attack against that enemy.",
       "scenario": "",
       "boxStyle": "dark",
@@ -1853,8 +2451,9 @@
       "name": "Dig In",
       "cardId": "DX01-T03",
       "description": "Guntank [Long-Range Support]",
-      "tag1": "Long-Range Support",
-      "tag2": "",
+      "tags": [
+        "Long-Range Support"
+      ],
       "effect": "Guntank captures an objective it is on or adjacent to. Then, it makes an additional Quadruple Bop Missile attack at [Timeline 1]",
       "scenario": "",
       "boxStyle": "color",
@@ -1883,8 +2482,7 @@
       "name": "Focus",
       "cardId": "DX01-T28",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit gains [Energy 1]",
       "scenario": "",
       "boxStyle": "dark",
@@ -1913,8 +2511,9 @@
       "name": "Full System Burn",
       "cardId": "EX01-T04",
       "description": "",
-      "tag1": "Londo Bell",
-      "tag2": "",
+      "tags": [
+        "Londo Bell"
+      ],
       "effect": "Your active Londo Bell gains [Speed +3] and Hover this activation",
       "scenario": "",
       "boxStyle": "dark",
@@ -1943,8 +2542,7 @@
       "name": "Grunt's Guard",
       "cardId": "EX01-T09",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[After Attack Roll] A defender is dealt [Damage -4] this attack if it is worth less VP than the attacker",
       "scenario": "",
       "boxStyle": "dark",
@@ -1973,8 +2571,9 @@
       "name": "BIT Shield",
       "cardId": "EX02-T07",
       "description": "",
-      "tag1": "Asticassia",
-      "tag2": "",
+      "tags": [
+        "Asticassia"
+      ],
       "effect": "[After Attack Roll] A defender is dealt\n[Damage -3] this attack and an additional\n[Damage -1] for each allied RWS within\n[Range 2].",
       "scenario": "",
       "boxStyle": "auto",
@@ -2003,8 +2602,9 @@
       "name": "Linked Strike",
       "cardId": "EX02-T08",
       "description": "",
-      "tag1": "Asticassia",
-      "tag2": "",
+      "tags": [
+        "Asticassia"
+      ],
       "effect": "[Before Attack Roll] the attacker gains [Strength +3] this attack and an additional [Strength1] for each allied RWS adjacent to the target.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2033,8 +2633,9 @@
       "name": "Iśvara Assault",
       "cardId": "EX02-T03",
       "description": "Darilbalde [Frontline Duelist]",
-      "tag1": "Frontline Duelist",
-      "tag2": "",
+      "tags": [
+        "Frontline Duelist"
+      ],
       "effect": "Reposition Daribalde to a hex adjacent to its Iśvara B Type. Daribalde's attacks deal [Damage +2] the activation.",
       "scenario": "",
       "boxStyle": "color",
@@ -2063,8 +2664,9 @@
       "name": "Dismantle",
       "cardId": "EX02-T04",
       "description": "",
-      "tag1": "Asticassia",
-      "tag2": "",
+      "tags": [
+        "Asticassia"
+      ],
       "effect": "Your active unit destroys all Upgrades on an enemy unit adjacent to an allied RWS.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2093,8 +2695,9 @@
       "name": "Drone Assault",
       "cardId": "EX02-T05",
       "description": "",
-      "tag1": "Asticassia",
-      "tag2": "",
+      "tags": [
+        "Asticassia"
+      ],
       "effect": "Each allied RWS deals [Damage 1] to an adjacent enemy.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2123,8 +2726,9 @@
       "name": "Cold Silence",
       "cardId": "EX02-T02",
       "description": "Gundam Pharact [Silent Hunter]",
-      "tag1": "Silent Hunter",
-      "tag2": "",
+      "tags": [
+        "Silent Hunter"
+      ],
       "effect": "All enemy units adjacent to Gundam Pharact's Corax move up 1 [Timeline]",
       "scenario": "",
       "boxStyle": "color",
@@ -2153,8 +2757,9 @@
       "name": "Interference Pattern",
       "cardId": "EX02-T06",
       "description": "",
-      "tag1": "Asticassia",
-      "tag2": "",
+      "tags": [
+        "Asticassia"
+      ],
       "effect": "Your active Asticassia unit applies [Disarm] to each enemy unit within [Range 3]",
       "scenario": "",
       "boxStyle": "auto",
@@ -2183,8 +2788,7 @@
       "name": "Interception",
       "cardId": "EX02-T09",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Before Attack Roll] An allied unit gains Challenge this attack. (If this unit is not defending, swap it with a defending ally within [Range 2]. This unit becomes the defender.]",
       "scenario": "",
       "boxStyle": "auto",
@@ -2213,8 +2817,7 @@
       "name": " Interference",
       "cardId": "PA01-T09",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Before Attack Roll] The attacker gets [Accuracy -2] this attack.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2243,8 +2846,7 @@
       "name": "Counter Attack",
       "cardId": "PA01-T08",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[After Combat Damage] If the allied defender survives, it makes an attack against the attacking enemy unit at [Timeline -1].",
       "scenario": "",
       "boxStyle": "auto",
@@ -2273,8 +2875,7 @@
       "name": "Systematic Elimination",
       "cardId": "PA01-T07",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Before Attack Roll] If you've defeated 3 or more Garrisons, the attacker gains [Strength +4] this attack.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2303,8 +2904,7 @@
       "name": "Breaker Sweep",
       "cardId": "PA01-T06",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit destroys up to 2 Upgrades on an enemy unit within [Range 2].",
       "scenario": "",
       "boxStyle": "auto",
@@ -2333,8 +2933,7 @@
       "name": "Sayla's Encouragement ",
       "cardId": "PA01-T05",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "After an allied unit is dealt [Damage]: It gains [Energy 2].",
       "scenario": "",
       "boxStyle": "auto",
@@ -2363,8 +2962,10 @@
       "name": "Formative Strength",
       "cardId": "PA01-T04",
       "description": "",
-      "tag1": "",
-      "tag2": "Earth Federation",
+      "tags": [
+        "",
+        "Earth Federation"
+      ],
       "effect": "[Before Attack Roll] The attacker gains [Accuracy +2] and [Strength +2] this attack if it is within [Range 3] of another allied unit.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2393,8 +2994,9 @@
       "name": "Bulwark Siege",
       "cardId": "PA01-T03",
       "description": "Guntank [Battlefield Bombarder]",
-      "tag1": "Battlefield Bombarder",
-      "tag2": "",
+      "tags": [
+        "Battlefield Bombarder"
+      ],
       "effect": "Guntank Moves 2. Then, it applies [Fracture] to each enemy unit within [Range 2].",
       "scenario": "",
       "boxStyle": "color",
@@ -2423,8 +3025,9 @@
       "name": "All In",
       "cardId": "PA01-T02",
       "description": "Guncannon [In Position]",
-      "tag1": "In Position",
-      "tag2": "",
+      "tags": [
+        "In Position"
+      ],
       "effect": "Guncannon makes an additional 240mm Low-Recoil Cannon attack at [Timeline 0].",
       "scenario": "",
       "boxStyle": "color",
@@ -2453,8 +3056,9 @@
       "name": "Protective Shot",
       "cardId": "PA01-T01",
       "description": "Gundam [Elite Mobile Suit]",
-      "tag1": "Elite Mobile Suit",
-      "tag2": "",
+      "tags": [
+        "Elite Mobile Suit"
+      ],
       "effect": "After an enemy ends its movement within [Range 3] of this unit: Gundam immediately makes a Beam Rifle attack at [Timeline 1] against it.",
       "scenario": "",
       "boxStyle": "color",
@@ -2483,8 +3087,9 @@
       "name": "Minefield Cascade",
       "cardId": "DX01-T19",
       "description": "Zaku Minelayer [Minefield Architect]",
-      "tag1": "Minefield Architect",
-      "tag2": "",
+      "tags": [
+        "Minefield Architect"
+      ],
       "effect": "Up to two allied Space Mines Move 1 ignoring terrain penalties. Then, Detonate any number of allied Space Mines",
       "scenario": "",
       "boxStyle": "color",
@@ -2513,8 +3118,10 @@
       "name": "Federation Advance",
       "cardId": "DX01-T06",
       "description": "",
-      "tag1": "",
-      "tag2": "Earth Federation",
+      "tags": [
+        "",
+        "Earth Federation"
+      ],
       "effect": "Each allied Earth Federation unit Moves 1, ignoring Engagement and terrain penalties. Your active unit's next attack this activation gains [Strength +2]",
       "scenario": "",
       "boxStyle": "auto",
@@ -2543,8 +3150,10 @@
       "name": "Pin Down",
       "cardId": "DX01-T07",
       "description": "",
-      "tag1": "",
-      "tag2": "Earth Federation",
+      "tags": [
+        "",
+        "Earth Federation"
+      ],
       "effect": "Your active unit applies [Slow] to an enemy unit within [Range 2]. Then, your active unit and each other allied unit within [Range 2] of that unit gains [Energy 1].",
       "scenario": "",
       "boxStyle": "auto",
@@ -2573,8 +3182,10 @@
       "name": "White Base Support",
       "cardId": "DX01-T09",
       "description": "",
-      "tag1": "",
-      "tag2": "Earth Federation",
+      "tags": [
+        "",
+        "Earth Federation"
+      ],
       "effect": "An Allied Garrison Moves 2. Then, if it is adjacent to an allied unit, Rescue it. If you've Rescued 3 or more Garrisons, draw 1 card.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2603,8 +3214,10 @@
       "name": "Federation Fire",
       "cardId": "DX01-T10",
       "description": "",
-      "tag1": "",
-      "tag2": "Earth Federation",
+      "tags": [
+        "",
+        "Earth Federation"
+      ],
       "effect": "[Before Attack Roll] The attacking Earth Federation unit gains [Strength +4] this attack.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2633,8 +3246,10 @@
       "name": "Formation Defense",
       "cardId": "DX01-T12",
       "description": "",
-      "tag1": "",
-      "tag2": "Earth Federation",
+      "tags": [
+        "",
+        "Earth Federation"
+      ],
       "effect": "[After Attack Roll] Each defender is dealt [Damage -3] this attack.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2663,8 +3278,7 @@
       "name": "Contest Ground",
       "cardId": "DX01-T13",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit contests an Objective it is on or adjacent to.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2693,8 +3307,7 @@
       "name": "Patch System",
       "cardId": "DX01-T14",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "Your active unit Repairs [Damage 2] and removes all status effects.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2723,8 +3336,7 @@
       "name": "Defensive Matrix",
       "cardId": "DX01-T15",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[After Attack Roll] If this attack is [Timeline 3] or less, it deals [Damage -4].",
       "scenario": "",
       "boxStyle": "auto",
@@ -2753,8 +3365,9 @@
       "name": "Oggo Reinforcements",
       "cardId": "DX01-T20",
       "description": "Oggo [Last Reserves]",
-      "tag1": "Last Reserves",
-      "tag2": "",
+      "tags": [
+        "Last Reserves"
+      ],
       "effect": "Add an Oggo Reinforcement to your Reserve and place its [Timeline] token at the end of the next round. After it is defeated, remove both the unit and its [Timeline] token from the game.",
       "scenario": "",
       "boxStyle": "color",
@@ -2783,8 +3396,10 @@
       "name": "Clean Shot",
       "cardId": "DX01-T21",
       "description": "",
-      "tag1": "",
-      "tag2": "Zeon",
+      "tags": [
+        "",
+        "Zeon"
+      ],
       "effect": "Your active unit deals [Damage 1] to an enemy unit within [Range 3]. If this defeats it, draw 1 card.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2813,8 +3428,10 @@
       "name": "Guerrilla Tactics",
       "cardId": "DX01-T22",
       "description": "",
-      "tag1": "",
-      "tag2": "Zeon",
+      "tags": [
+        "",
+        "Zeon"
+      ],
       "effect": "An allied Garrison Moves 2. Then, it deals [Damage 2] to an adjacent enemy. ",
       "scenario": "",
       "boxStyle": "auto",
@@ -2843,8 +3460,10 @@
       "name": "Through the Debris",
       "cardId": "DX01-T23",
       "description": "",
-      "tag1": "",
-      "tag2": "Zeon",
+      "tags": [
+        "",
+        "Zeon"
+      ],
       "effect": "Your active Zeon unit's next attack this activation gains [Strength +2] and ignores Line of Sight.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2873,8 +3492,10 @@
       "name": "Zeonic Devotion",
       "cardId": "DX01-T24",
       "description": "",
-      "tag1": "",
-      "tag2": "Zeon",
+      "tags": [
+        "",
+        "Zeon"
+      ],
       "effect": "Each allied Zeon unit deals [Damage 1] to an enemy within [Range 2]",
       "scenario": "",
       "boxStyle": "auto",
@@ -2903,8 +3524,10 @@
       "name": "Colony Suppression",
       "cardId": "DX01-T25",
       "description": "",
-      "tag1": "",
-      "tag2": "Zeon",
+      "tags": [
+        "",
+        "Zeon"
+      ],
       "effect": "After an enemy unit is dealt non-combat [Damage]: [Fracture] and [Slow] it.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2933,8 +3556,10 @@
       "name": "Zeon Fortification",
       "cardId": "DX01-T27",
       "description": "",
-      "tag1": "",
-      "tag2": "Zeon",
+      "tags": [
+        "",
+        "Zeon"
+      ],
       "effect": "[After Attack Roll] A defender is dealt [Damage -2] this attack. Then, if it survives this attack, it deals [Damage 2] to the attacker.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2963,8 +3588,7 @@
       "name": "Underdog Strike",
       "cardId": "DX01-T30",
       "description": "",
-      "tag1": "",
-      "tag2": "",
+      "tags": [],
       "effect": "[Before Attack Roll] The attacker gains [Strength +4] this attack if it is worth fewer VP than any defenders.",
       "scenario": "",
       "boxStyle": "auto",
@@ -2993,8 +3617,10 @@
       "name": "Amuro's Guidance",
       "cardId": "DX01-T32 (S)",
       "description": "",
-      "tag1": "",
-      "tag2": "Earth Federation",
+      "tags": [
+        "",
+        "Earth Federation"
+      ],
       "effect": "Two allied Evacuation Launches Move 2. Then, draw 1 card.",
       "scenario": "Scenario : Operation Star One",
       "boxStyle": "dark",
@@ -3023,8 +3649,10 @@
       "name": "Casval's Vengeance",
       "cardId": "DX01-T34 (S)",
       "description": "Zeong [Zeon's Final Weapon]",
-      "tag1": "Zeon's Final Weapon",
-      "tag2": "Zeon",
+      "tags": [
+        "Zeon's Final Weapon",
+        "Zeon"
+      ],
       "effect": "Zeong Moves 2.\nIf Zeong is adjacent to Kycilia's Command Post and it is Phase 2, remove Kycilia's Command Post from the battlefield and gain 10 VP.",
       "scenario": "Scenario : Operation Star One",
       "boxStyle": "color",
@@ -3053,8 +3681,10 @@
       "name": "Kycilia's Final Stand",
       "cardId": "DX01-T35 (S)",
       "description": "",
-      "tag1": "",
-      "tag2": "Zeon",
+      "tags": [
+        "",
+        "Zeon"
+      ],
       "effect": "Deal [Damage 1] to up to two enemy units within [Range 3] of an Objective you control. If Kycilia's Command Post is still on the battlefield, draw 1 card.",
       "scenario": "Scenario : Operation Star One",
       "boxStyle": "dark",
