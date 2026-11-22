@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gundam Assemble — Unit Data &amp; Tactics Card Editor</title>
+<!-- Tab / bookmark icon: favicon.png sits next to this file in the repo. -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
@@ -593,6 +596,17 @@ textarea { resize: vertical; min-height: 50px; font-size: 13px; }
   border-left: 7px solid #111; border-bottom: 15px solid transparent;
 }
 .tcard-tag + .tcard-tag { margin-left: 10px; }
+/* Outlined tag: no fill, black text, black outline that follows the same slanted tail. */
+.tcard-tag.outline { background: transparent; color: #111; border: 1px solid #111; border-right: none; padding-left: 6px; padding-top: 2px; }
+.tcard-tag.outline::after {
+  border: none; width: 8px; height: 15px; top: -1px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='15' viewBox='0 0 8 15'%3E%3Cpath d='M0 0.5H7.1L0.3 14.5' fill='none' stroke='%23111' stroke-width='1'/%3E%3C/svg%3E") no-repeat;
+}
+.tc-tags-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+.tc-tag-row { display: flex; align-items: center; gap: 6px; }
+.tc-tag-row input { flex: 1; min-width: 0; }
+.tc-tag-row .remove-btn { position: static; padding: 0 4px; }
+.tc-tag-foot { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
 .tcard-id {
   position: absolute; right: 0; top: 0; height: 17px; padding: 0 8px 0 6px;
   background: var(--tc-color); color: #fff; font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.5px;
@@ -684,13 +698,39 @@ const { useState, useRef, useEffect } = React;
 //   1.4.0  2026-11-14  Units: release and unit number are one field again (EX02-U03, EX02-U03A for reinforcements); sorted by number then letter.
 //   1.5.0  2026-11-15  Tactics: sheet change tracking (what changed, saved in the JSON), export only changed sheets, combined-deck option,
 //                      dated deck names. SAVE TO GITHUB (access token). Unit Lua: text with a " in it no longer gets cut off on load.
-const EDITOR_VERSION = "1.5.0";
-const EDITOR_VERSION_DATE = "2026-11-15";
+//   1.6.0  2026-11-22  Page icon (favicon.png).
+//   1.6.1  2026-11-22  Tactics: any number of tags per card (2 slots by default, + ADD TAG);
+//                      TTS deck cards get "CardTag: <tag>" and "SetTag: <set>" tags for in-game sorting.
+//   1.6.2  2026-11-22  Tactics: tag look. Outlined (black text and outline, no fill), except the first tag on a
+//                      type-colour card (incl. Attack). Affected cards' sheets show as needing re-export.
+//   1.6.3  2026-11-22  Units: Faction becomes a tag list (2 slots, + ADD TAG; an old faction value becomes the first tag).
+//                      Unit name split into Name + Title (the [ ] part); Lua gets title="..." and tags={...}.
+const EDITOR_VERSION = "1.6.3";
+const EDITOR_VERSION_DATE = "2026-11-22";
 
 const EMPTY_ATTACK = { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""], crit: "" };
 const EMPTY_ABILITY = { name: "", keywords: "", description: "" };
+
+// ---- Unit name and tags ----
+// The full name stays the unit's key everywhere (model bag, extra_for, the card in TTS): "Oggo [Last Reserves]".
+// The form edits it as two parts: the name before the brackets and the title inside them.
+function splitUnitName(full) {
+  const f = String(full || "");
+  const i = f.indexOf("[");
+  if (i < 0 || !f.trimEnd().endsWith("]")) return { base: f, title: "" };
+  return { base: f.slice(0, i).trimEnd(), title: f.trimEnd().slice(i + 1, -1) };
+}
+const joinUnitName = (base, title) => title.trim() ? `${base.trim()} [${title.trim()}]` : base;
+// Unit tags (shown after the pilot on the card, joined by " - "). Units saved before v1.6.0 have one faction
+// value instead; it becomes the first tag as it is (values like "Zeon - Mass Produced" are split by hand).
+const UNIT_TAG_SLOTS = 2;
+const unitPadTags = (tags) => { const t = (tags || []).map(x => String(x ?? "")); while (t.length < UNIT_TAG_SLOTS) t.push(""); return t; };
+const unitTagList = (u) => (u.tags || []).map(t => String(t || "").trim()).filter(Boolean);
+const tagsFromFaction = (f) => String(f || "").trim() ? [String(f).trim()] : [];
+// Pilot, then the tags, as printed on the unit card.
+const unitPilotLine = (u) => [String(u.pilot || "").trim(), ...unitTagList(u)].filter(Boolean).join(" - ");
 const EMPTY_UNIT = {
-  name: "", pilot: "", faction: "", splash_art: "", technical_name: "",
+  name: "", pilot: "", tags: ["", ""], splash_art: "", technical_name: "",
   expansion: "",
   extra_for: "", // name of the unit this card is extra content for (reinforcement / 2nd card); "" = normal unit
   hp: "", vp: "", timeline: "",
@@ -724,8 +764,14 @@ function toLua(units) {
   units.forEach((u, ui) => {
     lines.push(`${indent(1)}{`);
     lines.push(`${indent(2)}name="${escapeStr(u.name)}",`);
+    // The [ ] part of the name on its own, for tagging the unit in TTS. Only written when the name has one.
+    const title = splitUnitName(u.name).title.trim();
+    if (title) lines.push(`${indent(2)}title="${escapeStr(title)}",`);
     lines.push(`${indent(2)}pilot="${escapeStr(u.pilot)}",`);
-    lines.push(`${indent(2)}faction="${escapeStr(u.faction)}",`);
+    const tags = unitTagList(u);
+    lines.push(`${indent(2)}tags={${tags.map(t => `"${escapeStr(t)}"`).join(", ")}},`);
+    // Same tags as one " - " separated value, for unit card scripts that still read faction.
+    lines.push(`${indent(2)}faction="${escapeStr(tags.join(" - "))}",`);
     lines.push(`${indent(2)}technical_name="${escapeStr(u.technical_name)}",`);
     lines.push(`${indent(2)}splash_art="${escapeStr(u.splash_art)}",`);
     lines.push(`${indent(2)}expansion="${escapeStr(u.expansion || "")}",`);
@@ -783,7 +829,11 @@ function parseLua(text) {
         _key: generateId(),
         name: getStr("name"),
         pilot: getStr("pilot"),
-        faction: getStr("faction"),
+        tags: (() => {
+          const m = block.match(/(?:^|\n)\s*tags\s*=\s*\{([^}]*)\}/);
+          const list = m ? (m[1].match(new RegExp(LUA_STR, "g")) || []).map(e => luaUnesc(e.slice(1, -1))) : tagsFromFaction(getStr("faction"));
+          return unitPadTags(list);
+        })(),
         technical_name: getStr("technical_name"),
         splash_art: getStr("splash_art"),
         expansion: getStr("expansion"),
@@ -851,7 +901,7 @@ function parseWiki(text) {
       _key: generateId(),
       name: getField("title"),
       pilot: getField("Pilot"),
-      faction: getField("Faction"),
+      tags: unitPadTags(tagsFromFaction(getField("Faction"))),
       technical_name: getField("caption"),
       splash_art: getField("image"),
       expansion: getField("Expansion") || getField("Set") || getField("Release"),
@@ -980,7 +1030,7 @@ function CardPreview({ unit }) {
   const has = (v) => v && String(v).trim();
   const attacks = unit.attacks.slice(0, 2);
   const abilities = unit.abilities.slice(0, 3);
-  const pilotLine = [has(unit.pilot) ? unit.pilot : null, has(unit.faction) ? unit.faction : null].filter(Boolean).join(" - ");
+  const pilotLine = unitPilotLine(unit);
   return (
     <div className="card">
       <div className="card-art" style={has(unit.splash_art) ? { backgroundImage: `url("${unit.splash_art}")` } : {}} />
@@ -1036,7 +1086,7 @@ const TC_W = 300, TC_H = 420, TC_ART_W = 288, TC_ART_H = 252, TC_EXPORT_SCALE = 
 const TC_STORAGE_KEY = "ga_tactics_cards";
 const TC_TYPES = { attack: "Attack", command: "Command", response: "Response" };
 const EMPTY_TCARD = {
-  _key: "", type: "attack", name: "", cardId: "", description: "", tag1: "", tag2: "",
+  _key: "", type: "attack", name: "", cardId: "", description: "", tags: ["", ""],
   effect: "", scenario: "", boxStyle: "auto", footer: "Fan-made card · Not for sale", isNew: false,
   attack: { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""] },
   art: null, artW: 0, artH: 0, artX: 0, artY: 0, artZoom: 100,
@@ -1243,10 +1293,9 @@ function TacticsCard({ card, interactive, onArtDrag }) {
         </div>
 
         <div className="tcard-bottom">
-          {(has(card.tag1) || has(card.tag2)) && (
+          {tcTagList(card).length > 0 && (
             <div className="tcard-tags">
-              {has(card.tag1) && <div className="tcard-tag">{card.tag1}</div>}
-              {has(card.tag2) && <div className="tcard-tag">{card.tag2}</div>}
+              {tcTagList(card).map((t, i) => <div className={"tcard-tag" + (tcTagOutlined(card, i) ? " outline" : "")} key={i}>{t}</div>)}
             </div>
           )}
           {has(card.cardId) && (
@@ -1301,17 +1350,48 @@ function tcLibraryJSON(cards, fmt = "webp", tts = null) {
   const ext = TC_FORMATS[fmt].ext;
   const out = tcAssignFileNames(cards).map(c => {
     const { art, file, ...rest } = c;
-    return { ...rest, artFile: art ? file + "." + ext : null };
+    // Tags keep their slot positions (an empty first box stays empty); only empty boxes at the end are dropped.
+    const tags = (c.tags || []).map(t => String(t ?? "")); while (tags.length && !tags[tags.length - 1].trim()) tags.pop();
+    return { ...rest, tags, artFile: art ? file + "." + ext : null };
   });
   return JSON.stringify({ version: 2, type: "tactics-cards", artDir: TC_ART_DIR, ...(tts ? { tts: tcTrackingOut(tts) } : {}), cards: out }, null, 2);
 }
 const blobToDataUrl = (blob) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); });
 // Turn a loaded card record (artFile reference, or legacy base64) into a working card with a data-URI art.
 // Older cards: "rarity" is gone, and the TTS description used to be called "unit".
-function tcMigrateCard(c) {
-  const { rarity, unit, ...rest } = c;
-  return { ...rest, description: rest.description || unit || "" };
+// Card tags: a list (c.tags). Libraries saved before v1.6.0 have tag1/tag2 instead; those become the first two.
+// The form always shows at least TC_TAG_SLOTS boxes.
+const TC_TAG_SLOTS = 2;
+function tcPadTags(tags) {
+  const t = (tags || []).map(x => String(x ?? ""));
+  while (t.length < TC_TAG_SLOTS) t.push("");
+  return t;
 }
+const tcTagList = (c) => [...new Set((c.tags || []).map(t => String(t || "").trim()).filter(Boolean))];
+function tcMigrateCard(c) {
+  const { rarity, unit, tag1, tag2 } = c;
+  const fromOld = (tag1 !== undefined || tag2 !== undefined) ? [tag1 || "", tag2 || ""] : null;
+  const useOld = fromOld && !(Array.isArray(c.tags) && c.tags.some(t => String(t || "").trim()));
+  const tags = tcPadTags(useOld ? fromOld : c.tags);
+  // Rebuild in the same field order, with tags taking tag1's place.
+  const out = {};
+  for (const [k, v] of Object.entries(c)) {
+    if (k === "rarity" || k === "unit" || k === "tag2") continue;
+    if (k === "tag1" || k === "tags") { if (!("tags" in out)) out.tags = tags; continue; }
+    out[k] = v;
+  }
+  if (!("tags" in out)) out.tags = tags;
+  out.description = c.description || unit || "";
+  return out;
+}
+// Printed tag look: the first tag on a card whose text box is in the type colour (red Attack box, or a
+// Command/Response box set to the type colour) stays solid black; every other tag is outlined
+// (black text and outline, no fill). Cards with the dark text box have all their tags outlined.
+const tcTagOutlined = (card, i) => !(i === 0 && tcBoxClass(card) !== "dark");
+// Set code from the card ID: "ST01-T10" -> "ST01". "" when the card has no ID.
+const tcSetCode = (c) => String(c.cardId || "").trim().split("-")[0].trim();
+// Tags put on the card in a TTS deck, for the in-game sorting system.
+const tcTtsTags = (c) => [...tcTagList(c).map(t => "CardTag: " + t), ...(tcSetCode(c) ? ["SetTag: " + tcSetCode(c)] : [])];
 async function tcHydrateCard(raw, artLoader) {
   const card = tcMigrateCard({ ...JSON.parse(JSON.stringify(EMPTY_TCARD)), ...raw, _key: raw._key || generateId() });
   if (card.art && String(card.art).startsWith("data:")) return card;
@@ -1459,7 +1539,25 @@ const tcStable = (v) => Array.isArray(v) ? "[" + v.map(tcStable).join(",") + "]"
   : JSON.stringify(v === undefined ? null : v);
 // One card: everything drawn on it. Art counts through artRev (a new id each time art is loaded) and its
 // position/zoom, not through the image bytes, so re-saving or reloading from GitHub doesn't look like a change.
+// The card as it was stored before tags became a list (tag1 / tag2 in the same place, extras after),
+// so fingerprints of unchanged cards stay the same as before v1.6.0.
+function tcTagsAsLegacy(c) {
+  if (!Array.isArray(c.tags)) return c;
+  const t = c.tags.map(x => String(x ?? ""));
+  while (t.length > TC_TAG_SLOTS && !t[t.length - 1].trim()) t.pop();
+  const out = {};
+  for (const [k, v] of Object.entries(c)) {
+    if (k === "tags") {
+      out.tag1 = t[0] || ""; out.tag2 = t[1] || "";
+      if (t.length > TC_TAG_SLOTS) out.tagsMore = t.slice(TC_TAG_SLOTS);
+      // v1.6.0 changed how tags are printed; mark cards that now print an outlined tag.
+      if (tcTagList(c).some((_, i) => tcTagOutlined(c, i))) out.tagLook = "outline";
+    } else out[k] = v;
+  }
+  return out;
+}
 function tcCardSig(c) {
+  c = tcTagsAsLegacy(c);
   const { art, artFile, file, isNew, unit, description, rarity, _key, ...rest } = c;
   return tcHash(_key + tcStable(rest) + (art ? "A" : "-"));
 }
@@ -1469,7 +1567,7 @@ function tcSheetSig(pageCards) {
 }
 // The fingerprint used before v1.5.0. Only for recognising sheets recorded by older versions of the editor.
 function tcSheetSigLegacy(pageCards) {
-  const str = pageCards.map(c => {
+  const str = pageCards.map(tcTagsAsLegacy).map(c => {
     const { art, isNew, unit, description, rarity, _key, ...rest } = c;
     const a = art ? art.length + ":" + art.slice(-64) : "";
     return _key + JSON.stringify(rest) + a;
@@ -1527,7 +1625,7 @@ function ttsDeckJSON(name, sheets, backUrl, dateStr, note = "") {
     sh.cards.forEach((c, i) => {
       const cid = id * 100 + i;
       deckIds.push(cid);
-      contained.push({ ...TTS_COMMON, GUID: ttsGuid(), Name: "Card", Transform: ttsTransform(), Nickname: c.name || "", Description: c.description || "",
+      contained.push({ ...TTS_COMMON, GUID: ttsGuid(), Name: "Card", Transform: ttsTransform(), Nickname: c.name || "", Description: c.description || "", Tags: tcTtsTags(c),
         Hands: true, CardID: cid, CustomDeck: { [id]: customDeck[id] } });
     });
   });
@@ -1829,7 +1927,7 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
     if (forceAll) return true;
     if (!showTypes[c.type]) return false;
     const q = search.toLowerCase();
-    return !q || [c.name, c.cardId, c.tag1, c.tag2, c.type].some(v => (v || "").toLowerCase().includes(q));
+    return !q || [c.name, c.cardId, ...(c.tags || []), c.type].some(v => (v || "").toLowerCase().includes(q));
   }).sort(tcCompare);
   const groups = tcGroupCards(filtered);
   // Full sets (ignoring filters) for the per-set export buttons.
@@ -1948,9 +2046,26 @@ function TacticsCardEditor({ cards, setCards, showToast, editing, setEditing, fo
                       <input value={editing.name} onChange={(e) => upd("name", e.target.value)} placeholder="e.g. Epic Shot" />
                     </div>
                   </div>
-                  <div className="field-row">
-                    <div className="field-group"><label>Tag 1</label><input value={editing.tag1} onChange={(e) => upd("tag1", e.target.value)} placeholder="e.g. Legendary Hero" /></div>
-                    <div className="field-group"><label>Tag 2</label><input value={editing.tag2} onChange={(e) => upd("tag2", e.target.value)} placeholder="e.g. Earth Federation" /></div>
+                  <div className="field-group">
+                    <label>Tags</label>
+                    <div className="tc-tags-grid">
+                      {tcPadTags(editing.tags).map((t, i) => (
+                        <div className="tc-tag-row" key={i}>
+                          <input value={t} placeholder={["e.g. Legendary Hero", "e.g. Earth Federation"][i] || "Tag " + (i + 1)}
+                            onChange={(e) => { const next = tcPadTags(editing.tags); next[i] = e.target.value; upd("tags", next); }} />
+                          {i >= TC_TAG_SLOTS && (
+                            <button className="remove-btn" title="Remove this tag"
+                              onClick={() => { const next = tcPadTags(editing.tags); next.splice(i, 1); upd("tags", next); }}>✕</button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="tc-tag-foot">
+                      <button className="btn btn-sm" onClick={() => upd("tags", [...tcPadTags(editing.tags), ""])}>+ ADD TAG</button>
+                      <span className="field-note" style={{ marginTop: 0 }}>
+                        In TTS: {tcTtsTags(editing).length ? tcTtsTags(editing).join(" · ") : "no tags yet"}
+                      </span>
+                    </div>
                   </div>
                   <div className="field-row">
                     <div className="field-group"><label>Card ID</label><input value={editing.cardId} onChange={(e) => upd("cardId", e.target.value)} placeholder="e.g. ST01-T01" /></div>
@@ -2397,7 +2512,7 @@ function App() {
   };
   const addExtraFor = () => saveThenEdit({
     ...EMPTY_UNIT, _key: generateId(), attacks: [{ ...EMPTY_ATTACK, effects: [""] }], abilities: [],
-    faction: editing.faction,
+    tags: unitPadTags(unitTagList(editing)),
     // Parent EX02-U03 -> extra EX02-U03A; a parent with no unit number just shares its release.
     expansion: (() => { const e = splitExpansion(editing.expansion); return e.unitNo && !e.suffix ? normalizeExpansion(editing.expansion) + "A" : normalizeExpansion(editing.expansion); })(),
     extra_for: editing.name, _isExtra: true,
@@ -2534,7 +2649,7 @@ function App() {
   const filtered = units.filter(u => {
     if (!search.trim()) return true;
     const s = search.toLowerCase();
-    return [u.name, u.pilot, u.faction, u.expansion, u.extra_for].some(v => (v || "").toLowerCase().includes(s));
+    return [u.name, u.pilot, ...(u.tags || []), u.expansion, u.extra_for].some(v => (v || "").toLowerCase().includes(s));
   });
   const uGroups = unitGroups(filtered);
   // Extra content: an extra names its parent in extra_for; extrasOf maps parent name -> extra names.
@@ -2595,7 +2710,7 @@ function App() {
       <div className="main">
         {units.length > 0 && (
           <div className="search-bar">
-            <input placeholder="Search units by name, pilot, faction, or expansion..." value={search} onChange={(e) => setSearch(e.target.value)} />
+            <input placeholder="Search units by name, pilot, tag, or expansion..." value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>
         )}
         <div className="tc-count-row">
@@ -2643,7 +2758,7 @@ function App() {
                     </button>
                   ))}
                 </div>
-                <div className="unit-faction">{u.faction}</div>
+                <div className="unit-faction">{unitTagList(u).join(" - ")}</div>
                 <div className="unit-stat"><span>HP</span>{u.hp}</div>
                 <div className="unit-stat"><span>VP</span>{u.vp}</div>
                 <div className="unit-stat"><span>TL</span>{u.timeline}</div>
@@ -2672,9 +2787,15 @@ function App() {
              <div className="editor-columns">
              <div className="editor-form">
               <div className="field-row">
-                <div className="field-group" style={{ flex: 2 }}>
+                <div className="field-group" style={{ flex: 1.3 }}>
                   <label>Unit Name</label>
-                  <input value={editing.name} onChange={(e) => updateField("name", e.target.value)} placeholder="e.g. Gundam [White Devil]" />
+                  <input value={splitUnitName(editing.name).base} placeholder="e.g. Gundam"
+                    onChange={(e) => updateField("name", joinUnitName(e.target.value, splitUnitName(editing.name).title))} />
+                </div>
+                <div className="field-group" style={{ flex: 1.3 }}>
+                  <label>Title [ ]</label>
+                  <input value={splitUnitName(editing.name).title} placeholder="e.g. Legendary Hero"
+                    onChange={(e) => updateField("name", joinUnitName(splitUnitName(editing.name).base, e.target.value.replace(/[\[\]]/g, "")))} />
                 </div>
                 <div className="field-group">
                   <label>Technical Name</label>
@@ -2686,9 +2807,24 @@ function App() {
                   <label>Pilot</label>
                   <input value={editing.pilot} onChange={(e) => updateField("pilot", e.target.value)} placeholder="e.g. Amuro Ray" />
                 </div>
-                <div className="field-group">
-                  <label>Faction</label>
-                  <input value={editing.faction} onChange={(e) => updateField("faction", e.target.value)} placeholder="e.g. Earth Federation" />
+              </div>
+              <div className="field-group">
+                <label>Tags</label>
+                <div className="tc-tags-grid">
+                  {unitPadTags(editing.tags).map((t, i) => (
+                    <div className="tc-tag-row" key={i}>
+                      <input value={t} placeholder={["e.g. Earth Federation", "e.g. Mass Produced"][i] || "Tag " + (i + 1)}
+                        onChange={(e) => { const next = unitPadTags(editing.tags); next[i] = e.target.value; updateField("tags", next); }} />
+                      {i >= UNIT_TAG_SLOTS && (
+                        <button className="remove-btn" title="Remove this tag"
+                          onClick={() => { const next = unitPadTags(editing.tags); next.splice(i, 1); updateField("tags", next); }}>✕</button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="tc-tag-foot">
+                  <button className="btn btn-sm" onClick={() => updateField("tags", [...unitPadTags(editing.tags), ""])}>+ ADD TAG</button>
+                  <span className="field-note" style={{ marginTop: 0 }}>On the card: {unitPilotLine(editing) || "nothing yet"}</span>
                 </div>
               </div>
               <div className="field-group">
