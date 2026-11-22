@@ -1,7 +1,9 @@
 return {
    {
       name="Gundam Barbatos Lupus Rex [Final Stand]",
+      title="Final Stand",
       pilot="Mikazuki Augus",
+      tags={"Tekkadan"},
       faction="Tekkadan",
       technical_name="ASW-G-08",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13822117213886268703/D4346677614E79798E3A6A975282AA0EFAA0AB0D/",
@@ -50,7 +52,9 @@ return {
    },
    {
       name="Char's Zaku II [Demo]",
+      title="Demo",
       pilot="Char Aznable",
+      tags={"Zeon"},
       faction="Zeon",
       technical_name="MS-06S",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/9864872256090060726/6DDAB8A559167C840715176EAFEAAEFBA5203DA7/",
@@ -98,7 +102,9 @@ return {
    },
    {
       name="Char's Zaku II [Fast Encounter]",
+      title="Fast Encounter",
       pilot="Char Aznable",
+      tags={"Zeon"},
       faction="Zeon",
       technical_name="MS-06S",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/16517057500981018599/5A7D86D41428B764B4EE5A2DEE274382489649BF/",
@@ -147,7 +153,9 @@ return {
    },
    {
       name="Guncannon [Demo]",
+      title="Demo",
       pilot="Kai Shiden",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-77-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15258626936620923240/46C6EBEA3ADA9FB58F38B24582A9186DBFADD733/",
@@ -190,7 +198,9 @@ return {
    },
    {
       name="Guncannon [Bastion of Fire]",
+      title="Bastion of Fire",
       pilot="Kai Shiden",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-77-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13861841706079639305/AE938D42F97E48A0C492C83D31142484B29C6FDF/",
@@ -234,7 +244,9 @@ return {
    },
    {
       name="Gundam [Demo]",
+      title="Demo",
       pilot="Amuro Ray",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-78-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13158798099482223170/BDCEFE0109D4487AFF11CD80455BCF758F5317D7/",
@@ -278,7 +290,9 @@ return {
    },
    {
       name="Gundam [Legendary Hero]",
+      title="Legendary Hero",
       pilot="Amuro Ray",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-78-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10920708000488766343/EA46BA50ACDA807B6C9C1D06E810137E46BE1B4F/",
@@ -322,7 +336,9 @@ return {
    },
    {
       name="Gundam [Elite Mobile Suit]",
+      title="Elite Mobile Suit",
       pilot="Amuro Ray",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-78-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14790108839331300881/F20437B13966D5A51E410902BE30956516B0D322/",
@@ -370,7 +386,9 @@ return {
    },
    {
       name="Gundam Epyon (EW) [Crimson Cataclysm]",
+      title="Crimson Cataclysm",
       pilot="Zechs Merquise",
+      tags={"OZ, White Fang"},
       faction="OZ, White Fang",
       technical_name="OZ-13MS",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10968000391390818338/8D6234F0A5EEB405F14333DBE24F245A9D36C83B/",
@@ -420,7 +438,9 @@ return {
    },
    {
       name="Gundam Vidar [Cold Justice]",
+      title="Cold Justice",
       pilot="Vidar",
+      tags={"Gjallerhorn"},
       faction="Gjallerhorn",
       technical_name="ASW-G-XX",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17439008425773739546/5A15700207CC5A7997C76C914047D560FE2C1DAC/",
@@ -463,7 +483,9 @@ return {
    },
    {
       name="Guntank [Demo]",
+      title="Demo",
       pilot="Hayato Kobayashi",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-75",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10627377594558799439/245DB88773C8162E021F18810280B43EA3CA6D1F/",
@@ -507,9 +529,11 @@ return {
       }
    },
    {
-      name="Zaku II [Enforcer] [Demo]",
-      pilot="Mass Produced",
-      faction="Zeon",
+      name="Zaku II [Enforcer Demo]",
+      title="Enforcer Demo",
+      pilot="",
+      tags={"Zeon", "Mass Produced"},
+      faction="Zeon - Mass Produced",
       technical_name="MS-06",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17979974708630630669/AA7DD9E45DE1A3421036889A6E6AFE528D9DF309/",
       expansion="Demo",
@@ -551,9 +575,11 @@ return {
       }
    },
    {
-      name="Zaku II [Line Breaker] [Demo]",
-      pilot="Mass Produced",
-      faction="Zeon",
+      name="Zaku II [Line Breaker Demo]",
+      title="Line Breaker Demo",
+      pilot="",
+      tags={"Zeon", "Mass Produced"},
+      faction="Zeon - Mass Produced",
       technical_name="MS-06",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15234252328470518598/4F63F32965A672DCCD8ABA93983E201B02FA8251/",
       expansion="Demo",
@@ -596,7 +622,9 @@ return {
    },
    {
       name="Wing Gundam Zero (EW) [Wing of Destruction]",
+      title="Wing of Destruction",
       pilot="Heero Yuy",
+      tags={"G Team"},
       faction="G Team",
       technical_name="XXXG-00W0",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17908449623980494584/365D21189F6F16185D06628CCA8D2B82539C25EB/",
@@ -645,7 +673,9 @@ return {
    },
    {
       name="Buster Gundam [Longshot]",
+      title="Longshot",
       pilot="Dearka Elsman",
+      tags={"Z.A.F.T."},
       faction="Z.A.F.T.",
       technical_name="GAT-X103",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/16586820249349490753/10533B2431FE94EDC5723F2C2FF5C3418E6AB4F7/",
@@ -684,7 +714,9 @@ return {
    },
    {
       name="White Base [Trojan Horse]",
+      title="Trojan Horse",
       pilot="Bright Noa",
+      tags={"Earth Federation - Carrier"},
       faction="Earth Federation - Carrier",
       technical_name="SCV-70",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/11466243444129241733/231926C03EB7FD0D844616CE8002FAC99B44332B/",
@@ -713,8 +745,10 @@ return {
    },
    {
       name="Oggo [Last Reserves]",
-      pilot="Mass Produced",
-      faction="Zeon",
+      title="Last Reserves",
+      pilot="",
+      tags={"Zeon", "Mass Produced"},
+      faction="Zeon - Mass Produced",
       technical_name="MP-02A",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15686569731421021158/FE55817560E69771284DDBF1FC2046F63BE09515/",
       expansion="DX01-U11",
@@ -752,8 +786,10 @@ return {
    },
    {
       name="Ball [Tactical Pod]",
-      pilot="Mass Produced - Reinforcement",
-      faction="Earth Federation",
+      title="Tactical Pod",
+      pilot="",
+      tags={"Earth Federation", "Mass Produced", "Reinforcement"},
+      faction="Earth Federation - Mass Produced - Reinforcement",
       technical_name="RB-79",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/12958784132842326550/7F1C5A73FD37244D1DE01518B520840E925237C6/",
       expansion="DX01-U05",
@@ -791,7 +827,9 @@ return {
    },
    {
       name="Musai [Light Cruiser]",
+      title="Light Cruiser",
       pilot="",
+      tags={"Zeon - Carrier"},
       faction="Zeon - Carrier",
       technical_name="Musai-class",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/17869565725440878616/E7B7495DFC64DBD531F94D7EDE9E340431185974/",
@@ -821,7 +859,9 @@ return {
    },
    {
       name="Unicorn Gundam (Destroy Mode) [Laplace's Guardian]",
+      title="Laplace's Guardian",
       pilot="Banagher Links",
+      tags={"Civilian, Earth Federation, Londo Bell"},
       faction="Civilian, Earth Federation, Londo Bell",
       technical_name="RX-0",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/11585503904370165087/CDC920BC3A4B7E3D9FD5BA4CECF4101824D943C1/",
@@ -864,7 +904,9 @@ return {
    },
    {
       name="Zeong [Zeon's Final Weapon]",
+      title="Zeon's Final Weapon",
       pilot="Char Aznable",
+      tags={"Zeon"},
       faction="Zeon",
       technical_name="MSN-02",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14599459605719343032/6A1DC41D938031DC01DCFC59FABC63D8769703A0/",
@@ -914,8 +956,10 @@ return {
    },
    {
       name="Torohachi [Petite Mobile Suit]",
+      title="Petite Mobile Suit",
       pilot="",
-      faction="Civilian Earth Federation Mass Produced",
+      tags={"Earth Federation", "Mass Produced", "Civilian"},
+      faction="Earth Federation - Mass Produced - Civilian",
       technical_name="",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/11950086338309350550/87E815F8CCF10FF8E705D08D0391AF0CA1DB4D95/",
       expansion="EX01",
@@ -953,7 +997,9 @@ return {
    },
    {
       name="Delta Plus [Rapid Response]",
+      title="Rapid Response",
       pilot="Riddhe Marcenas",
+      tags={"Earth Federation, Londo Bell"},
       faction="Earth Federation, Londo Bell",
       technical_name="MSN-001A1",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15228777665552233589/3AF5B3FB29DC444D15329F3FF23528218FA4C925/",
@@ -997,7 +1043,9 @@ return {
    },
    {
       name="Guntank [Battlefield Bombarder]",
+      title="Battlefield Bombarder",
       pilot="Hayato Kobayashi",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-75",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10627377594558799439/245DB88773C8162E021F18810280B43EA3CA6D1F/",
@@ -1043,7 +1091,9 @@ return {
    },
    {
       name="Gundam [Commited to the End]",
+      title="Commited to the End",
       pilot="Amuro Ray",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-78-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14790108839331300881/F20437B13966D5A51E410902BE30956516B0D322/",
@@ -1087,7 +1137,9 @@ return {
    },
    {
       name="Gundam Aerial [Protective Heroine]",
+      title="Protective Heroine",
       pilot="Suletta Mercury",
+      tags={"Asticassia"},
       faction="Asticassia",
       technical_name="XVX-016",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/16660102253366289694/0E31974C65369BCE3CDB9B7E5FBA3F2E9D61296C/",
@@ -1136,7 +1188,9 @@ return {
    },
    {
       name="Gundam Pharact [Silent Hunter]",
+      title="Silent Hunter",
       pilot="Beak Foot",
+      tags={"Asticassia"},
       faction="Asticassia",
       technical_name="FP/A-77",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/12380668107142337372/907704BEDC7F5021F32B76E2E7AA02EE9BF9CF70/",
@@ -1185,7 +1239,9 @@ return {
    },
    {
       name="Guntank [Long-Range Support]",
+      title="Long-Range Support",
       pilot="Hayato Kobayashi",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-75",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/10627377594558799439/245DB88773C8162E021F18810280B43EA3CA6D1F/",
@@ -1235,7 +1291,9 @@ return {
    },
    {
       name="Guncannon [In Position]",
+      title="In Position",
       pilot="Kai Shiden",
+      tags={"Earth Federation"},
       faction="Earth Federation",
       technical_name="RX-77-2",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15258626936620923240/46C6EBEA3ADA9FB58F38B24582A9186DBFADD733/",
@@ -1280,7 +1338,9 @@ return {
    },
    {
       name="Darilbalde [Frontline Duelist]",
+      title="Frontline Duelist",
       pilot="Guel Jeturk",
+      tags={"Asticassia"},
       faction="Asticassia",
       technical_name="MD-0064",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/9558326408268881955/61125EE376E377E9611493927E36483FEBBF6E0D/",
@@ -1324,7 +1384,9 @@ return {
    },
    {
       name="Zaku I [Early Prototype]",
+      title="Early Prototype",
       pilot="",
+      tags={"Zeon - Mass Produced"},
       faction="Zeon - Mass Produced",
       technical_name="MS-05B",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/13824201715108849604/80D15506FAFB0A7D6C54391220E87E071A52348C/",
@@ -1367,7 +1429,9 @@ return {
    },
    {
       name="Zaku Minelayer [Minefield Architect]",
+      title="Minefield Architect",
       pilot="",
+      tags={"Zeon"},
       faction="Zeon",
       technical_name="MS-06F",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/14742983202175412761/DC45B90319E79C39317F4F01ED089E776A96E0F4/",
@@ -1409,9 +1473,11 @@ return {
       }
    },
    {
-      name="Ball [Tactical Pod] [Reinforcement]",
-      pilot="Mass Produced - Reinforcement",
-      faction="Earth Federation",
+      name="Ball [Tactical Pod Reinforcement]",
+      title="Tactical Pod Reinforcement",
+      pilot="",
+      tags={"Earth Federation", "Mass Produced"},
+      faction="Earth Federation - Mass Produced",
       technical_name="RB-79",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/12958784132842326550/7F1C5A73FD37244D1DE01518B520840E925237C6/",
       expansion="DX01-U05A",
@@ -1449,9 +1515,11 @@ return {
       }
    },
    {
-      name="Oggo [Last Reserves] [Reinforcement]",
-      pilot="Mass Produced",
-      faction="Zeon",
+      name="Oggo [Last Reserves Reinforcement]",
+      title="Last Reserves Reinforcement",
+      pilot="",
+      tags={"Zeon", "Mass Produced"},
+      faction="Zeon - Mass Produced",
       technical_name="MP-02A",
       splash_art="https://steamusercontent-a.akamaihd.net/ugc/15686569731421021158/FE55817560E69771284DDBF1FC2046F63BE09515/",
       expansion="DX01-U11A",
@@ -1490,7 +1558,9 @@ return {
    },
    {
       name="Zeong Head [Zeon's Final Weapon]",
+      title="Zeon's Final Weapon",
       pilot="Char Aznable",
+      tags={"Zeon"},
       faction="Zeon",
       technical_name="MSN-02",
       splash_art="",
@@ -1530,7 +1600,9 @@ return {
    },
    {
       name="Rick Dom [Charging Bulwark]",
+      title="Charging Bulwark",
       pilot="",
+      tags={"Zeon - Mass Produced"},
       faction="Zeon - Mass Produced",
       technical_name="MS-08R",
       splash_art="",
@@ -1574,7 +1646,9 @@ return {
    },
    {
       name="GM [Federation Backbone]",
+      title="Federation Backbone",
       pilot="",
+      tags={"Earth Federation", "Mass Produced"},
       faction="Earth Federation - Mass Produced",
       technical_name="RGM-79",
       splash_art="",
@@ -1624,6 +1698,7 @@ return {
    {
       name="Space Mines",
       pilot="",
+      tags={},
       faction="",
       technical_name="",
       splash_art="",
@@ -1649,6 +1724,7 @@ return {
    {
       name="Fusion Charges",
       pilot="",
+      tags={},
       faction="",
       technical_name="",
       splash_art="",
@@ -1673,7 +1749,8 @@ return {
    {
       name="Corax",
       pilot="",
-      faction="  Asticassia - Remote Weapon System",
+      tags={"Asticassia - Remote Weapon System"},
+      faction="Asticassia - Remote Weapon System",
       technical_name="",
       splash_art="",
       expansion="EX02-U02A",
@@ -1707,6 +1784,7 @@ return {
    {
       name="Iśvara B Type",
       pilot="",
+      tags={"Asticassia - Remote Weapon System"},
       faction="Asticassia - Remote Weapon System",
       technical_name="",
       splash_art="",
@@ -1741,6 +1819,7 @@ return {
    {
       name="BIT Stave",
       pilot="",
+      tags={},
       faction="",
       technical_name="",
       splash_art="",
