@@ -322,10 +322,10 @@
         ]
       },
       "Missing_ID": {
-        "sig": "v2-18qu5pl-17",
+        "sig": "v2-7m5fes-17",
         "date": "2026-11-25",
-        "url": "https://steamusercontent-a.akamaihd.net/ugc/15055374957153857398/B46FF6BB01BDDAF9514F2FD4CB748AA0881FA5A7/",
-        "urlSig": "v2-18qu5pl-17",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/10409485933960128150/AD6FF86C9735ACF5766FE9ABEC1DA1D17FF717B4/",
+        "urlSig": "v2-7m5fes-17",
         "urlDate": "2026-11-25",
         "cards": [
           {
@@ -371,7 +371,7 @@
           {
             "k": "98e8f4e0",
             "n": "Last Shot Counts",
-            "h": "15tz29"
+            "h": "1y1iprt"
           },
           {
             "k": "123b8d8a",
@@ -578,7 +578,7 @@
       "cardId": "",
       "description": "Gundam [Demo]",
       "tags": [
-        "Gundam Demo"
+        "Gundam [Demo]"
       ],
       "effect": "Gundam gains a [Strength] Upgrade. Its attacks cost [TL -1] this turn. If it defeats an enemy unit this turn, it gains an additional [Strength] Upgrade.",
       "scenario": "",
