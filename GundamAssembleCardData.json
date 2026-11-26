@@ -973,9 +973,9 @@
       "type": "command",
       "name": "Rescued Extraction",
       "cardId": "",
-      "description": "Zaku II [Line Breaker] [Demo]",
+      "description": "Zaku II [Line Breaker Demo]",
       "tags": [
-        "Zaku II [Line Breaker] [Demo]"
+        "Zaku II [Line Breaker Demo]"
       ],
       "effect": "Zaku II (Linebreaker) rescues an allied Garrison within [Range 3] at [TL 0]. Then it gains an [Energy] Upgrade.",
       "scenario": "",
@@ -1072,9 +1072,9 @@
       "type": "response",
       "name": "Iron Grip",
       "cardId": "",
-      "description": "Zaku II [Enforcer] [Demo]",
+      "description": "Zaku II [Enforcer Demo]",
       "tags": [
-        "Enforcer [Demo]"
+        "Enforcer Demo"
       ],
       "effect": "After an enemy unit ends its movement adjacent to Zaku II Enforcer: it deals 3 [Damage] to that enemy unit.",
       "scenario": "",
@@ -1329,7 +1329,7 @@
       "type": "command",
       "name": "Hyperspeed",
       "cardId": "DX01-T31 (S)",
-      "description": "Gundam [Commited to the End]",
+      "description": "Gundam [Committed to the End]",
       "tags": [
         "Committed to the End",
         "Earth Federation"
@@ -1396,7 +1396,7 @@
       "cardId": "ST01-T03",
       "description": "Gundam Barbatos Lupus Rex [Final Stand]",
       "tags": [
-        "Gundam Barbatos Lupus Rex"
+        "Final Stand"
       ],
       "effect": "When Gundam Barbatos Lupus Rex would be defeated: Set its HP to 1 instead. It Moves 2 and makes a Rex Claws attack at [TL 0].",
       "scenario": "",
@@ -2109,9 +2109,9 @@
       "type": "response",
       "name": "Last Shooting",
       "cardId": "DX01-T01",
-      "description": "Gundam [Commited to the End]",
+      "description": "Gundam [Committed to the End]",
       "tags": [
-        "Commited to the End"
+        "Committed to the End"
       ],
       "effect": "Beam Rifle\nTimeline 0, Range 4, Strength 5\n\nWhen Gundam would be defeated by an attacker, before returning it to your Reserve, make this attack.\n[Critical][Damage+5]",
       "scenario": "",
