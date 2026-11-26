@@ -705,8 +705,9 @@ const { useState, useRef, useEffect } = React;
 //                      type-colour card (incl. Attack). Affected cards' sheets show as needing re-export.
 //   1.6.3  2026-11-22  Units: Faction becomes a tag list (2 slots, + ADD TAG; an old faction value becomes the first tag).
 //                      Unit name split into Name + Title (the [ ] part); Lua gets title="..." and tags={...}.
-const EDITOR_VERSION = "1.6.3";
-const EDITOR_VERSION_DATE = "2026-11-22";
+//   1.6.4  2026-11-25  Tactics: TTS deck cards also get "TypeTag: Attack / Command / Response".
+const EDITOR_VERSION = "1.6.4";
+const EDITOR_VERSION_DATE = "2026-11-25";
 
 const EMPTY_ATTACK = { name: "", cost: "", range: "", strength: "", sp_shape: "", effects: [""], crit: "" };
 const EMPTY_ABILITY = { name: "", keywords: "", description: "" };
@@ -1391,7 +1392,11 @@ const tcTagOutlined = (card, i) => !(i === 0 && tcBoxClass(card) !== "dark");
 // Set code from the card ID: "ST01-T10" -> "ST01". "" when the card has no ID.
 const tcSetCode = (c) => String(c.cardId || "").trim().split("-")[0].trim();
 // Tags put on the card in a TTS deck, for the in-game sorting system.
-const tcTtsTags = (c) => [...tcTagList(c).map(t => "CardTag: " + t), ...(tcSetCode(c) ? ["SetTag: " + tcSetCode(c)] : [])];
+const tcTtsTags = (c) => [
+  ...tcTagList(c).map(t => "CardTag: " + t),
+  ...(tcSetCode(c) ? ["SetTag: " + tcSetCode(c)] : []),
+  ...(TC_TYPES[c.type] ? ["TypeTag: " + TC_TYPES[c.type]] : []),   // TypeTag: Attack / Command / Response
+];
 async function tcHydrateCard(raw, artLoader) {
   const card = tcMigrateCard({ ...JSON.parse(JSON.stringify(EMPTY_TCARD)), ...raw, _key: raw._key || generateId() });
   if (card.art && String(card.art).startsWith("data:")) return card;
