@@ -6,16 +6,16 @@
     "back": "https://steamusercontent-a.akamaihd.net/ugc/15437785444991035547/28D2B5F477E1B292F1FD870ED8EB71B179F7DF49/",
     "sheets": {
       "DX01": {
-        "sig": "v2-1t0tudy-36",
-        "date": "2026-11-22",
-        "url": "https://steamusercontent-a.akamaihd.net/ugc/10548187363232581735/40806D8F9292B6FC08EA3E289F6AEF7A174CD952/",
-        "urlSig": "v2-1t0tudy-36",
-        "urlDate": "2026-11-22",
+        "sig": "v2-1ny7jru-36",
+        "date": "2026-11-25",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/10720358127463141939/47966B954E469116038D7D8547BB1438820DA934/",
+        "urlSig": "v2-1ny7jru-36",
+        "urlDate": "2026-11-25",
         "cards": [
           {
             "k": "ee034c44",
             "n": "Last Shooting",
-            "h": "wm8qws"
+            "h": "1idzvbk"
           },
           {
             "k": "bf1849c0",
@@ -322,11 +322,11 @@
         ]
       },
       "Missing_ID": {
-        "sig": "v2-5nawnz-17",
-        "date": "2026-11-22",
-        "url": "https://steamusercontent-a.akamaihd.net/ugc/14965583135430056837/6C7818E0E50617F0DBD0898835C0C24DD07CC12A/",
-        "urlSig": "v2-5nawnz-17",
-        "urlDate": "2026-11-22",
+        "sig": "v2-1b8k5ic-17",
+        "date": "2026-11-25",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/10409485933960128150/AD6FF86C9735ACF5766FE9ABEC1DA1D17FF717B4/",
+        "urlSig": "v2-1b8k5ic-17",
+        "urlDate": "2026-11-25",
         "cards": [
           {
             "k": "62ec9d4f",
@@ -366,7 +366,7 @@
           {
             "k": "37f27963",
             "n": "Iron Grip",
-            "h": "l1fd93"
+            "h": "eq75nj"
           },
           {
             "k": "98e8f4e0",
@@ -386,7 +386,7 @@
           {
             "k": "8365cfc8",
             "n": "Rescued Extraction",
-            "h": "a6drm0"
+            "h": "1sdaqz4"
           },
           {
             "k": "010a7522",
@@ -470,11 +470,11 @@
         ]
       },
       "ST01": {
-        "sig": "v2-hoed6e-18",
-        "date": "2026-11-14",
-        "url": "https://steamusercontent-a.akamaihd.net/ugc/9954033152870967838/053C10C45F373C9E80C76535F11FC586B619DBC7/",
-        "urlSig": "v2-hoed6e-18",
-        "urlDate": "",
+        "sig": "v2-7ty3w1-18",
+        "date": "2026-11-25",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/15241664086963443587/9E22225CA2A6FA3D83E0349709ECB06F58AC6A46/",
+        "urlSig": "v2-7ty3w1-18",
+        "urlDate": "2026-11-25",
         "cards": [
           {
             "k": "307a939a",
@@ -489,7 +489,7 @@
           {
             "k": "4b224f74",
             "n": "Iron-Blooded Tenacity",
-            "h": "tz4q5k"
+            "h": "dqd97e"
           },
           {
             "k": "077b46eb",
