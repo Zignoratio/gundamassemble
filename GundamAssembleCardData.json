@@ -322,10 +322,10 @@
         ]
       },
       "Missing_ID": {
-        "sig": "v2-1b8k5ic-17",
+        "sig": "v2-18qu5pl-17",
         "date": "2026-11-25",
-        "url": "https://steamusercontent-a.akamaihd.net/ugc/10409485933960128150/AD6FF86C9735ACF5766FE9ABEC1DA1D17FF717B4/",
-        "urlSig": "v2-1b8k5ic-17",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/15055374957153857398/B46FF6BB01BDDAF9514F2FD4CB748AA0881FA5A7/",
+        "urlSig": "v2-18qu5pl-17",
         "urlDate": "2026-11-25",
         "cards": [
           {
@@ -371,7 +371,7 @@
           {
             "k": "98e8f4e0",
             "n": "Last Shot Counts",
-            "h": "1y1iprt"
+            "h": "15tz29"
           },
           {
             "k": "123b8d8a",
@@ -386,7 +386,7 @@
           {
             "k": "8365cfc8",
             "n": "Rescued Extraction",
-            "h": "1sdaqz4"
+            "h": "1il1ui3"
           },
           {
             "k": "010a7522",
@@ -470,10 +470,10 @@
         ]
       },
       "ST01": {
-        "sig": "v2-7ty3w1-18",
+        "sig": "v2-17p6yay-18",
         "date": "2026-11-25",
-        "url": "https://steamusercontent-a.akamaihd.net/ugc/15241664086963443587/9E22225CA2A6FA3D83E0349709ECB06F58AC6A46/",
-        "urlSig": "v2-7ty3w1-18",
+        "url": "https://steamusercontent-a.akamaihd.net/ugc/15137366911372397692/BD9F6435CC777ACCFD6074191F5871D619049800/",
+        "urlSig": "v2-17p6yay-18",
         "urlDate": "2026-11-25",
         "cards": [
           {
@@ -484,7 +484,7 @@
           {
             "k": "ac0d091b",
             "n": "Sacrificial Overload",
-            "h": "1xqhql5"
+            "h": "hqujdy"
           },
           {
             "k": "4b224f74",
@@ -529,7 +529,7 @@
           {
             "k": "cd2630aa",
             "n": "War Edge",
-            "h": "1rkwb4o"
+            "h": "18kibot"
           },
           {
             "k": "0e0b240f",
