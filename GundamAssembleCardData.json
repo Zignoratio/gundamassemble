@@ -578,7 +578,7 @@
       "cardId": "",
       "description": "Gundam [Demo]",
       "tags": [
-        "Gundam [Demo]"
+        "Gundam Demo"
       ],
       "effect": "Gundam gains a [Strength] Upgrade. Its attacks cost [TL -1] this turn. If it defeats an enemy unit this turn, it gains an additional [Strength] Upgrade.",
       "scenario": "",
@@ -975,7 +975,7 @@
       "cardId": "",
       "description": "Zaku II [Line Breaker Demo]",
       "tags": [
-        "Zaku II [Line Breaker Demo]"
+        "Line Breaker Demo"
       ],
       "effect": "Zaku II (Linebreaker) rescues an allied Garrison within [Range 3] at [TL 0]. Then it gains an [Energy] Upgrade.",
       "scenario": "",
@@ -1553,7 +1553,7 @@
       "cardId": "ST01-T02",
       "description": "Wing Gundam Zero (EW) [Wing of Destruction]",
       "tags": [
-        "Wing Gundam Zero"
+        "Wing of Destruction"
       ],
       "effect": "[After Combat Damage] If Wing Gundam Zero attacked, deal 2 [Damage] to it and to each target.",
       "scenario": "",
@@ -1681,7 +1681,7 @@
       "cardId": "ST01-T11",
       "description": "Gundam Epyon (EW) [Crimson Cataclysm]",
       "tags": [
-        "Gundam Epyon"
+        "Crimson Cataclysm"
       ],
       "effect": "",
       "scenario": "",
